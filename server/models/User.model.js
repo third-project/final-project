@@ -1,20 +1,41 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema(
+const employeeSchema = new Schema(
   {
-    username: {
+    name: {
       type: String,
-      // unique: true -> Ideally, should be unique, but its up to you
+      required: true,
     },
-    password: String,
+    lastName: {
+      type: String,
+      required: true,
+    },
+    lastName2: { type: String },
+    dateOfBirth: { type: Date },
+    hiringDate: { type: Date },
+    legalGender: { type: String, enum: ["Female", "Male", "Other"] }, // Consultar genero sin el legal¿?
+    identityCard: { type: String }, //Consultar
+    password: { type: String, required: true },
+    active: { type: Boolean, default: true },
+    role: { type: String, enum: ["Employee", "Boss", "RRHH"] },
+    requests: [{ type: Schema.Types.ObjectId, ref: "Request" }],
+    clockInOut: [{ type: Schema.Types.ObjectId, ref: "Clock" }],
+    email: {
+      type: String,
+      unique: true,
+      lowercase: true,
+      match: [/\S+@\S+\.\S+/, "Email not valid"],
+    },
+    phone: { type: Number, match: [/^[679]{1}[0-9]{8}$/, "Number not valid"] },
+    employees: [],
+    workingFrom: { type: String, enum: ["Presential", "Remote", "Mixed"] },
+    photo: { type: String },
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );
 
-const User = model("User", userSchema);
+const Employee = model("Employee", employeeSchema);
 
-module.exports = User;
+module.exports = Employee;
