@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const clockInSchema = new Schema(
+const clockInOutSchema = new Schema(
   {
       currentDate:{
         type: Date,
@@ -23,6 +23,6 @@ const clockInSchema = new Schema(
   }
 );
 
-const ClockIn = model("ClockIn", clockInSchema);
+const ClockInOut = model("ClockInOut", clockInOutSchema);
 
 module.exports = ClockIn;
