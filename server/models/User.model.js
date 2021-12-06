@@ -19,7 +19,7 @@ const employeeSchema = new Schema(
     active: { type: Boolean, default: true },
     role: { type: String, enum: ["Employee", "Boss", "RRHH"] },
     requests: [{ type: Schema.Types.ObjectId, ref: "Request" }],
-    clockInOut: [{ type: Schema.Types.ObjectId, ref: "ClockIn" }],
+    clockInOut: [{ type: Schema.Types.ObjectId, ref: "ClockInOut" }],
     email: {
       type: String,
       unique: true,
@@ -27,7 +27,7 @@ const employeeSchema = new Schema(
       match: [/\S+@\S+\.\S+/, "Email not valid"],
     },
     phone: { type: Number, match: [/^[679]{1}[0-9]{8}$/, "Number not valid"] },
-    employees: [],
+    subordinates: [{ type: Schema.Types.ObjectId, ref: "User" }],
     workingFrom: { type: String, enum: ["Presential", "Remote", "Mixed"] },
     photo: { type: String },
   },
