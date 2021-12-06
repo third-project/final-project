@@ -19,7 +19,7 @@ const employeeSchema = new Schema(
     active: { type: Boolean, default: true },
     role: { type: String, enum: ["Employee", "Boss", "RRHH"] },
     requests: [{ type: Schema.Types.ObjectId, ref: "Request" }],
-    clockInOut: [{ type: Schema.Types.ObjectId, ref: "Clock" }],
+    clockInOut: [{ type: Schema.Types.ObjectId, ref: "ClockIn" }],
     email: {
       type: String,
       unique: true,
