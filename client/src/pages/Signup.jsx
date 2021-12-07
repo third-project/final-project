@@ -7,10 +7,12 @@ import * as USER_HELPERS from "../utils/userToken";
 
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
-    username: "",
+    email: "",
+    name: "",
+    lastName: "",
     password: "",
   });
-  const { username, password } = form;
+  const { email, name, lastName, password } = form;
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -20,15 +22,18 @@ export default function Signup({ authenticate }) {
   }
 
   function handleFormSubmission(event) {
-    event.preventDefault();
+    event.preventDefault(); /// cancel the default behavior of the form, the page reloads. After preventing the page from reloading, we access the input data stored in the state 
     const credentials = {
-      username,
+      email,
+      name, 
+      lastName,
       password,
     };
     signup(credentials).then((res) => {
       if (!res.status) {
         // unsuccessful signup
         console.error("Signup was unsuccessful: ", res);
+        console.log(res.status)
         return setError({
           message: "Signup was unsuccessful! Please check the console.",
         });
@@ -44,13 +49,35 @@ export default function Signup({ authenticate }) {
     <div>
       <h1>Sign Up</h1>
       <form onSubmit={handleFormSubmission} className="auth__form">
-        <label htmlFor="input-username">Username</label>
+        <label htmlFor="input-username">Email</label>
         <input
-          id="input-username"
+          id="input-email"
+          type="email"
+          name="email"
+          placeholder="Write your email address"
+          value={email}
+          onChange={handleInputChange}
+          required
+        />
+
+        <label htmlFor="input-name">Name</label>
+        <input
+          id="input-name"
           type="text"
-          name="username"
-          placeholder="Text"
-          value={username}
+          name="name"
+          placeholder="Your first name"
+          value={name}
+          onChange={handleInputChange}
+          required
+        />
+
+        <label htmlFor="input-lastName">Last Name</label>
+        <input
+          id="input-lastName"
+          type="text"
+          name="lastName"
+          placeholder="Your last name"
+          value={lastName}
           onChange={handleInputChange}
           required
         />
