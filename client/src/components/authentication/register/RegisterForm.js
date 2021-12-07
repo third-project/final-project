@@ -1,107 +1,110 @@
-import * as Yup from 'yup';
-import { useState } from 'react';
-import { Icon } from '@iconify/react';
-import { useFormik, Form, FormikProvider } from 'formik';
-import eyeFill from '@iconify/icons-eva/eye-fill';
-import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
-import { useNavigate } from 'react-router-dom';
-// material
-import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-
-// ----------------------------------------------------------------------
+import React, { useState } from "react";
+import { signup } from "../../../services/auth";
+import { useNavigate } from "react-router-dom";
+import * as PATHS from "../../../utils/paths";
+import * as USER_HELPERS from "../../../utils/userToken";
 
 export default function RegisterForm() {
+  const [form, setForm] = useState({
+    email: "",
+    name: "",
+    lastName: "",
+    password: "",
+  });
+  const { email, name, lastName, password } = form;
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
 
-  const RegisterSchema = Yup.object().shape({
-    firstName: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('First name required'),
-    lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name required'),
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required')
-  });
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    return setForm({ ...form, [name]: value });
+  }
 
-  const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: ''
-    },
-    validationSchema: RegisterSchema,
-    onSubmit: () => {
-      navigate('/dashboard', { replace: true });
-    }
-  });
-
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+  function handleFormSubmission(event) {
+    event.preventDefault(); /// cancel the default behavior of the form, the page reloads. After preventing the page from reloading, we access the input data stored in the state 
+    const credentials = {
+      email,
+      name, 
+      lastName,
+      password,
+    };
+    signup(credentials).then((res) => {
+      if (!res.status) {
+        // unsuccessful signup
+        console.error("Signup was unsuccessful: ", res);
+        console.log(res.status)
+        return setError({
+          message: "Signup was unsuccessful! Please check the console.",
+        });
+      }
+      // successful signup
+      USER_HELPERS.setUserToken(res.data.accessToken);
+      authenticate(res.data.user);
+      navigate(PATHS.HOMEPAGE);
+    });
+  }
 
   return (
-    <FormikProvider value={formik}>
-      <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <Stack spacing={3}>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <TextField
-              fullWidth
-              label="First name"
-              {...getFieldProps('firstName')}
-              error={Boolean(touched.firstName && errors.firstName)}
-              helperText={touched.firstName && errors.firstName}
-            />
+    <div>
+      <h1>Sign Up</h1>
+      <form onSubmit={handleFormSubmission}>
+        <label htmlFor="input-username">Email</label>
+        <input
+          id="input-email"
+          type="email"
+          name="email"
+          placeholder="Write your email address"
+          value={email}
+          onChange={handleInputChange}
+          required
+        />
 
-            <TextField
-              fullWidth
-              label="Last name"
-              {...getFieldProps('lastName')}
-              error={Boolean(touched.lastName && errors.lastName)}
-              helperText={touched.lastName && errors.lastName}
-            />
-          </Stack>
+        <label htmlFor="input-name">Name</label>
+        <input
+          id="input-name"
+          type="text"
+          name="name"
+          placeholder="Your first name"
+          value={name}
+          onChange={handleInputChange}
+          required
+        />
 
-          <TextField
-            fullWidth
-            autoComplete="username"
-            type="email"
-            label="Email address"
-            {...getFieldProps('email')}
-            error={Boolean(touched.email && errors.email)}
-            helperText={touched.email && errors.email}
-          />
+        <label htmlFor="input-lastName">Last Name</label>
+        <input
+          id="input-lastName"
+          type="text"
+          name="lastName"
+          placeholder="Your last name"
+          value={lastName}
+          onChange={handleInputChange}
+          required
+        />
 
-          <TextField
-            fullWidth
-            autoComplete="current-password"
-            type={showPassword ? 'text' : 'password'}
-            label="Password"
-            {...getFieldProps('password')}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end" onClick={() => setShowPassword((prev) => !prev)}>
-                    <Icon icon={showPassword ? eyeFill : eyeOffFill} />
-                  </IconButton>
-                </InputAdornment>
-              )
-            }}
-            error={Boolean(touched.password && errors.password)}
-            helperText={touched.password && errors.password}
-          />
+        <label htmlFor="input-password">Password</label>
+        <input
+          id="input-password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={handleInputChange}
+          required
+          minLength="8"
+        />
 
-          <LoadingButton
-            fullWidth
-            size="large"
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-          >
-            Register
-          </LoadingButton>
-        </Stack>
-      </Form>
-    </FormikProvider>
+        {error && (
+          <div className="error-block">
+            <p>There was an error submiting the form:</p>
+            <p>{error.message}</p>
+          </div>
+        )}
+
+        <button className="button__submit" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
+
