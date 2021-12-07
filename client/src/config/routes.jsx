@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import Login from "../pages/LogIn";
-import Signup from "../pages/Signup";
-import ProtectedPage from "../pages/ProtectedPage";
+import HomePage from "../pages/HomePage/HomePage";
+import Login from "../pages/LogIn/LogIn";
+import Signup from "../pages/Signup/Signup";
+import ProtectedPage from "../pages/ProtectedPage/ProtectedPage";
 import * as PATHS from "../utils/paths";
 
 const routes = (props) => {
