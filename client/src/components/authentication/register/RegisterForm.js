@@ -39,7 +39,7 @@ export default function RegisterForm() {
       }
       // successful signup
       USER_HELPERS.setUserToken(res.data.accessToken);
-      authenticate(res.data.user);
+      // authenticate(res.data.user);
       navigate(PATHS.HOMEPAGE);
     });
   }
