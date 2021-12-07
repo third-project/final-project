@@ -24,11 +24,12 @@ function successStatus(res) {
 
 // creates a basic url for every request in this file
 const authService = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/auth`,
+  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/auth`,
 });
 
 export function login(credentials) {
   return authService
+  
     .post("/login", credentials)
     .then(successStatus)
     .catch(internalServerError);
