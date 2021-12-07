@@ -38,7 +38,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Login() {
+export default function Login({authenticate}) {
   return (
     <RootStyle title="Login | Minimal-UI">
       <AuthLayout>
@@ -67,7 +67,7 @@ export default function Login() {
           </Stack>
         
 
-          <LoginForm />
+          <LoginForm authenticate={authenticate}/>
 
           <MHidden width="smUp">
             <Typography variant="body2" align="center" sx={{ mt: 3 }}>

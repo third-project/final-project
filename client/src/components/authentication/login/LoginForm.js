@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as PATHS from "../../../utils/paths";
 import * as USER_HELPERS from "../../../utils/userToken";
 
-export default function LoginForm() {
+export default function LoginForm({authenticate}) {
   const [form, setForm] = useState({
     email: "",
     password: "",

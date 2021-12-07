@@ -10,60 +10,17 @@ import Products from './pages/Products';
 import Blog from './pages/Blog';
 import User from './pages/User';
 import NotFound from './pages/Page404';
-import { getLoggedIn, logout } from "./services/auth";
-import * as USER_HELPERS from "./utils/userToken";
-import { useState } from 'react';
-import { useEffect } from 'react';
+
 
 // ----------------------------------------------------------------------
 
-export default function Router() {
-
-  const [user, setUser] = useState(null); // User debemos envuiarlo a la bar superior
-
-  const [isLoading, setIsLoading] = useState(true); //TODO  hay que añadir el loading 
-  
-  useEffect(() => {
-    const accessToken = USER_HELPERS.getUserToken();
-    if (!accessToken) {
-      return setIsLoading(false);
-    }
-    getLoggedIn(accessToken).then((res) => {
-      if (!res.status) {
-        return setIsLoading(false);
-      }
-      setUser(res.data.user);
-      setIsLoading(false);
-    });
-  }, []);
-
-  function handleLogout() {
-    const accessToken = USER_HELPERS.getUserToken();
-    if (!accessToken) {
-      setUser(null);
-      return setIsLoading(false);
-    }
-    setIsLoading(true);
-    logout(accessToken).then((res) => {
-      if (!res.status) {
-        // deal with error here
-        console.error("Logout was unsuccessful: ", res);
-      }
-      USER_HELPERS.removeUserToken();
-      setIsLoading(false);
-      return setUser(null);
-    });
-  }
-
-  
-  function authenticate(user) {
-    setUser(user);
-  }
+export default function Router(props) {
+  const user = props.user;
 
   return useRoutes([
     {
       path: '/dashboard',
-      element: <DashboardLayout />,
+      element: user ? <DashboardLayout {... props}/> :  <Navigate to="/login" /> ,
       children: [
         { element: <Navigate to="/dashboard/app" replace /> },
         { path: 'app', element: <DashboardApp /> },
@@ -74,10 +31,10 @@ export default function Router() {
     },
     {
       path: '/',
-      element: <LogoOnlyLayout />,
+      element: user ?  <Navigate to="/dashboard" /> : <LogoOnlyLayout />,
       children: [
-        { path: 'login', element: <Login /> },
-        { path: 'register', element: <Register /> },
+        { path: 'login', element: <Login authenticate={props.authenticate} /> },
+        { path: 'register', element: <Register authenticate={props.authenticate} /> },
         { path: '404', element: <NotFound /> },
         { path: '/', element: <Navigate to="/dashboard" /> },
         { path: '*', element: <Navigate to="/404" /> }

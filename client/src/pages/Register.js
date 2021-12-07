@@ -39,7 +39,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Register() {
+export default function Register({authenticate}) {
   return (
     <RootStyle title="Register | Minimal-UI">
       <AuthLayout>
@@ -69,7 +69,7 @@ export default function Register() {
             </Typography>
           </Box>
 
-          <RegisterForm />
+          <RegisterForm authenticate={authenticate}/>
 
           <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
             By registering, I agree to Minimal&nbsp;

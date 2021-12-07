@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as PATHS from "../../../utils/paths";
 import * as USER_HELPERS from "../../../utils/userToken";
 
-export default function RegisterForm() {
+export default function RegisterForm({authenticate}) {
   const [form, setForm] = useState({
     email: "",
     name: "",
@@ -39,7 +39,7 @@ export default function RegisterForm() {
       }
       // successful signup
       USER_HELPERS.setUserToken(res.data.accessToken);
-      // authenticate(res.data.user);
+      authenticate(res.data.user);
       navigate(PATHS.HOMEPAGE);
     });
   }
