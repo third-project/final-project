@@ -54,14 +54,12 @@ export default function App() {
   return (
     <div className="App">
       <Navbar handleLogout={handleLogout} user={user} />
-
-      {user ? <DrawerApp user={user} /> : null }
-      
       <Routes>
         {routes({ user, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
       </Routes>
+      {/* {user ? <DrawerApp user={user} /> : null } */}
     </div>
   );
 }
