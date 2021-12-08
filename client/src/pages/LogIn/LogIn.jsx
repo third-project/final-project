@@ -45,7 +45,6 @@ export default function LogIn({ authenticate }) {
         sx={{width: 250, height: 300, textAlign: 'center', '& .MuiTextField-root': { m: 1, width: '25ch' } }} autoComplete="off" >
       <form onSubmit={handleFormSubmission} className="auth__form">
       <h1>Log In</h1>
-        <label htmlFor="input-email">Email</label>
         <TextField id="input-email" label="Your email" variant="outlined" type="email"
           name="email"
           placeholder="Write your email address"
@@ -55,7 +54,6 @@ export default function LogIn({ authenticate }) {
           required
         />
 
-        <label htmlFor="input-password">Password</label>
         <TextField id="input-password" label="Your Password" variant="outlined" type="password"
           name="password"
           placeholder="Write your password"
