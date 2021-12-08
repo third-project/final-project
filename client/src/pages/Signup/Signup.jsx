@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { signup } from "../services/auth";
+import { signup } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
-import "./auth.css";
-import * as PATHS from "../utils/paths";
-import * as USER_HELPERS from "../utils/userToken";
+import "./SignUp.css";
+import * as PATHS from "../../utils/paths";
+import * as USER_HELPERS from "../../utils/userToken";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
@@ -29,7 +32,7 @@ export default function Signup({ authenticate }) {
       lastName,
       password,
     };
-    signup(credentials).then((res) => {
+      signup(credentials).then((res) => {
       if (!res.status) {
         // unsuccessful signup
         console.error("Signup was unsuccessful: ", res);
@@ -46,54 +49,57 @@ export default function Signup({ authenticate }) {
   }
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className= "Signup">
+      <Box
+        sx={{width: 250, height: 300, textAlign: 'center', '& .MuiTextField-root': { m: 1, width: '25ch' } }} autoComplete="off" >
+      
+
       <form onSubmit={handleFormSubmission} className="auth__form">
-        <label htmlFor="input-username">Email</label>
-        <input
-          id="input-email"
-          type="email"
+      <h1>Sign Up</h1>
+      <label htmlFor="input-email"></label>
+      <TextField id="input-email" label="Your email" variant="outlined" type="email"
           name="email"
           placeholder="Write your email address"
           value={email}
+          size= "small"
           onChange={handleInputChange}
+          // helperText="Error is here"
           required
-        />
-
-        <label htmlFor="input-name">Name</label>
-        <input
-          id="input-name"
-          type="text"
+      />
+      <label htmlFor="input-name"></label>
+      <TextField id="input-name" label="Name" variant="outlined" type="text"
           name="name"
           placeholder="Your first name"
           value={name}
+          size= "small"
           onChange={handleInputChange}
+          htmlFor="input-name"
+          
+          // helperText="Error is here"
           required
-        />
-
-        <label htmlFor="input-lastName">Last Name</label>
-        <input
-          id="input-lastName"
-          type="text"
+      />
+      <label htmlFor="input-lastName"></label>
+      <TextField id="input-lastName" label="Last Name" variant="outlined" type="text"
           name="lastName"
           placeholder="Your last name"
           value={lastName}
+          size= "small"
           onChange={handleInputChange}
+          htmlFor="input-lastName"
+          // helperText="Error is here"
           required
-        />
-
-        <label htmlFor="input-password">Password</label>
-        <input
-          id="input-password"
-          type="password"
+      />
+      <label htmlFor="input-password"></label>
+      <TextField id="input-password" label="Your Password" variant="outlined" type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Create a password"
           value={password}
+          size= "small"
           onChange={handleInputChange}
+          htmlFor="input-password"
+          // helperText="Error is here"
           required
-          minLength="8"
-        />
-
+      />
         {error && (
           <div className="error-block">
             <p>There was an error submiting the form:</p>
@@ -101,10 +107,11 @@ export default function Signup({ authenticate }) {
           </div>
         )}
 
-        <button className="button__submit" type="submit">
+        <Button variant="outlined" className="button_submit" type="submit">
           Submit
-        </button>
+        </Button>
       </form>
+      </Box>
     </div>
   );
 }

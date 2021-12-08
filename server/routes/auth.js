@@ -96,7 +96,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         if (error.code === 11000) {
           return res.status(400).json({
             errorMessage:
-              "Username need to be unique. The username you chose is already in use.",
+              "Email need to be unique. The username you chose is already in use.",
           });
         }
         return res.status(500).json({ errorMessage: error.message });
@@ -110,7 +110,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   if (!email) {
     return res
       .status(400)
-      .json({ errorMessage: "Please provide your username." });
+      .json({ errorMessage: "Please provide your email." });
   }
 
   // Here we use the same logic as above
