@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar/Navbar";
 import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
+import DrawerApp from "./components/DrawerApp/DrawerApp";
+
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -52,7 +54,9 @@ export default function App() {
   return (
     <div className="App">
       <Navbar handleLogout={handleLogout} user={user} />
-      {/* componente dashboard */}
+
+      {user ? <DrawerApp user={user} /> : null }
+      
       <Routes>
         {routes({ user, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
