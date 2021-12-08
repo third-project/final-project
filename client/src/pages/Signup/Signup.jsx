@@ -32,7 +32,7 @@ export default function Signup({ authenticate }) {
       lastName,
       password,
     };
-    signup(credentials).then((res) => {
+      signup(credentials).then((res) => {
       if (!res.status) {
         // unsuccessful signup
         console.error("Signup was unsuccessful: ", res);
@@ -50,10 +50,11 @@ export default function Signup({ authenticate }) {
 
   return (
     <div className= "Signup">
-    <Box
-      sx={{width: 250, height: 300, textAlign: 'center', '& .MuiTextField-root': { m: 1, width: '25ch' } }} autoComplete="off" >
+      <Box
+        sx={{width: 250, height: 300, textAlign: 'center', '& .MuiTextField-root': { m: 1, width: '25ch' } }} autoComplete="off" >
+      
 
-<form onSubmit={handleFormSubmission} className="auth__form"> 
+      <form onSubmit={handleFormSubmission} className="auth__form">
       <h1>Sign Up</h1>
       <label htmlFor="input-email"></label>
       <TextField id="input-email" label="Your email" variant="outlined" type="email"
@@ -73,7 +74,7 @@ export default function Signup({ authenticate }) {
           size= "small"
           onChange={handleInputChange}
           htmlFor="input-name"
-
+          
           // helperText="Error is here"
           required
       />
@@ -98,7 +99,6 @@ export default function Signup({ authenticate }) {
           htmlFor="input-password"
           // helperText="Error is here"
           required
-
       />
         {error && (
           <div className="error-block">

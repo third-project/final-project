@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import { login } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 import "../Signup/Signup";
-import "./Login.css";
 import * as PATHS from "../../utils/paths";
 import * as USER_HELPERS from "../../utils/userToken";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 
 export default function LogIn({ authenticate }) {
   const [form, setForm] = useState({
@@ -20,6 +16,7 @@ export default function LogIn({ authenticate }) {
 
   function handleInputChange(event) {
     const { name, value } = event.target;
+
     return setForm({ ...form, [name]: value });
   }
 
@@ -40,61 +37,43 @@ export default function LogIn({ authenticate }) {
   }
 
   return (
-    <div className="Login">
-      <Box
-        sx={{
-          width: 250,
-          height: 300,
-          textAlign: "center",
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        autoComplete="off"
-      >
-        <form onSubmit={handleFormSubmission} className="signup__form">
-          <h1>Log In</h1>
-          <label htmlFor="input-email">Email</label>
-          <TextField
-            id="input-email"
-            label="Your email"
-            variant="outlined"
-            type="email"
-            name="email"
-            placeholder="Write your email address"
-            value={email}
-            size="small"
-            onChange={handleInputChange}
-            // helperText="Error is here"
-            required
-          />
+    <div>
+      <h1>Log In</h1>
+      <form onSubmit={handleFormSubmission} className="signup__form">
+        <label htmlFor="input-email">Email</label>
+        <input
+          id="input-email"
+          type="text"
+          name="email"
+          placeholder="email"
+          value={email}
+          onChange={handleInputChange}
+          required
+        />
 
-          <label htmlFor="input-password"></label>
-          <TextField
-            id="input-password"
-            label="Your Password"
-            variant="outlined"
-            type="password"
-            name="password"
-            placeholder="Create a password"
-            value={password}
-            size="small"
-            onChange={handleInputChange}
-            htmlFor="input-password"
-            // helperText="Error is here"
-            required
-          />
+        <label htmlFor="input-password">Password</label>
+        <input
+          id="input-password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={handleInputChange}
+          required
+          minLength="8"
+        />
 
-          {error && (
-            <div className="error-block">
-              <p>There was an error submiting the form:</p>
-              <p>{error.message}</p>
-            </div>
-          )}
+        {error && (
+          <div className="error-block">
+            <p>There was an error submiting the form:</p>
+            <p>{error.message}</p>
+          </div>
+        )}
 
-          <Button variant="outlined" className="button_submit" type="submit">
-            Submit
-          </Button>
-        </form>
-      </Box>
+        <button className="button__submit" type="submit">
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
