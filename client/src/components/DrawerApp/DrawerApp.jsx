@@ -13,6 +13,7 @@ import Icon from '@mui/material/Icon';
 const DrawerApp = (props) => {
   const drawerWidth = 240;
   const menuItems = [{name: "Home", icon: "home"}];
+  // La variable de la linea 15 sirve para cargar desde aquí los iconos y poder hacer la drawer generica.
 
   return (
     <Drawer
@@ -45,6 +46,7 @@ const DrawerApp = (props) => {
           <ListItem button key={text}>
              <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {/* Todo este contenido es de ejemplo. Se debe poner como el de la parte superior */}
             </ListItemIcon> 
             <ListItemText primary={text} />
           </ListItem>
