@@ -6,11 +6,14 @@ import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import DrawerApp from "./components/DrawerApp/DrawerApp";
+import { Box } from "@mui/system";
+import { AppBar } from "@mui/material";
 
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const drawerWidth = 240;
 
   useEffect(() => {
     const accessToken = USER_HELPERS.getUserToken();
@@ -52,16 +55,23 @@ export default function App() {
     return <LoadingComponent />;
   }
   return (
-    <div className="App">
-      <Navbar handleLogout={handleLogout} user={user} />
+    <Box sx={{ display: 'flex' }} className="App">
+      <AppBar
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}>
+        <Navbar handleLogout={handleLogout} user={user} />
+      </AppBar>
 
       {user ? <DrawerApp user={user} /> : null }
-      
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+      >
       <Routes>
         {routes({ user, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
       </Routes>
-    </div>
+      </Box>
+    </Box>
   );
 }
