@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { login } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
-import "../Signup/Signup";
+import "./LogIn.css"
 import * as PATHS from "../../utils/paths";
 import * as USER_HELPERS from "../../utils/userToken";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function LogIn({ authenticate }) {
   const [form, setForm] = useState({
@@ -37,27 +40,27 @@ export default function LogIn({ authenticate }) {
   }
 
   return (
-    <div>
+    <div className="Login">
+    <Box
+        sx={{width: 250, height: 300, textAlign: 'center', '& .MuiTextField-root': { m: 1, width: '25ch' } }} autoComplete="off" >
+      <form onSubmit={handleFormSubmission} className="auth__form">
       <h1>Log In</h1>
-      <form onSubmit={handleFormSubmission} className="signup__form">
         <label htmlFor="input-email">Email</label>
-        <input
-          id="input-email"
-          type="text"
+        <TextField id="input-email" label="Your email" variant="outlined" type="email"
           name="email"
-          placeholder="email"
+          placeholder="Write your email address"
           value={email}
+          size= "small"
           onChange={handleInputChange}
           required
         />
 
         <label htmlFor="input-password">Password</label>
-        <input
-          id="input-password"
-          type="password"
+        <TextField id="input-password" label="Your Password" variant="outlined" type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Write your password"
           value={password}
+          size= "small"
           onChange={handleInputChange}
           required
           minLength="8"
@@ -70,10 +73,11 @@ export default function LogIn({ authenticate }) {
           </div>
         )}
 
-        <button className="button__submit" type="submit">
+        <Button variant="outlined" className="button_submit" type="submit">
           Submit
-        </button>
+        </Button>
       </form>
+    </Box>
     </div>
   );
 }
