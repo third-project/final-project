@@ -4,6 +4,13 @@ import Login from "../pages/LogIn/LogIn";
 import Signup from "../pages/Signup/Signup";
 import ProtectedPage from "../pages/ProtectedPage/ProtectedPage";
 import * as PATHS from "../utils/paths";
+import Calender from '../pages/Calender/Calender'
+import ClockIn from '../pages/ClockIn/ClockIn'
+import Employees from '../pages/Employees/Employees'
+import MyProfile from '../pages/MyProfile/MyProfile'
+import Tasks from '../pages/Tasks/Tasks'
+import TimeOff from '../pages/TimeOff/TimeOff'
+
 
 const routes = (props) => {
   const { user } = props;
@@ -25,6 +32,54 @@ const routes = (props) => {
       path: PATHS.PROTECTEDPAGE,
       element: user ? (
         <ProtectedPage {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGINPAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.CALENDER,
+      element: user ? (
+        <Calender {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGINPAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.ClOCKIN,
+      element: user ? (
+        <ClockIn {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGINPAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.EMPLOYES,
+      element: user ? (
+        <Employees {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGINPAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.MYPROFILE,
+      element: user ? (
+        <MyProfile {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGINPAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.TASKS,
+      element: user ? (
+        <Tasks {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGINPAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.TIMEOFF,
+      element: user ? (
+        <TimeOff {...props} />
       ) : (
         <Navigate to={PATHS.LOGINPAGE} replace />
       ),
