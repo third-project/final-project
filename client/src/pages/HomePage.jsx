@@ -1,4 +1,5 @@
 
+import DrawerApp from "../components/DrawerApp/DrawerApp";
 import "./HomePage.css";
 
 function HomePage() {
@@ -8,6 +9,7 @@ function HomePage() {
       <p>Home Page</p>
 
       </header>
+      <DrawerApp />
     </div>
   );
 }
