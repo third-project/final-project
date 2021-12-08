@@ -1,58 +1,63 @@
 import React from "react";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import Icon from '@mui/material/Icon';
+import { Box } from "@mui/system";
+import DrawerItems from "./DrawerItems";
 
 const DrawerApp = (props) => {
-  const drawerWidth = 240;
-  const menuItems = [{name: "Home", icon: "home"}];
-  // La variable de la linea 15 sirve para cargar desde aquí los iconos y poder hacer la drawer generica.
+  const { window } = props;
 
-  return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: drawerWidth,
-          boxSizing: "border-box",
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
+  const drawerWidth = 240;
+  const menuItems = [{ name: "Home", icon: "home" }];
+  const menuItems2 = [
+    { name: "All mail", icon: "mail" },
+    { name: "Trash", icon: "home" },
+    { name: "Spam", icon: "mail" },
+  ];
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
+  const drawer = (
+    <div>
       <Toolbar />
       <Divider />
-      <List>
-        {menuItems.map((item,i) => (
-          <ListItem button key={i}>
-             <ListItemIcon>
-             <Icon>{item.icon}</Icon>
-            </ListItemIcon> 
-            <ListItemText primary={item.name} />
-          </ListItem>
-        ))}
-      </List>
+      <DrawerItems items={menuItems} />
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              {/* Todo este contenido es de ejemplo. Se debe poner como el de la parte superior */}
-            </ListItemIcon> 
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Drawer>
+      <DrawerItems items={menuItems2} />
+    </div>
+  );
+
+  return (
+    <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
+      <Drawer
+        container={container}
+        variant="temporary"
+        open={props.mobileOpen}
+        onClose={props.handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+        }}
+      >
+        {drawer}
+      </Drawer>
+
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: "none", sm: "block" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+        }}
+        open
+      >
+        {drawer}
+      </Drawer>
+    </Box>
   );
 };
 

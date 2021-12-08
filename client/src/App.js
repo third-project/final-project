@@ -7,13 +7,11 @@ import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import DrawerApp from "./components/DrawerApp/DrawerApp";
 import { Box } from "@mui/system";
-import { AppBar } from "@mui/material";
-
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const drawerWidth = 240;
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const accessToken = USER_HELPERS.getUserToken();
@@ -51,26 +49,44 @@ export default function App() {
     setUser(user);
   }
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   if (isLoading) {
     return <LoadingComponent />;
   }
   return (
-    <Box sx={{ display: 'flex' }} className="App">
-      <AppBar
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}>
-        <Navbar handleLogout={handleLogout} user={user} />
-      </AppBar>
+    <Box sx={{ display: "flex" }} className="App">
+      {user ? (
+        <DrawerApp
+          user={user}
+          handleDrawerToggle={handleDrawerToggle}
+          mobileOpen={mobileOpen}
+        />
+      ) : null}
 
-      {user ? <DrawerApp user={user} /> : null }
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-      >
-      <Routes>
-        {routes({ user, authenticate, handleLogout }).map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
-        ))}
-      </Routes>
+      <Box>
+        <Navbar
+          handleLogout={handleLogout}
+          user={user}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+        >
+          <Routes>
+            {routes({ user, authenticate, handleLogout }).map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Routes>
+        </Box>
       </Box>
     </Box>
   );
