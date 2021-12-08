@@ -30,10 +30,13 @@
 /* section two */
 
   .section-two{
-    background-color:rgb(253,253,229); 
-    display: flex;
+    background-color:rgba(255,176,119,.4); 
     height: 500px;
-    justify-content: center;
-    align-self: center;
+    padding-top: 4px;
+  
+  }
+
+  .homeImage{
+    width: 800px;
   }
  

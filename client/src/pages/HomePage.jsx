@@ -11,7 +11,9 @@ function HomePage() {
 
           <div className="section-one">
             <img className="logo" src={logo} alt="grouping-logo" />
+            
             <h1 className="home-h1">Everything you need for HR management</h1>
+            
           </div>
 
 {/* section two */}

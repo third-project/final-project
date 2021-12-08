@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { login } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"
+import "./LogIn.css"
 import * as PATHS from "../../utils/paths";
 import * as USER_HELPERS from "../../utils/userToken";
 import Box from '@mui/material/Box';
