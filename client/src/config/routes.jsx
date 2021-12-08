@@ -84,6 +84,10 @@ const routes = (props) => {
         <Navigate to={PATHS.LOGINPAGE} replace />
       ),
     },
+    {
+      path: "*",
+      element:  <Navigate to={PATHS.HOMEPAGE} replace />
+    },
   ];
 };
 

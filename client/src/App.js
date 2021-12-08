@@ -74,9 +74,8 @@ export default function App() {
         />
 
         <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-        >
+          sx={{ flexGrow: 1, p: 3, display: "block", width:"100vw"}}>
+
           <Routes>
             {routes({ user, authenticate, handleLogout }).map((route) => (
               <Route
