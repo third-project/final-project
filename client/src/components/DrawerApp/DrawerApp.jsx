@@ -4,16 +4,20 @@ import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
 import { Box } from "@mui/system";
 import DrawerItems from "./DrawerItems";
+import * as PATHS from "../../utils/paths";
 
 const DrawerApp = (props) => {
   const { window } = props;
 
   const drawerWidth = 240;
-  const menuItems = [{ name: "Home", icon: "home" }];
+  const menuItems = [{ name: "Home", icon: "home", path: PATHS.HOMEPAGE }];
   const menuItems2 = [
-    { name: "All mail", icon: "mail" },
-    { name: "Trash", icon: "home" },
-    { name: "Spam", icon: "mail" },
+    { name: "Calendar", icon: "calendar_today", path: PATHS.CALENDER },
+    { name: "Clock In", icon: "access_time", path: PATHS.ClOCKIN },
+    { name: "Employees", icon: "groups", path: PATHS.EMPLOYES },
+    { name: "My Profile", icon: "manage_accounts", path: PATHS.MYPROFILE },
+    { name: "Tasks", icon: "assignment", path: PATHS.TASKS },
+    { name: "Time Off", icon: "hail", path: PATHS.TIMEOFF },
   ];
 
   const container =
