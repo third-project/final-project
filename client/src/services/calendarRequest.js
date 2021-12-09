@@ -4,12 +4,12 @@ import { internalServerError, successStatus } from "./auth";
 
 // creates a basic url for every request in this file
 const calendarRequestService = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/calendar-request`,
+  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/calendar-requests`,
 });
 
 export async function getMyRequests() {
   try {
-    const responseAllMyRequests = await calendarRequestService.get("/allMine", {
+    const responseAllMyRequests = await calendarRequestService.get("/all-mine", {
       headers: { Authorization: USER_HELPERS.getUserToken() },
     });
     //    const responseAllMyRequests = await calendarRequestService.get(`/allMine`, headers);
