@@ -57,6 +57,7 @@ export default function App() {
     return <LoadingComponent />;
   }
   return (
+
     <Box sx={{ display: "flex" }} className="App">
       {user ? (
         <DrawerApp

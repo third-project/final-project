@@ -1,0 +1,83 @@
+.MyProfile .title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.generalInfo{
+    display: flex;
+}
+
+.divInfo {
+    width: 40vw;
+    margin-left: 5%;
+}
+
+.generalInfo .divForm {
+    width: fit-content;
+    height: 580px;
+    padding: 3% 5% 1% 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+    align-content: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+.divForm form label {
+    font-size: 0.9em;
+    font-weight: 400;
+}
+.formTitle {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.workInfo {
+    display: flex;
+}
+.workInfo .divForm {
+    width: fit-content;
+    height: 255px;
+    padding: 3% 5%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    align-content: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.divForm .button_submit {
+    margin-top: 5%;
+    float: right;
+} 
+.input {
+    background-color: white;
+}
+
+@media (max-width:600px) {
+    .generalInfo, .workInfo{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+        }
+    .divInfo {
+        display: flex;
+        flex-direction: column;
+        float: center;
+        width: 78vw;
+        margin-bottom: 4%;
+    }
+    .generalInfo .divForm {
+        display: inline;
+        margin: 2% 0 2% 3%;
+        padding-right: 8%;
+    }
+    .workInfo .divForm {
+        display: inline;
+        padding-bottom: 10%;
+        margin: 2% 0 2% 3%;
+        padding-right: 8%;
+    }
+}
