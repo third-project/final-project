@@ -1,14 +1,19 @@
-import { Box } from "@mui/material";
-import React from "react";
-import CalendarApp from "../../components/CalendarApp/CalandarApp";
+import React, { useEffect } from "react";
+import CalendarApp from "../../components/CalendarApp/CalendarApp";
+import { getMyRequests } from "../../services/calendarRequest";
 import './Calender.css'
 
 const Calender = () => {
+  useEffect( () => {
+    getMyRequests().then((res)=>{
+      console.log(res);
+    })
+  }, []);
   return (
-    <Box sx={{ width: "80%", height: "80%"}}>
+    <div className="Calender">
       <h1>Calender </h1>
       <CalendarApp/>
-    </Box>
+    </div>
   );
 };
 

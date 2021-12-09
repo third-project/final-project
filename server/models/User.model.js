@@ -18,7 +18,7 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     active: { type: Boolean, default: true },
     role: { type: String, enum: ["Employee", "Boss", "RRHH"] },
-    requests: [{ type: Schema.Types.ObjectId, ref: "Request" }],
+    calendarRequests: [{ type: Schema.Types.ObjectId, ref: "CalendarRequest" }],
     clockInOut: [{ type: Schema.Types.ObjectId, ref: "ClockInOut" }],
     email: {
       type: String,
