@@ -1,0 +1,42 @@
+/* section one */
+
+.section-one{
+    background-color:rgb(253,253,229);
+    height: 535px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+  }
+
+  .home-h1{
+      color: rgb(42,86,158);
+      display: flex;
+      align-self:center;
+      padding-left: 8px;
+      background-color: rgba(255,176,119,.4);
+      transform: skew(9deg,0deg);
+  }
+  
+  .logo{
+      display: flex;
+      align-self: center;
+      width:200px;
+      height: 200px;
+      padding-bottom: 30px;
+
+  }
+  
+/* section two */
+
+  .section-two{
+    background-color:rgba(255,176,119,.4); 
+    height: 500px;
+    padding-top: 4px;
+  
+  }
+
+  .homeImage{
+    width: 800px;
+  }
+ 

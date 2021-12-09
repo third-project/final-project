@@ -1,27 +1,44 @@
-
 import "./HomePage.css";
+import logo from "../images/groupingLogo.png";
+import homeImage from "../images/homeImage.png"
+import Grid from "@mui/material/Grid";
 
 function HomePage() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <p>Home Page</p>
+    <div className="Home">
+     
+     {/* section one  */}
 
-      </header>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.</p>
-      
-    </div>
+          <div className="section-one">
+            <img className="logo" src={logo} alt="grouping-logo" />
+            
+            <h1 className="home-h1">Everything you need for HR management</h1>
+            
+          </div>
+
+{/* section two */}
+          <div className="section-two">
+          <img className="homeImage" src={homeImage} alt="home"/>
+            {/* <div className="features">
+              <h2>Declarative</h2>
+              <p>React makes it painless to create interactive UIs.</p>
+            </div>
+            <div className="features">
+              <h2>Components</h2>
+              <p>Build encapsulated components that manage their state.</p>
+            </div>
+            <div className="features">
+              <h2>Single-Way</h2>
+              <p>A set of immutable values are passed to the component's.</p>
+            </div>
+            <div className="features">
+              <h2>JSX</h2>
+              <p>Statically-typed, designed to run on modern browsers.</p>
+            </div> */}
+          </div>
+          </div>
+   
+
   );
 }
 
