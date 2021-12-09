@@ -5,7 +5,7 @@ import './Calender.css'
 
 const Calender = () => {
   return (
-    <Box sx={{ width: "80%"}}>
+    <Box sx={{ width: "80%", height: "80%"}}>
       <h1>Calender </h1>
       <CalendarApp/>
     </Box>
