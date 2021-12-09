@@ -55,6 +55,10 @@
     background-color: white;
 }
 
+.divForm .hidden {
+    display: contents; 
+}
+
 @media (max-width:600px) {
     .generalInfo, .workInfo{
         display: flex;
