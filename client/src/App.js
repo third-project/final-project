@@ -6,11 +6,12 @@ import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import DrawerApp from "./components/DrawerApp/DrawerApp";
-
+import { Box } from "@mui/system";
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const accessToken = USER_HELPERS.getUserToken();
@@ -48,18 +49,45 @@ export default function App() {
     setUser(user);
   }
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   if (isLoading) {
     return <LoadingComponent />;
   }
   return (
-    <div className="App">
-      <Navbar handleLogout={handleLogout} user={user} />
-      <Routes>
-        {routes({ user, authenticate, handleLogout }).map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
-        ))}
-      </Routes>
-      {/* {user ? <DrawerApp user={user} /> : null } */}
-    </div>
+
+    <Box sx={{ display: "flex" }} className="App">
+      {user ? (
+        <DrawerApp
+          user={user}
+          handleDrawerToggle={handleDrawerToggle}
+          mobileOpen={mobileOpen}
+        />
+      ) : null}
+
+      <Box>
+        <Navbar
+          handleLogout={handleLogout}
+          user={user}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+
+        <Box
+          sx={{ flexGrow: 1, p: 3, display: "block", width:"100vw"}}>
+
+          <Routes>
+            {routes({ user, authenticate, handleLogout }).map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Routes>
+        </Box>
+      </Box>
+    </Box>
   );
 }

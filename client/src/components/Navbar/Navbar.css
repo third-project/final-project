@@ -1,19 +1,25 @@
 nav {
   display: flex;
   padding: 1em;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
-  background: #282c34;
+  background:rgb(42,86,158);
   font-weight: 600;
 }
 
+.logo{
+  width: 70px;
+  height: 50px;
+}
+
+
 .nav__projectName {
-  color: #e4f9ff;
+  color: rgb(253,253,229);
   text-decoration: none;
 }
 
 .authLink {
-  color: #61dafb;
+  color: rgb(253,253,229) ;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
