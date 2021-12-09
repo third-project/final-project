@@ -57,7 +57,6 @@ export default function App() {
     return <LoadingComponent />;
   }
   return (
-
     <Box sx={{ display: "flex" }} className="App">
       {user ? (
         <DrawerApp
@@ -67,16 +66,14 @@ export default function App() {
         />
       ) : null}
 
-      <Box>
+      <Box sx={{ flexGrow: 1, flexShrink: 0 }}>
         <Navbar
           handleLogout={handleLogout}
           user={user}
           handleDrawerToggle={handleDrawerToggle}
         />
 
-        <Box
-          sx={{ flexGrow: 1, p: 3, display: "block", width:"100vw"}}>
-
+        <Box sx={{ p: 3, display: "block" }}>
           <Routes>
             {routes({ user, authenticate, handleLogout }).map((route) => (
               <Route
