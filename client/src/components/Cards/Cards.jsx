@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+// import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import HailTwoToneIcon from "@mui/icons-material/HailTwoTone";
@@ -12,30 +12,31 @@ import AssignmentTwoToneIcon from '@mui/icons-material/AssignmentTwoTone';
 
 import "./Cards.css";
 
-const cardUseStyles = makeStyles((theme) => ({
-  Card: {
-    height: "100%",
-    width:"40%",
-    display: "flex",
-    flexPosition: "row",
-  },
-  CardContent: {
-    backgroundColor:"9695F0",
-    maxHeight: "100%",
-    maxWidth: "100%",
-  },
-}));
+// const cardUseStyles = makeStyles((theme) => ({
+//   Card: {
+//     height: "100%",
+//     width:"40%",
+//     display: "flex",
+//     flexPosition: "row",
+//   },
+//   CardContent: {
+//     backgroundColor:"9695F0",
+//     maxHeight: "100%",
+//     maxWidth: "100%",
+//   },
+// }));
 
 export default function ActionAreaCard() {
-  const cardClasses = cardUseStyles();
+  // const cardClasses = cardUseStyles();
   return (
-    <div className="card-item">
-      <Container className={cardClasses.cardGrid}>
+   
+    <div>
+      <Container className="card-container">
         {/* End hero unit */}
         <Grid container spacing={2}>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea classname="cards">
-              <HailTwoToneIcon />
+          <Card sx={{ maxWidth: 345 }} className="cards">
+            <CardActionArea className="card-item">
+              <HailTwoToneIcon  />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Holidays and absences
@@ -46,9 +47,11 @@ export default function ActionAreaCard() {
                 </Typography>
               </CardContent>
             </CardActionArea>
+            </Card>
 
-            <CardActionArea>
-              <AccessTimeTwoToneIcon />
+            <Card sx={{ maxWidth: 345 }} className="cards">
+            <CardActionArea >
+              <AccessTimeTwoToneIcon/>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Clock In
@@ -59,8 +62,10 @@ export default function ActionAreaCard() {
                 </Typography>
               </CardContent>
             </CardActionArea>
+            </Card>
 
-            <CardActionArea>
+            <Card sx={{ maxWidth: 345 }} className="cards"> 
+            <CardActionArea >
             <AssignmentTwoToneIcon/>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">

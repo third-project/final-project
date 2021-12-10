@@ -29,7 +29,8 @@
   color:rgb(59, 58, 58);
   display: flex;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 20px; 
+  padding-bottom: 20px; 
   background-color: rgba(255, 176, 119, 0.4);
   transform: skew(9deg, 0deg);
 }
