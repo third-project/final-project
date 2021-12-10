@@ -1,6 +1,6 @@
 import React from "react";
-import FullCalendar from "@fullcalendar/react"; // must go before plugins
-import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
+import FullCalendar from "@fullcalendar/react"; 
+import dayGridPlugin from "@fullcalendar/daygrid"; //
 
 const CalendarApp = (props) => {
   return <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />;
