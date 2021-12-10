@@ -40,7 +40,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (!email) {
     return res
       .status(400)
-      .json({ errorMessage: "Please provide your username." });
+      .json({ errorMessage: "Please provide your email." });
   }
 
   if (password.length < 8) {
@@ -65,7 +65,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   User.findOne({ email }).then((found) => {
     // If the user is found, send the message username is taken
     if (found) {
-      return res.status(400).json({ errorMessage: "Username already taken." });
+      return res.status(400).json({ errorMessage: "This email has already an account." });
     }
 
     // if user is not found, create a new user - start with hashing the password
