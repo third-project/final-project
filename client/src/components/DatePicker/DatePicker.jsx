@@ -10,12 +10,11 @@ const DatePicker = (props) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
-        startText="Check-in"
-        endText="Check-out"
-        value={props.value}
+        startText={props.startText}
+        endText={props.endText}
+        value={props.dates}
         onChange={(newValue) => {
-          props.setValue(newValue);
-          console.log(props.value);
+          props.setDates(newValue);
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>

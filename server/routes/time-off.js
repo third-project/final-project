@@ -13,7 +13,6 @@ router.post("/create", isLoggedIn, async (req, res) => {
     if (
       req.body.startDate &&
       req.body.endDate &&
-      req.body.summary &&
       req.body.type
     ) {
       const newCalendarRequest = await CalendarRequest.create({

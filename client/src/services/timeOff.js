@@ -7,9 +7,9 @@ const timeOffService = axios.create({
 });
 
 /**
- * Crea y envia la solicitud de ausaencia/vacaciones al Back
+ * Crea y envia la solicitud de ausencia/vacaciones al Back
  *
- * @param {starDate: Date, endDate: Date, type: string} timeOff type from "Holidays", "Illness", "Maternity / Paternity","Other"
+ * @param {starDate: Date, endDate: Date, summary: string, type: string} timeOff type from "Holidays", "Illness", "Maternity / Paternity","Other"
  */
 
 export async function createTimeOff(timeOff) {
