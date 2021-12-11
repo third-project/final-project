@@ -17,6 +17,7 @@ const companySchema = new Schema(
     phone: { type: Number, match: [/^[679]{1}[0-9]{8}$/, "Number not valid"] },
     employees: [{ type: Schema.Types.ObjectId, ref: "User" }],
     logo: { type: String },
+    approvedTimeRequest:[{ type: Schema.Types.ObjectId, ref: "CalendarRequest" }]
   },
   {
     timestamps: true,
