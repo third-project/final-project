@@ -39,7 +39,7 @@ export default function ActionAreaCard() {
               <HailTwoToneIcon  />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  Holidays and absences
+                Time Off
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Manage your employees vacations and absences quickly and
