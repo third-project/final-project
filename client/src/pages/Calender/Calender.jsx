@@ -1,18 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CalendarApp from "../../components/CalendarApp/CalendarApp";
 import { getMyRequests } from "../../services/calendarRequest";
-import './Calender.css'
+import "./Calender.css";
 
 const Calender = () => {
-  useEffect( () => {
-    getMyRequests().then((res)=>{
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    getMyRequests().then((res) => {
       console.log(res);
-    })
+      setEvents(res.data);
+    });
   }, []);
+  
+  function onEventClick(event) {
+    console.log(event);
+  }
+
+
   return (
     <div className="Calender">
       <h1>Calender </h1>
-      <CalendarApp/>
+      <CalendarApp events={events} event={onEventClick} />
     </div>
   );
 };
