@@ -1,0 +1,20 @@
+.cards {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  height: 200px;
+  text-align: center;
+  margin-top: 130px;
+  padding-top: 20px;
+  margin-right: 20px;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+  
+.card-item{
+    color: #9695F0 ;
+   
+}
+
+
