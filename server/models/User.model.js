@@ -14,11 +14,10 @@ const userSchema = new Schema(
     dateOfBirth: { type: Date },
     hiringDate: { type: Date },
     legalGender: { type: String, enum: ["Female", "Male", "Other"] }, // Consultar genero sin el legal¿?
-    identityCard: { type: String }, //Consultar
+    identityCard: { type: String },
     password: { type: String, required: true },
     active: { type: Boolean, default: true },
     role: { type: String, enum: ["Employee", "Boss", "RRHH"] },
-    requests: [{ type: Schema.Types.ObjectId, ref: "Request" }],
     clockInOut: [{ type: Schema.Types.ObjectId, ref: "ClockInOut" }],
     email: {
       type: String,
