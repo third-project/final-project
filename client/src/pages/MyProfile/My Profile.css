@@ -1,3 +1,5 @@
+My profile.css
+
 .MyProfile .title {
     text-align: center;
     font-size: 2em;
@@ -53,6 +55,10 @@
 } 
 .input {
     background-color: white;
+}
+
+.divForm .hidden {
+    display: contents; 
 }
 
 @media (max-width:600px) {

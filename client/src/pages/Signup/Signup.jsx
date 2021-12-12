@@ -19,13 +19,55 @@ export default function Signup({ authenticate }) {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    return setForm({ ...form, [name]: value });
-  }
+  //Errors handling: 
+  const [errors, setErrors] = useState({});
+  const setField = (field, value) => {
+    setForm({
+      ...form,
+      [field]: value
+    });
+
+    if (errors[field])
+      setErrors({
+        ...errors,
+        [field]: null
+      });
+  };
+
+  const checkErrors = () => {
+    const checkedErrors = {};
+
+    if (!/^\S+@\S+\.\S+$/.test(form.email))
+      checkedErrors.email = "Please introduce a valid e-mail";
+
+    if (form.name.length < 3)
+      checkedErrors.name = "Your name must be at least 3 chars long";
+
+    else if (form.name === "")
+      checkedErrors.name = "This field can not be empty";
+
+    if (form.lastName === "")
+      checkedErrors.surname = "this field can not be empty";
+
+    if (form.password.length < 8)
+      checkedErrors.password = "Your password should be at least 8 characters long";
+
+    return checkedErrors;
+  };
+
+  // function handleInputChange(event) {
+  //   const { name, value } = event.target;
+  //   return setForm({ ...form, [name]: value });
+  // }
 
   function handleFormSubmission(event) {
-    event.preventDefault(); /// cancel the default behavior of the form, the page reloads. After preventing the page from reloading, we access the input data stored in the state 
+    const foundErrors = checkErrors();
+
+    if (Object.keys(foundErrors).length > 0) {
+      event.preventDefault(); 
+      setErrors(foundErrors);
+    } else {
+    event.preventDefault(); 
     const credentials = {
       email,
       name, 
@@ -33,85 +75,82 @@ export default function Signup({ authenticate }) {
       password,
     };
       signup(credentials).then((res) => {
-      if (!res.status) {
+      if (!res.status || res.errorMessage === "This email has already an account.") {
         // unsuccessful signup
         console.error("Signup was unsuccessful: ", res);
-        console.log(res.status)
         return setError({
-          message: "Signup was unsuccessful! Please check the console.",
+          message: "This email has already an account, please provide another email address",
         });
+      } else {
+        // successful signup
+        USER_HELPERS.setUserToken(res.data.accessToken);
+        authenticate(res.data.user);
+        navigate(PATHS.HOMEPAGE);
       }
-      // successful signup
-      USER_HELPERS.setUserToken(res.data.accessToken);
-      authenticate(res.data.user);
-      navigate(PATHS.HOMEPAGE);
     });
+    }
   }
 
   return (
     <div className= "Signup">
       <Box
         sx={{width: 250, height: 300, textAlign: 'center', '& .MuiTextField-root': { m: 1, width: '25ch' } }} autoComplete="off" >
-      
-
-      <form onSubmit={handleFormSubmission} className="auth__form">
+      <form className="auth__form">
       <h1>Sign Up</h1>
-      <label htmlFor="input-email"></label>
       <TextField id="input-email" label="Your email" variant="outlined" type="email"
+          error={errors.email}
           name="email"
           placeholder="Write your email address"
           value={email}
           size= "small"
-          onChange={handleInputChange}
-          // helperText="Error is here"
+          onChange={(e) => setField("email", e.target.value)}
+          helperText={errors.email}
           required
       />
-      <label htmlFor="input-name"></label>
       <TextField id="input-name" label="Name" variant="outlined" type="text"
+          error={errors.name}
           name="name"
           placeholder="Your first name"
           value={name}
           size= "small"
-          onChange={handleInputChange}
+          onChange={(e) => setField("name", e.target.value)}
           htmlFor="input-name"
-          
-          // helperText="Error is here"
+          helperText={errors.name}
           required
       />
-      <label htmlFor="input-lastName"></label>
       <TextField id="input-lastName" label="Last Name" variant="outlined" type="text"
+          error={errors.lastName}
           name="lastName"
           placeholder="Your last name"
           value={lastName}
           size= "small"
-          onChange={handleInputChange}
+          onChange={(e) => setField("lastName", e.target.value)}
           htmlFor="input-lastName"
-          // helperText="Error is here"
+          helperText={errors.lastName}
           required
       />
-      <label htmlFor="input-password"></label>
-      <TextField id="input-password" label="Your Password" variant="outlined" type="password"
+      <TextField id="input-password"  label="Your Password" variant="outlined" type="password"
+          error={errors.password}
           name="password"
           placeholder="Create a password"
           value={password}
           size= "small"
-          onChange={handleInputChange}
+          onChange={(e) => setField("password", e.target.value)}
           htmlFor="input-password"
-          // helperText="Error is here"
+          helperText={errors.password}
           required
       />
-        {error && (
-          <div className="error-block">
-            <p>There was an error submiting the form:</p>
-            <p>{error.message}</p>
-          </div>
-        )}
 
-        <Button variant="outlined" className="button_submit" type="submit">
+        <Button variant="outlined"  onClick={handleFormSubmission} className="button_submit" type="submit">
           Submit
         </Button>
       </form>
+      {error && (
+          <div className="error-block">
+            <p>{error.message}</p>
+          </div>
+      )}
       </Box>
-    </div>
+   </div>
   );
 }
