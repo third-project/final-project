@@ -4,7 +4,7 @@
   background-color: rgb(249, 249, 247);
   height: 535px;
   display: flex;
-  justify-content: center;
+ justify-content: center;
   align-self: center;
   flex-direction: column;
 }
@@ -46,13 +46,14 @@
   margin-left: 300px;
   margin-top: 30px;
 
-}
+ }
+
 
 .mission-img{
   display: flex;
   align-items: center;
 
-}
+} 
 
 
 .circle {
@@ -60,11 +61,10 @@
 	height: 24rem;
 	border-radius: 50%;
   background:rgba(255, 176, 119, 0.705);
-	display: flex;
+  display: flex;
 	justify-content: center;
-  flex-direction: column;
-	text-align: center;
-  margin:0px auto;
+  flex-direction: column; 
+	text-align: center; 
   padding:3%;
 
 
@@ -75,3 +75,13 @@
   font-size: 1rem;
 	font-weight: bold;
 }
+
+
+/* section four */
+
+.section-four{
+  height: 500px;
+  margin-top: 300px;
+}
+
+
