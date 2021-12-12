@@ -74,7 +74,7 @@ export default function App() {
           handleDrawerToggle={handleDrawerToggle}
         />
 
-        <Box sx={{ display: "block" }}>
+        <Box sx={{ display: "block", p: 3 }}>
           <Routes>
             {routes({ user, authenticate, handleLogout }).map((route) => (
               <Route

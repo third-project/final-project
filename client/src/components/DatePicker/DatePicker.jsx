@@ -6,7 +6,6 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
 const DatePicker = (props) => {
-   
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
