@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const authRoutes = require("./auth");
-const userRoutes = require("./users")
 const calendarRoutes = require("./calendar");
 const timeOffRoutes = require("./time-off");
+const userRoutes = require("./users")
 
 /* GET home page */
 router.get("/", (req, res, next) => {
