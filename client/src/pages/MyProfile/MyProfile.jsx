@@ -22,8 +22,6 @@ const theme = createTheme({
   },
 });
 
-
-
 const MyProfile = (props) => {
   
   const {_id, name, lastName, lastName2, dateOfBirth, identityCard, legalGender, phoneNumber, } = props.user
@@ -40,7 +38,8 @@ const MyProfile = (props) => {
   });
 
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -53,7 +52,7 @@ const MyProfile = (props) => {
       if (!res.status) {
         return setError({ error: "There is an error" });
       }
-      console.log(res.status)
+      return setMessage("Your profile was updated succesfully")
     });
   }
 
@@ -175,6 +174,11 @@ const MyProfile = (props) => {
                   Submit
                 </Button>
               </form>
+              {message && (
+                <div>
+                  <span>{message}</span>
+                </div>
+              )}
             </Box>
           </div>
         </section>

@@ -14,9 +14,10 @@ router.patch("/profile", isLoggedIn, async (req, res) => {
     try{
         const userUpdated = await User.findByIdAndUpdate(_id, req.body, {new:true})
     }catch(err){
-        return res.status(500).json({ errorMessage: error.message });
+        res.status(500).json({ errorMessage: error.message });
     } 
     res.status(200).json({msg: "Changes made succesfully"})
+
 })
 
 module.exports = router
