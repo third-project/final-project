@@ -5,6 +5,7 @@ import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
 import { IconButton } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import logo from "../../images/logo.png"
 
 const Navbar = (props) => {
   return (
@@ -12,6 +13,7 @@ const Navbar = (props) => {
       <IconButton
         aria-label="open drawer"
         edge="start"
+        img={logo}
         onClick={props.handleDrawerToggle}
         sx={{ mr: 2, display: { sm: "none" },color:"white" }}
       >

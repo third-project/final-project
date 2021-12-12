@@ -10,6 +10,8 @@ router.get("/", (req, res, next) => {
 });
 
 router.use("/auth", authRoutes);
+router.use("/calendar-requests",calendarRoutes);
+router.use("/time-off",timeOffRoutes);
 
 router.use("/user", userRoutes)
 

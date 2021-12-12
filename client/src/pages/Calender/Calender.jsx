@@ -1,14 +1,28 @@
-import { Box } from "@mui/material";
-import React from "react";
-import CalendarApp from "../../components/CalendarApp/CalandarApp";
-import './Calender.css'
+import React, { useEffect, useState } from "react";
+import CalendarApp from "../../components/CalendarApp/CalendarApp";
+import { getMyRequests } from "../../services/calendarRequest";
+import "./Calender.css";
 
 const Calender = () => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    getMyRequests().then((res) => {
+      console.log(res);
+      setEvents(res.data);
+    });
+  }, []);
+  
+  function onEventClick(event) {
+    console.log(event);
+  }
+
+
   return (
-    <Box sx={{ width: "80%", height: "80%"}}>
+    <div className="Calender">
       <h1>Calender </h1>
-      <CalendarApp/>
-    </Box>
+      <CalendarApp events={events} event={onEventClick} />
+    </div>
   );
 };
 
