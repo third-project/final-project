@@ -7,6 +7,7 @@ import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import DrawerApp from "./components/DrawerApp/DrawerApp";
 import { Box } from "@mui/system";
+import { Container } from "@mui/material";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -66,14 +67,14 @@ export default function App() {
         />
       ) : null}
 
-      <Box sx={{ flexGrow: 1, flexShrink: 0 }}>
+      <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "100vw" }}>
         <Navbar
           handleLogout={handleLogout}
           user={user}
           handleDrawerToggle={handleDrawerToggle}
         />
 
-        <Box sx={{ p: 3, display: "block" }}>
+        <Box sx={{ display: "block" }}>
           <Routes>
             {routes({ user, authenticate, handleLogout }).map((route) => (
               <Route
@@ -88,4 +89,3 @@ export default function App() {
     </Box>
   );
 }
-
