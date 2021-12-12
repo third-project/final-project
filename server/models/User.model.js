@@ -11,7 +11,7 @@ const userSchema = new Schema(
       required: true,
     },
     lastName2: { type: String },
-    dateOfBirth: { type: Date },
+    dateOfBirth: { type: String, default: Date },
     hiringDate: { type: Date },
     legalGender: { type: String, enum: ["Female", "Male", "Other"] }, // Consultar genero sin el legal¿?
     identityCard: { type: String },
