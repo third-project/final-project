@@ -16,7 +16,7 @@ export default function Signup({ authenticate }) {
     password: "",
   });
   const { email, name, lastName, password } = form;
-  //const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   //Errors handling: 
@@ -64,6 +64,7 @@ export default function Signup({ authenticate }) {
     const foundErrors = checkErrors();
 
     if (Object.keys(foundErrors).length > 0) {
+      event.preventDefault(); 
       setErrors(foundErrors);
     } else {
     event.preventDefault(); 
@@ -74,18 +75,18 @@ export default function Signup({ authenticate }) {
       password,
     };
       signup(credentials).then((res) => {
-      if (!res.status) {
+      if (!res.status || res.errorMessage === "This email has already an account.") {
         // unsuccessful signup
         console.error("Signup was unsuccessful: ", res);
-        // console.log(res.status)
-        // return setError({
-        //   message: "Signup was unsuccessful! Please check the console.",
-        // });
+        return setError({
+          message: "This email has already an account, please provide another email address",
+        });
+      } else {
+        // successful signup
+        USER_HELPERS.setUserToken(res.data.accessToken);
+        authenticate(res.data.user);
+        navigate(PATHS.HOMEPAGE);
       }
-      // successful signup
-      USER_HELPERS.setUserToken(res.data.accessToken);
-      authenticate(res.data.user);
-      navigate(PATHS.HOMEPAGE);
     });
     }
   }
@@ -144,7 +145,12 @@ export default function Signup({ authenticate }) {
           Submit
         </Button>
       </form>
+      {error && (
+          <div className="error-block">
+            <p>{error.message}</p>
+          </div>
+      )}
       </Box>
-    </div>
+   </div>
   );
 }
