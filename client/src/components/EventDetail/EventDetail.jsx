@@ -8,16 +8,18 @@ import {
   Typography,
 } from "@mui/material";
 import subDays from 'date-fns/subDays'
+import { approveTimeOff } from "../../services/timeOff";
 
 const EventDetail = (props) => {
-  function deleteClick(event) {
-    console.log(event);
+  function deleteClick(clickEvent) {
+    console.log(clickEvent);
   }
-  function approveClick(event) {
-    console.log(event);
+  async function approveClick(clickEvent) {
+    console.log(clickEvent);
+    await approveTimeOff(props.event.extendedProps.id)
   }
-  function deniedClick(event) {
-    console.log(event);
+  function deniedClick(clickEvent) {
+    console.log(clickEvent);
   }
 
   return (
