@@ -7,7 +7,6 @@ import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import DrawerApp from "./components/DrawerApp/DrawerApp";
 import { Box } from "@mui/system";
-import { Container } from "@mui/material";
 
 export default function App() {
   const [user, setUser] = useState(null);

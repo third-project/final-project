@@ -6,6 +6,7 @@ const CalendarApp = (props) => {
   const [parsedEvents, setParsedEvents] = useState([]);
 
   useEffect(() => {
+    if (!props.events) return;
     const events = props.events.map((event) => {
       return {
         title: event.type,
@@ -16,8 +17,8 @@ const CalendarApp = (props) => {
         extendedProps: {
           summary: event.summary ? event.summary : "No description",
           user: `${event.user.name} ${event.user.lastname}`,
-          id:event._id
-        }
+          id: event._id,
+        },
       };
     });
     setParsedEvents(events);
