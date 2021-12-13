@@ -42,4 +42,28 @@ router.post("/approve/:id", isLoggedIn, async (req, res) => {
   }
 });
 
+router.post("/deny/:id", isLoggedIn, async (req, res) => {
+  const id = req.params.id;
+  try {
+    const timeOff = await CalendarRequest.findByIdAndUpdate(id, {
+      approved: false,
+    },{new:true});
+    return res.status(200).json(timeOff);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ errorMessage: err.toString() });
+  }
+});
+
+router.post("/delete/:id", isLoggedIn, async (req, res) => {
+  const id = req.params.id;
+  try {
+    const timeOff = await CalendarRequest.findByIdAndDelete(id,{new:true});
+    return res.status(200).json(timeOff);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ errorMessage: err.toString() });
+  }
+});
+
 module.exports = router;

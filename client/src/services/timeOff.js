@@ -49,3 +49,17 @@ export async function denyTimeOff(timeOffId) {
     return internalServerError(err);
   }
 }
+
+/**
+ * localiza la solicitud y la borra 
+ * @param {string} timeOffId 
+ * @returns  {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de modificar
+ */
+export async function deleteTimeOff(timeOffId) {
+  try {
+    const response = await timeOffService.post(`/delete/${timeOffId}`);
+    return successStatus(response);
+  } catch (err) {
+    return internalServerError(err);
+  }
+}
