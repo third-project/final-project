@@ -1,39 +1,54 @@
-import { Grid } from "@mui/material";
+import { Alert, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CalendarApp from "../../components/CalendarApp/CalendarApp";
 import EventDetail from "../../components/EventDetail/EventDetail";
 import { getMyRequests } from "../../services/calendarRequest";
-import { approveTimeOff, deleteTimeOff, denyTimeOff } from "../../services/timeOff";
+import {
+  approveTimeOff,
+  deleteTimeOff,
+  denyTimeOff,
+} from "../../services/timeOff";
 import "./Calender.css";
 
 const Calender = () => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     getMyRequests().then((res) => {
       setEvents(res.data);
     });
   }, [selectedEvent]);
+  
+  function timer() {
+    setTimeout(()=>setStatus(null), 1500);
+  }
 
   function onEventClick(event) {
     setSelectedEvent(event.event);
   }
   async function deleteClick() {
-    await deleteTimeOff(selectedEvent.extendedProps.id);
+    const response = await deleteTimeOff(selectedEvent.extendedProps.id);
 
     setSelectedEvent(null);
+    setStatus(response.status);
+    timer();
   }
   async function approveClick() {
-    await approveTimeOff(selectedEvent.extendedProps.id);
+    const response = await approveTimeOff(selectedEvent.extendedProps.id);
 
     setSelectedEvent(null);
+    setStatus(response.status);
+    timer();
   }
 
   async function denyClick() {
-    await denyTimeOff(selectedEvent.extendedProps.id);
+    const response = await denyTimeOff(selectedEvent.extendedProps.id);
 
     setSelectedEvent(null);
+    setStatus(response.status);
+    timer();
   }
 
   return (
@@ -45,7 +60,21 @@ const Calender = () => {
         </Grid>
         <Grid item xs={12} md={4}>
           {selectedEvent && (
-            <EventDetail event={selectedEvent} denyClick={denyClick} approveClick={approveClick} deleteClick={deleteClick} />
+            <EventDetail
+              event={selectedEvent}
+              denyClick={denyClick}
+              approveClick={approveClick}
+              deleteClick={deleteClick}
+            />
+          )}
+          {status && (
+            <Alert severity="success">
+              This is a success alert — check it out!
+            </Alert>
+          )}
+
+          {status===false && (
+            <Alert severity="error">This is an error alert — check it out!</Alert>
           )}
         </Grid>
       </Grid>
