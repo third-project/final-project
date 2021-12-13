@@ -10,11 +10,7 @@ router.post("/create", isLoggedIn, async (req, res) => {
     const session = await Session.findById(accessToken).populate("user");
     const user = session.user;
 
-    if (
-      req.body.startDate &&
-      req.body.endDate &&
-      req.body.type
-    ) {
+    if (req.body.startDate && req.body.endDate && req.body.type) {
       const newCalendarRequest = await CalendarRequest.create({
         startDate: req.body.startDate,
         endDate: req.body.endDate,
@@ -27,6 +23,19 @@ router.post("/create", isLoggedIn, async (req, res) => {
     } else {
       return res.status(400).json({ errorMessage: "Input values are invalid" });
     }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ errorMessage: err.toString() });
+  }
+});
+
+router.post("/approve/:id", isLoggedIn, async (req, res) => {
+  const id = req.params.id;
+  try {
+    const timeOff = await CalendarRequest.findByIdAndUpdate(id, {
+      approved: true,
+    },{new:true});
+    return res.status(200).json(timeOff);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ errorMessage: err.toString() });

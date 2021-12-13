@@ -15,7 +15,7 @@ const Navbar = (props) => {
         edge="start"
         img={logo}
         onClick={props.handleDrawerToggle}
-        sx={{ mr: 2, display: { sm: "none" },color:"white" }}
+        sx={{ mr: 2, display: { sm: "none" } }}
       >
         <MenuIcon />
       </IconButton>
