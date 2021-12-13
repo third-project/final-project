@@ -1,31 +1,56 @@
 import React from "react";
-import { Button, ButtonGroup } from "@mui/material";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from "@mui/material";
+import subDays from "date-fns/subDays";
+import { approveTimeOff, denyTimeOff } from "../../services/timeOff";
 
 const EventDetail = (props) => {
-  function deleteClick(event) {
-    console.log(event);
+  function deleteClick(clickEvent) {
+    console.log(clickEvent);
   }
-  function approveClick(event) {
-    console.log(event);
+  async function approveClick() {
+    await approveTimeOff(props.event.extendedProps.id);
   }
-  function deniedClick(event) {
-    console.log(event);
+  async function denyClick() {
+    await denyTimeOff(props.event.extendedProps.id);
   }
 
   return (
     <div>
-      <ButtonGroup size="large" aria-label="large button group">
-        <Button variant="outlined" onClick={deleteClick}>
-          Delete
-        </Button>
-
-        <Button variant="outlined" onClick={approveClick}>
-          Approve
-        </Button>
-        <Button variant="outlined" onClick={deniedClick}>
-          Denied
-        </Button>
-      </ButtonGroup>
+      <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            {props.event.start.toLocaleDateString()} -{" "}
+            {subDays(props.event.end, 1).toLocaleDateString()}
+          </Typography>
+          <Typography variant="h5" component="div">
+            {props.event.title}
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            {props.event.extendedProps.user}
+          </Typography>
+          <Typography variant="body2">
+            {props.event.extendedProps.summary}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <ButtonGroup
+            size="large"
+            variant="text"
+            aria-label="large button group"
+          >
+            <Button onClick={deleteClick}>Delete</Button>
+            <Button onClick={approveClick}>Approve</Button>
+            <Button onClick={denyClick}>Denied</Button>
+          </ButtonGroup>
+        </CardActions>
+      </Card>
     </div>
   );
 };

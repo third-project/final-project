@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid"; 
+import FullCalendar, { addDays } from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
 
 const CalendarApp = (props) => {
   const [parsedEvents, setParsedEvents] = useState([]);
@@ -8,17 +8,21 @@ const CalendarApp = (props) => {
   useEffect(() => {
     const events = props.events.map((event) => {
       return {
-        title: `${event.type}-${event.summary}`,
+        title: event.type,
         start: event.startDate,
-        end: event.endDate,
+        end: addDays(new Date(event.endDate), 1),
         color: event.approved ? "green" : "red",
-        allDay:true
+        allDay: true,
+        extendedProps: {
+          summary: event.summary ? event.summary : "No description",
+          user: `${event.user.name} ${event.user.lastname}`,
+          id:event._id
+        }
       };
     });
     setParsedEvents(events);
-  },[props.events]);
+  }, [props.events]);
 
- 
   return (
     <FullCalendar
       plugins={[dayGridPlugin]}
