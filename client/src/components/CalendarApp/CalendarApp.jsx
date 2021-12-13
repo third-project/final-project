@@ -3,6 +3,7 @@ import FullCalendar, { addDays } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 
 const CalendarApp = (props) => {
+
   const [parsedEvents, setParsedEvents] = useState([]);
 
   useEffect(() => {
