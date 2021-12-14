@@ -6,7 +6,7 @@ const companySchema = new Schema(
       type: String,
       required: true,
     },
-    foundationDate: { type: Date },
+    foundationDate: { type: String, default: Date },
     fiscalCode: { type: String },
     email: {
       type: String,

@@ -191,7 +191,7 @@ const MyProfile = (props) => {
             <span>Basic information about your role</span>
           </div>
           <div className="divForm">
-            <Box
+            {/* <Box
               sx={{
                 width: 250,
                 "& .MuiTextField-root": { m: 1, width: "25ch" },
@@ -238,7 +238,7 @@ const MyProfile = (props) => {
                   Submit
                 </Button>
               </form>
-            </Box>
+            </Box> */}
           </div>
         </section>
       </div>

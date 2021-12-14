@@ -8,7 +8,6 @@ import * as USER_HELPERS from "./utils/userToken";
 import DrawerApp from "./components/DrawerApp/DrawerApp";
 import { Box } from "@mui/system";
 import { Container } from "@mui/material";
-import Footer from "./components/Footer/Footer";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -69,7 +68,7 @@ export default function App() {
           />
         ) : null}
 
-        <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "80vw" }}>
+        <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "85vw" }}>
           <Navbar
             handleLogout={handleLogout}
             user={user}
@@ -89,7 +88,6 @@ export default function App() {
           </Box>
         </Box>
       </Box>
-      <Footer />
       </div>    
   
   );
