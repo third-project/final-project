@@ -8,19 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 import subDays from "date-fns/subDays";
-import { approveTimeOff, denyTimeOff } from "../../services/timeOff";
 
 const EventDetail = (props) => {
-  function deleteClick(clickEvent) {
-    console.log(clickEvent);
-  }
-  async function approveClick() {
-    await approveTimeOff(props.event.extendedProps.id);
-  }
-  async function denyClick() {
-    await denyTimeOff(props.event.extendedProps.id);
-  }
-
+  
   return (
     <div>
       <Card sx={{ minWidth: 275 }}>
@@ -45,9 +35,9 @@ const EventDetail = (props) => {
             variant="text"
             aria-label="large button group"
           >
-            <Button onClick={deleteClick}>Delete</Button>
-            <Button onClick={approveClick}>Approve</Button>
-            <Button onClick={denyClick}>Denied</Button>
+            <Button onClick={props.deleteClick}>Delete</Button>
+            <Button onClick={props.approveClick}>Approve</Button>
+            <Button onClick={props.denyClick}>Denied</Button>
           </ButtonGroup>
         </CardActions>
       </Card>
