@@ -41,7 +41,7 @@ const DrawerApp = (props) => {
         open={props.mobileOpen}
         onClose={props.handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
         }}
         sx={{
           display: { xs: "block", sm: "none" },
