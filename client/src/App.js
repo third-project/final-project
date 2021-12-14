@@ -36,7 +36,6 @@ export default function App() {
     setIsLoading(true);
     logout(accessToken).then((res) => {
       if (!res.status) {
-        // deal with error here
         console.error("Logout was unsuccessful: ", res);
       }
       USER_HELPERS.removeUserToken();
@@ -57,7 +56,7 @@ export default function App() {
     return <LoadingComponent />;
   }
   return (
-    <Box sx={{ display: "flex" }} className="App">
+    <Box sx={{ display: "flex", maxWidth: "100vw" }} className="App">
       {user ? (
         <DrawerApp
           user={user}
