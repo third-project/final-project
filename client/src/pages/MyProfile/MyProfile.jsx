@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./My Profile.css";
 import { Person, Business } from "@mui/icons-material";
 import Box from "@mui/material/Box";

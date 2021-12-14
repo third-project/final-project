@@ -24,8 +24,8 @@ export async function createTimeOff(timeOff) {
 
 /**
  * localiza la solicitud y pasa a true approved
- * @param {string} timeOffId 
- * @returns  {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de modificar
+ * @param {string} timeOffId
+ * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de modificar
  */
 export async function approveTimeOff(timeOffId) {
   try {
@@ -38,12 +38,26 @@ export async function approveTimeOff(timeOffId) {
 
 /**
  * localiza la solicitud y pasa a false approved
- * @param {string} timeOffId 
- * @returns  {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de modificar
+ * @param {string} timeOffId
+ * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de modificar
  */
 export async function denyTimeOff(timeOffId) {
   try {
     const response = await timeOffService.post(`/deny/${timeOffId}`);
+    return successStatus(response);
+  } catch (err) {
+    return internalServerError(err);
+  }
+}
+
+/**
+ * localiza la solicitud y la borra
+ * @param {string} timeOffId
+ * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de modificar
+ */
+export async function deleteTimeOff(timeOffId) {
+  try {
+    const response = await timeOffService.post(`/delete/${timeOffId}`);
     return successStatus(response);
   } catch (err) {
     return internalServerError(err);
