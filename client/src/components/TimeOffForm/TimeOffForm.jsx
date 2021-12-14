@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 import DatePicker from "../../components/DatePicker/DatePicker";
-import "./TimeOffForm.css"
-import { Button, Grid, MenuItem, Select, TextField } from "@mui/material";
+import "./TimeOffForm.css";
+import {
+  Button,
+  Grid,
+  MenuItem,
+  Select,
+  TextField,
+  Alert,
+} from "@mui/material";
 import { createTimeOff } from "../../services/timeOff";
 
 const TimeOffForm = () => {
   const [dates, setDates] = useState([null, null]);
   const [summary, setSummary] = useState("");
   const [type, setType] = useState("Holidays");
+  const [status, setStatus] = useState(null);
 
   function isValidForm() {
     return dates && dates[0] && dates[1] ? true : false;
   }
 
-  function onSubmit() {
+  function timer() {
+    setTimeout(()=>setStatus(null), 2000);
+  }
+
+  async function onSubmit() {
     if (isValidForm()) {
       const timeOff = {
         startDate: dates[0],
@@ -21,13 +33,15 @@ const TimeOffForm = () => {
         summary: summary,
         type: type,
       };
-      createTimeOff(timeOff);
+      const response = await createTimeOff(timeOff);
+      setStatus(response.status);
+      timer();
     }
   }
 
   return (
     <div className="TimeOffForm">
-      <Grid container spacing={2} >
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <DatePicker
             dates={dates}
@@ -36,7 +50,7 @@ const TimeOffForm = () => {
             endText="End"
           />
         </Grid>
-        <Grid item xs={12} >
+        <Grid item xs={12}>
           <TextField
             item
             name="summary"
@@ -75,6 +89,11 @@ const TimeOffForm = () => {
           >
             Submit
           </Button>
+          {status && (
+            <Alert severity="success">
+              This is a success alert — check it out!
+            </Alert>
+          )}
         </Grid>
       </Grid>
     </div>
