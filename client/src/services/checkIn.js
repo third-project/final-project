@@ -8,14 +8,14 @@ const checkInService = axios.create({
 });
 
 /**
- * Crea y envia el fichaje a Back esto tengo quye repensarlo pq creo que mi idea y el modelo nmo encajan
+ * Crea y envia el fichaje a Back (esto tengo que repensarlo pq creo que mi idea y el modelo no encajan)
  * 
- * @param {{currentDate: Date,startHour: Date,endHour:Date,summary: string,  }} checkIn 
+ * @param {{startDate: Date}} clockIn 
  * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de crear
  */
-export async function registerHour(checkIn) {
+export async function registerHour(clockIn) {
     try {
-        const response = await checkInService.post("/register",checkIn);
+        const response = await checkInService.post("/start",clockIn);
         return successStatus(response);
     } catch (err) {
         return internalServerError(err);

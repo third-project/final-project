@@ -2,20 +2,18 @@ const { Schema, model } = require("mongoose");
 
 const clockInOutSchema = new Schema(
   {
-      currentDate:{
+      startDate:{
         type: Date,
         required: true,
       },
 
-    startHour: {
+      endDate:{
+        type: Date,
+      },
+
+    workingHours: {
       type: Date,
-      required: true,
     },
-    endHour: {
-      type: Date,
-      required: true,
-    },
-    summary: { type: String },
     user: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
@@ -25,4 +23,4 @@ const clockInOutSchema = new Schema(
 
 const ClockInOut = model("ClockInOut", clockInOutSchema);
 
-module.exports = ClockIn;
+module.exports = ClockInOut;
