@@ -29,6 +29,7 @@ const userSchema = new Schema(
     subordinates: [{ type: Schema.Types.ObjectId, ref: "User" }],
     workingFrom: { type: String, enum: ["Presential", "Remote", "Mixed"] },
     photo: { type: String },
+    company: [{ type: Schema.Types.ObjectId, ref: "Company" }]
   },
   {
     timestamps: true,

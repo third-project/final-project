@@ -1,74 +1,98 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import React, { useState } from "react";
+import {Button, Alert, TextField, Dialog, DialogActions, DialogContent, DialogTitle} from '@mui/material';
+import {createCompany} from '../../services/company'
 
-export default function FormDialog() {
-  const [open, setOpen] = React.useState(false);
+export default function ModalCompany() {
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const [name, setName] = useState("")
+  const [foundationDate, setFoundationDate] = useState("")
+  const [fiscalCode, setFiscalCode] = useState("")
+  const [email, setEmail] = useState("")
+  const [status, setStatus] = useState(null);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  async function handleSubmit() {
+    const company = {
+      name: name,
+      foundationDate: foundationDate,
+      fiscalCode: fiscalCode,
+      email: email,
+    }
+      const response = await createCompany(company);
+      setStatus(response.status);
+  }
+  
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {setOpen(true)};
+  const handleClose = () => {setOpen(false)};
 
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
         Add your Company
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <form>
+      <Dialog open={open} onClose={handleClose} maxWidth="xs">
         <DialogTitle>Your Company Information:</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Name"
+            name="name"
             type="text"
             fullWidth
             variant="standard"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
           />
           <TextField
-            autoFocus
             margin="dense"
-            id="name"
+            id="date"
+            name="foundationDate"
             label="Foundation Date"
             type="date"
             fullWidth
-            default={Date.now()}
             variant="standard"
+            defaultValue="2021-12-12"
+            InputLabelProps={{shrink: true}}
+            value={foundationDate}
+            onChange={(event) => setFoundationDate(event.target.value)}
+
           />
             <TextField
-            autoFocus
             margin="dense"
-            id="name"
+            id="fiscalCode"
+            name="fiscalCode"
             label="Fiscal Code"
             type="text"
             fullWidth
             variant="standard"
+            value={fiscalCode}
+            onChange={(event) => setFiscalCode(event.target.value)}
+
           />
             <TextField
-            autoFocus
             margin="dense"
-            id="name"
+            id="email"
+            name="email"
             label="E-mail"
             type="text"
             fullWidth
             variant="standard"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Save</Button>
-
+          <Button onClick={handleSubmit}>Save</Button>
         </DialogActions>
+        {status && (
+            <Alert severity="success">
+              Company created succesfully!
+            </Alert>
+        )}
       </Dialog>
+      </form>
     </div>
   );
 }
