@@ -12,6 +12,5 @@ export function createCompany(company) {
   return companyService
     .post("/create", company)
     .then(successStatus)
-    .then(console.log(successStatus))
     .catch(internalServerError);
 }

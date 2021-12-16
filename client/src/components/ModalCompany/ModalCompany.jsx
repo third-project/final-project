@@ -20,8 +20,14 @@ export default function ModalCompany() {
     }
       const response = await createCompany(company);
       setStatus(response.status);
-      console.log(response.errorMessage)
+      console.log(status)
       setError(response.errorMessage)
+      if (status === true){    //=======>Should be async
+        setName("")
+        setFiscalCode("")
+        setFoundationDate("")
+        setEmail("")
+      }
   }
   
   const [open, setOpen] = useState(false);
@@ -56,7 +62,6 @@ export default function ModalCompany() {
             type="date"
             fullWidth
             variant="standard"
-            defaultValue="2021-12-12"
             InputLabelProps={{shrink: true}}
             value={foundationDate}
             onChange={(event) => setFoundationDate(event.target.value)}

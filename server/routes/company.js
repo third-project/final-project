@@ -13,13 +13,13 @@ router.post("/create", isLoggedIn, async (req, res) => {
     const session = await Session.findById(accessToken).populate("user");
     const user = session.user
   
+    if (!name) {
+      return res.status(400).json({errorMessage: "Please provide a name for your company"})
+    }
     if (!email) {
       return res
         .status(400)
         .json({ errorMessage: "Please provide the email." });
-    }
-    if (!name) {
-      return res.status(400).json({errorMessage: "Please provide a name for your company"})
     }
     Company.findOne({email }).then((found) => {
       if (found) {
@@ -38,18 +38,9 @@ router.post("/create", isLoggedIn, async (req, res) => {
       } else {
         return res.status(400).json({ errorMessage: "Please fill all the information required" })
       } 
-  } catch (err) {
-        if (error instanceof mongoose.Error.ValidationError) {
-          return res.status(400).json({ errorMessage: error.message })
-        }
-        if (error.code === 11000) {
-          return res.status(400).json({
-            errorMessage:
-            "Email need to be unique. The company you chose has already an user owner, please contact your boss.",
-          });
-        }
-        return res.status(500).json({ errorMessage: error.message })
-  }
+  }catch(err){
+    res.status(500).json({ errorMessage: error.message });
+} 
 })
  
 
