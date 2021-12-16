@@ -7,17 +7,11 @@ const companyService = axios.create({
   headers: { Authorization: USER_HELPERS.getUserToken() },
 });
 
-/**
- * @param {{name: name, foundationDate: foundationDate, fiscalCode: fiscalCode, email: email}} company
- * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de crear
- */
 
- export async function createCompany(company) {
-  try {
-    const response = await companyService.post("/create", company);
-    return successStatus(response);
-    
-  } catch (err) {
-    return internalServerError(err);
-  }
+export function createCompany(company) {
+  return companyService
+    .post("/create", company)
+    .then(successStatus)
+    .then(console.log(successStatus))
+    .catch(internalServerError);
 }

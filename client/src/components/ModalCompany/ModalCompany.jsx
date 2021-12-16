@@ -9,6 +9,7 @@ export default function ModalCompany() {
   const [fiscalCode, setFiscalCode] = useState("")
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState(null);
+  const [error, setError] = useState("")
 
   async function handleSubmit() {
     const company = {
@@ -19,6 +20,8 @@ export default function ModalCompany() {
     }
       const response = await createCompany(company);
       setStatus(response.status);
+      console.log(response.errorMessage)
+      setError(response.errorMessage)
   }
   
   const [open, setOpen] = useState(false);
@@ -57,7 +60,6 @@ export default function ModalCompany() {
             InputLabelProps={{shrink: true}}
             value={foundationDate}
             onChange={(event) => setFoundationDate(event.target.value)}
-
           />
             <TextField
             margin="dense"
@@ -69,7 +71,6 @@ export default function ModalCompany() {
             variant="standard"
             value={fiscalCode}
             onChange={(event) => setFiscalCode(event.target.value)}
-
           />
             <TextField
             margin="dense"
@@ -86,11 +87,16 @@ export default function ModalCompany() {
         <DialogActions>
           <Button onClick={handleSubmit}>Save</Button>
         </DialogActions>
-        {status && (
+        {status && 
             <Alert severity="success">
               Company created succesfully!
             </Alert>
-        )}
+        }
+        {status === false &&
+        <Alert severity="error">
+              {error}
+        </Alert>
+        }
       </Dialog>
       </form>
     </div>
