@@ -12,7 +12,7 @@ import subDays from "date-fns/subDays";
 const EventDetail = (props) => {
   
   return (
-    <div>
+    <>
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -41,7 +41,7 @@ const EventDetail = (props) => {
           </ButtonGroup>
         </CardActions>
       </Card>
-    </div>
+    </>
   );
 };
 

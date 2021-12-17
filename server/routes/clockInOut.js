@@ -4,25 +4,58 @@ const Session = require("../models/Session.model");
 
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.post("/start",isLoggedIn,async (req,res) => {
-    const accessToken = req.headers.authorization; 
-    try{
-        const session = await Session.findById(accessToken).populate("user");
-        const user = session.user; 
+router.post("/start", isLoggedIn, async (req, res) => {
+  const accessToken = req.headers.authorization;
+  try {
+    const session = await Session.findById(accessToken).populate("user");
+    const user = session.user;
 
-        if(req.body.startDate) {
-            const clockIn = await ClockInOut.create({
-                startDate: req.body.startDate,
-                user: user._id  
-            });
-            return res.status(200).json(clockIn);
-        }else {
-            return res.status(400).json({ errorMessage: "Start date is invalid" });
-          }
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({ errorMessage: err.toString() });
-      }
-})
+    if (req.body.startDate) {
+      const clockIn = await ClockInOut.create({
+        startDate: req.body.startDate,
+        user: user._id,
+      });
+      return res.status(200).json(clockIn);
+    } else {
+      return res.status(400).json({ errorMessage: "Start date is invalid" });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ errorMessage: err.toString() });
+  }
+});
+
+router.patch("/end/:id", isLoggedIn, async (req, res) => {
+  try {
+    const clockinOutId = req.params.id;
+
+    if (req.body.endDate) {
+      const clockOut = await ClockInOut.findByIdAndUpdate(clockinOutId, {
+        endDate: req.body.endDate,
+      });
+      return res.status(200).json(clockOut);
+    } else {
+      return res.status(400).json({ errorMessage: "End date is invalid" });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ errorMessage: err.toString() });
+  }
+});
+
+router.get("/get-current-clock-in", isLoggedIn, async (req, res) => {
+  const accessToken = req.headers.authorization;
+  try {
+    const session = await Session.findById(accessToken).populate("user");
+    const openClockIn = await ClockInOut.findOne({
+      endDate: { $eq: null },
+      user: { $eq: session.user._id },
+    });
+    return res.status(200).json(openClockIn);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ errorMessage: err.toString() });
+  }
+});
 
 module.exports = router;
