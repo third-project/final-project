@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
   if (!req.headers.authorization || req.headers.authorization === "null") {
     return res.status(403).json({ errorMessage: "You are not logged in" });
   }
-  console.log(`este es el req.headers.auth ${req.headers.authorization}`)
+  // console.log(`este es el req.headers.auth ${req.headers.authorization}`)
 
   Session.findById(req.headers.authorization)
     .populate("user")

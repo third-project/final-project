@@ -87,7 +87,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
           user: user._id,
           createdAt: Date.now(),
         }).then((session) => {
-          console.log(`sesion==> ${session}`)
+          // console.log(`sesion==> ${session}`)
           res.status(201).json({ user, accessToken: session._id });
         });
       })
@@ -107,7 +107,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
 });
 
 router.post("/login", isLoggedOut, (req, res, next) => {
-  console.log("hola")
+  // console.log("hola")
   const { email, password } = req.body;
 
   if (!email) {
