@@ -43,11 +43,6 @@ function HomePage() {
         <Grid item xs={12}>
           <div className="side">
             <img src={mission} alt="missiong-img" />
-          </div>
-        </Grid>  
-
-          <Grid item xs={12}>
-          <div className="side">
             <div className="circle">
               <Typography variant="h4" className="mission-text">
                 {" "}
