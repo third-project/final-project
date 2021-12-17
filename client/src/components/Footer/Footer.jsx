@@ -29,7 +29,7 @@ return (
     <div>
         {team.map((each, index) => {
           return (
-            <div>
+            <div key={index + Date.now()}>
                 <p>{each.name}</p>
                 <a href={each.github}><GitHubIcon></GitHubIcon></a>
                 <a href={each.linkedin}><LinkedInIcon></LinkedInIcon></a>

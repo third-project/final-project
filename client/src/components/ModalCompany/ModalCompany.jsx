@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Button, Alert, TextField, Dialog, DialogActions, DialogContent, DialogTitle} from '@mui/material';
 import {createCompany} from '../../services/company'
 
-export default function ModalCompany() {
+export default function ModalCompany({user}) {
 
   const [name, setName] = useState("")
   const [foundationDate, setFoundationDate] = useState("")
@@ -17,10 +17,11 @@ export default function ModalCompany() {
       foundationDate: foundationDate,
       fiscalCode: fiscalCode,
       email: email,
+      userId: user._id
     }
       const response = await createCompany(company);
       setStatus(response.status);
-      console.log(status)
+      console.log(user)
       setError(response.errorMessage)
       if (status === true){    //=======>Should be async
         setName("")
