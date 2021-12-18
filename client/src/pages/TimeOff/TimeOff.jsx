@@ -3,6 +3,7 @@ import { getMyRequests } from "../../services/calendarRequest";
 import "./TimeOff.css";
 import TimeOffForm from "../../components/TimeOffForm/TimeOffForm";
 import TimeOffTable from "../../components/TimeOffTable/TimeOffTable";
+import { Grid } from "@mui/material";
 
 //TODO FEEDBACK CUANDO SE HACE UNA PETICION HAY QUE MOSTRAR ALGO PARA QUE SE SEPA
 
@@ -12,28 +13,31 @@ const TimeOff = () => {
 
   const fetchEvents = useCallback(() => {
     getMyRequests()
-    .then((response) => {
-      setEvents(response.data)
-      setIsLoading(false)
-    })
+      .then((response) => {
+        setEvents(response.data);
+        setIsLoading(false);
+      })
 
-    .catch((err) => 
-      console.log(err));
-  }, [])
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
-    fetchEvents()
-  }, [fetchEvents])
-      
-    
+    fetchEvents();
+  }, [fetchEvents]);
+
   return (
     <div className="TimeOff">
       <h1>Time Off</h1>
       <h3>Make your Request</h3>
-      <TimeOffForm onSubmitSuccess={fetchEvents}/>
-      <h3>Time Off Records</h3>
-      <TimeOffTable events={events} isLoading={isLoading} />
-     
+      <Grid container spacing={4}>
+        <Grid item xs={12} md={8}>
+          <TimeOffForm onSubmitSuccess={fetchEvents} />
+        </Grid>
+        <Grid item xs={12} md={8}>
+        <h3>Time Off Records</h3>
+          <TimeOffTable events={events} isLoading={isLoading} />
+        </Grid>
+      </Grid>
     </div>
   );
 };
