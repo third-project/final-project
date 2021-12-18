@@ -4,7 +4,7 @@ import mission from "../images/mission.png";
 import Typography from "@mui/material/Typography";
 import BasicCard from "../components/Cards/Cards";
 import Grid from "@mui/material/Grid";
-
+import Footer from './../components/Footer/Footer'
 
 function HomePage() {
   return (
@@ -29,11 +29,6 @@ function HomePage() {
         <Grid item xs={12}>
           <div className="side">
             <img src={mission} alt="missiong-img" />
-          </div>
-        </Grid>  
-
-          <Grid item xs={12}>
-          <div className="side">
             <div className="circle">
               <Typography variant="h4" className="mission-text">
                 {" "}
@@ -51,6 +46,7 @@ function HomePage() {
           <div className="section-four"></div>
         </Grid>
       </Grid>
+      <Footer />
     </div>
   );
 }

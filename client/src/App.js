@@ -65,7 +65,7 @@ export default function App() {
         />
       ) : null}
 
-      <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "100vw" }}>
+      <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "85vw" }}>
         <Navbar
           handleLogout={handleLogout}
           user={user}
