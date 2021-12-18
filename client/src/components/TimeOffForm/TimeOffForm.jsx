@@ -91,7 +91,12 @@ const TimeOffForm = () => {
           </Button>
           {status && (
             <Alert severity="success">
-              This is a success alert — check it out!
+              Time Off created
+            </Alert>
+          )}
+          {status===false && (
+            <Alert severity="error">
+              There was an error
             </Alert>
           )}
         </Grid>

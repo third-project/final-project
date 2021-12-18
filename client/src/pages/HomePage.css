@@ -2,22 +2,15 @@
 
 .section-one {
   background-color: rgb(249, 249, 247);
+  text-align: center;
   height: 535px;
-  display: flex;
- justify-content: center;
-  align-self: center;
-  flex-direction: column;
   width: 100%;
-  max-width: 100vw;
-
 }
 
-.teamwork-img{
+.teamwork-img {
   padding-top: 60px;
-  display: flex;
-  align-self: center;
   padding-bottom: 30px;
-  max-width: 600px;
+  max-width: 100%;
   object-fit: cover;
   height: 100%;
 }
@@ -32,11 +25,11 @@
 }
 
 .introduction-h4 {
-  color:rgb(59, 58, 58);
+  color: rgb(59, 58, 58);
   display: flex;
   justify-content: center;
-  padding-top: 20px; 
-  padding-bottom: 20px; 
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: rgba(255, 176, 119, 0.4);
 
   transform: skew(deg, 0deg);
@@ -44,16 +37,14 @@
 
 /* section three */
 
-.side{
-  display:flex;
+.side {
+  display: flex;
   flex-wrap: wrap;
-  margin-left: 300px;
   margin-top: 30px;
+  justify-content: center;
+}
 
- }
-
-
-.mission-img{
+.mission-img {
   padding-top: 60px;
   display: flex;
   align-self: center;
@@ -61,38 +52,29 @@
   max-width: 100vw;
   object-fit: cover;
   height: 100%;
-
-
-} 
-
+}
 
 .circle {
-  width: 24rem;
-	height: 24rem;
-	border-radius: 50%;
-  background:rgba(255, 176, 119, 0.705);
+  width: 24em;
+  height: 24em;
+  border-radius: 50%;
+  background: rgba(255, 176, 119, 0.705);
   display: flex;
-	justify-content: center;
-  flex-direction: column; 
-	text-align: center; 
-  padding:3%;
-
-
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 3%;
 }
 
-.mission-text{
-  color:rgb(59, 58, 58);
+.mission-text {
+  color: rgb(59, 58, 58);
   font-size: 1rem;
-	font-weight: bold;
+  font-weight: bold;
 }
-
 
 /* section four */
 
-.section-four{
+.section-four {
   height: 500px;
   margin-top: 300px;
-
 }
-
-
