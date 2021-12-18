@@ -12,7 +12,7 @@ const clockInOutSchema = new Schema(
       },
 
     workingHours: {
-      type: Date,
+      type: Number,
     },
     user: { type: Schema.Types.ObjectId, ref: "User" },
   },

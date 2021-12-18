@@ -40,12 +40,13 @@ export async function getMyCheckIn() {
 /**
  * Devuelve todos los fichajes realizados
  * 
- * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es un Object con todos los fichajes del user
+ * @returns {{status: boolean,data: Array,errorMessage:string}} response donde data es un Array con todos los fichajes del user
  */
 
 export async function getAllMyClocks() {
   try {
     const responseAllMyClocks = await checkInService.get("/get-all-my-clocks");
+    console.log(responseAllMyClocks);
     return successStatus(responseAllMyClocks);
   } catch (err) {
     return internalServerError(err);

@@ -14,7 +14,7 @@ export const CheckInButton = (props) => {
 
   return (
     <>
-      <Button onClick={() => initialHour()}>Entrada</Button>
+      <Button onClick={() => initialHour()}>Check In</Button>
     </>
   );
 };

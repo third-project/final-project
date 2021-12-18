@@ -1,3 +1,4 @@
+const differenceInMinutes = require('date-fns/differenceInMinutes')
 const router = require("express").Router();
 const ClockInOut = require("../models/ClockInOut.model");
 const Session = require("../models/Session.model");
@@ -30,8 +31,11 @@ router.patch("/end/:id", isLoggedIn, async (req, res) => {
     const clockinOutId = req.params.id;
 
     if (req.body.endDate) {
+
+      const currentClock = await ClockInOut.findById(clockinOutId);
       const clockOut = await ClockInOut.findByIdAndUpdate(clockinOutId, {
         endDate: req.body.endDate,
+        workingHours:differenceInMinutes(new Date(req.body.endDate),new Date(currentClock.startDate))
       });
       return res.status(200).json(clockOut);
     } else {
@@ -64,7 +68,7 @@ router.get("/get-all-my-clocks", isLoggedIn, async (req, res) => {
     const session = await Session.findById(accessToken).populate("user");
     const allMyClocks = await ClockInOut.find({
       user: { $eq: session.user._id },
-    }).populate("user");
+    }).populate("user").sort([["startDate",-1]]);
     return res.status(200).json(allMyClocks);
   } catch (err) {
     console.log(err);

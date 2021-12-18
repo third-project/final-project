@@ -1,6 +1,7 @@
 import { Alert } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CheckInButton } from "../../components/CheckInButton/CheckInButton";
+import CheckInOutTable from "../../components/CheckInOutTable/CheckInOutTable";
 import CheckOutButton from "../../components/CheckOutButton/CheckOutButton";
 import { getAllMyClocks, getMyCheckIn } from "../../services/checkInOut";
 import "./ClockIn.css";
@@ -22,12 +23,13 @@ const ClockIn = () => {
       setRefresh(null);
       timer();
     });
+  }, [refresh]);
+
+  useEffect(() =>{
     getAllMyClocks().then((res) => {
       setAllClocks(res.data);
     })
-
-
-  }, [refresh]);
+  },[refresh]);
 
   return (
     <div>
@@ -35,12 +37,13 @@ const ClockIn = () => {
       {currentClock && (
         <>
           <CheckOutButton clockId={currentClock._id} setRefresh={setRefresh} />
-          <>{new Date(currentClock.startDate).toLocaleString()}</>
+          <><b>Clock In:</b> {new Date(currentClock.startDate).toLocaleString()}</>
         </>
       )}
       {!currentClock && <CheckInButton setRefresh={setRefresh} />}
 
       {status === false && <Alert severity="error">There was an error</Alert>}
+      <CheckInOutTable clockList={allClocks} />
     </div>
   );
 };
