@@ -1,4 +1,3 @@
-import React from "react";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
@@ -41,7 +40,7 @@ const DrawerApp = (props) => {
         open={props.mobileOpen}
         onClose={props.handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
         }}
         sx={{
           display: { xs: "block", sm: "none" },

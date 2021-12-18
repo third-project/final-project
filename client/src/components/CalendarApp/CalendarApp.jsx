@@ -17,7 +17,7 @@ const CalendarApp = (props) => {
         allDay: true,
         extendedProps: {
           summary: event.summary ? event.summary : "No description",
-          user: `${event.user.name} ${event.user.lastname}`,
+          user: `${event.user.name} ${event.user.lastName}`,
           id: event._id,
         },
       };
