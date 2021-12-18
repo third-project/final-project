@@ -140,7 +140,7 @@ const MyProfile = (props) => {
                   name="legalGender"
                   size="small"
                   select
-                  value={form.legalGender}
+                  value={form.legalGender || ""}
                   onChange={handleInputChange}
                 >
                 <MenuItem value={"Female"} >
@@ -178,66 +178,6 @@ const MyProfile = (props) => {
                   <span>{message}</span>
                 </div>
               )}
-            </Box>
-          </div>
-        </section>
-
-        <section className="workInfo">
-          <div className="divInfo">
-            <Business
-              sx={{ color: "#c8534c", fontSize: 40, textAlign: "center" }}
-            />
-            <p className="formTitle">Work information</p>
-            <span>Basic information about your role</span>
-          </div>
-          <div className="divForm">
-            <Box
-              sx={{
-                width: 250,
-                "& .MuiTextField-root": { m: 1, width: "25ch" },
-              }}
-              autoComplete="off"
-            >
-              <form>
-                <label>Company:</label>
-                <TextField
-                  className="input"
-                  id="input-company"
-                  type="text"
-                  name="company"
-                  size="small"
-                  // value={company}
-                  onChange={handleInputChange}
-                />
-                <label>Start date:</label>
-                <TextField
-                  className="input"
-                  id="input-startDate"
-                  type="date"
-                  name="startDate"
-                  size="small"
-                  // value={lastName2}
-                  onChange={handleInputChange}
-                />
-                <label>Working from:</label>
-                <TextField
-                  className="input"
-                  id="input-workingFrom"
-                  type="text"
-                  name="workingFrom"
-                  size="small"
-                  // value={dateOfBirth}
-                  onChange={handleInputChange}
-                />
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  className="button_submit"
-                  type="submit"
-                >
-                  Submit
-                </Button>
-              </form>
             </Box>
           </div>
         </section>

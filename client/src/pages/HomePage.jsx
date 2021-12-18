@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
+import Footer from './../components/Footer/Footer'
 
 function HomePage() {
   return (
@@ -59,6 +60,7 @@ function HomePage() {
           <div className="section-four"></div>
         </Grid>
       </Grid>
+      <Footer />
     </div>
   );
 }

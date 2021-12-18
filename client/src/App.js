@@ -7,6 +7,7 @@ import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import DrawerApp from "./components/DrawerApp/DrawerApp";
 import { Box } from "@mui/system";
+import { Container } from "@mui/material";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -57,34 +58,37 @@ export default function App() {
     return <LoadingComponent />;
   }
   return (
-    <Box sx={{ display: "flex" }} className="App">
-      {user ? (
-        <DrawerApp
-          user={user}
-          handleDrawerToggle={handleDrawerToggle}
-          mobileOpen={mobileOpen}
-        />
-      ) : null}
+    <div>
+      <Box sx={{ display: "flex" }} className="App">
+        {user ? (
+          <DrawerApp
+            user={user}
+            handleDrawerToggle={handleDrawerToggle}
+            mobileOpen={mobileOpen}
+          />
+        ) : null}
 
-      <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "100vw" }}>
-        <Navbar
-          handleLogout={handleLogout}
-          user={user}
-          handleDrawerToggle={handleDrawerToggle}
-        />
+        <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "85vw" }}>
+          <Navbar
+            handleLogout={handleLogout}
+            user={user}
+            handleDrawerToggle={handleDrawerToggle}
+          />
 
-        <Box sx={{ display: "block", p: 3 }}>
-          <Routes>
-            {routes({ user, authenticate, handleLogout }).map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              />
-            ))}
-          </Routes>
+          <Box sx={{ display: "block", p: 3 }}>
+            <Routes>
+              {routes({ user, authenticate, handleLogout }).map((route) => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                />
+              ))}
+            </Routes>
+          </Box>
         </Box>
       </Box>
-    </Box>
+      </div>    
+  
   );
 }
