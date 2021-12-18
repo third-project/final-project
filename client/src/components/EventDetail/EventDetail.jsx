@@ -23,7 +23,7 @@ const EventDetail = (props) => {
             {props.event.title}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {props.event.extendedProps.user}
+            {props.event.extendedProps.user} 
           </Typography>
           <Typography variant="body2">
             {props.event.extendedProps.summary}
@@ -36,7 +36,7 @@ const EventDetail = (props) => {
             aria-label="large button group"
           >
             <Button onClick={props.deleteClick}>Delete</Button>
-            <Button onClick={props.approveClick}>Approve</Button>
+            <Button onClick={props.approveClick}>Approved</Button>
             <Button onClick={props.denyClick}>Denied</Button>
           </ButtonGroup>
         </CardActions>
