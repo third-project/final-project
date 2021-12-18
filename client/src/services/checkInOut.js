@@ -23,6 +23,7 @@ export async function registerStartHour(clockIn) {
 }
 
 /**
+ * Devuelve un fichaje que no está cerrado
  * 
  * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es un Object con el fichaje abierto
  */
@@ -37,7 +38,23 @@ export async function getMyCheckIn() {
 }
 
 /**
+ * Devuelve todos los fichajes realizados
+ * 
+ * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es un Object con todos los fichajes del user
+ */
+
+export async function getAllMyClocks() {
+  try {
+    const responseAllMyClocks = await checkInService.get("/get-all-my-clocks");
+    return successStatus(responseAllMyClocks);
+  } catch (err) {
+    return internalServerError(err);
+  }
+}
+
+/**
  * Actualiza el fichaje abierto en Back
+ * 
  * @param {string} id
  * @param {{endDate:Date}} clockOut
  * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de actualizar
