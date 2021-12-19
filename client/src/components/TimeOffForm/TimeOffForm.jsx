@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "../../components/DatePicker/DatePicker";
 import "./TimeOffForm.css";
 import {
@@ -11,11 +11,11 @@ import {
 } from "@mui/material";
 import { createTimeOff } from "../../services/timeOff";
 
-const TimeOffForm = () => {
+const TimeOffForm = ({ onSubmitSuccess }) => {
   const [dates, setDates] = useState([null, null]);
   const [summary, setSummary] = useState("");
   const [type, setType] = useState("Holidays");
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(false);
 
   function isValidForm() {
     return dates && dates[0] && dates[1] ? true : false;
@@ -25,7 +25,17 @@ const TimeOffForm = () => {
     setTimeout(()=>setStatus(null), 2000);
   }
 
-  async function onSubmit() {
+  useEffect(() => {
+    if (status === true) {
+      setSummary("")
+      setDates([null, null])
+      setType("")
+      setStatus(false)
+      onSubmitSuccess()
+    }
+  }, [status, onSubmitSuccess])
+
+  async function onSubmit() { 
     if (isValidForm()) {
       const timeOff = {
         startDate: dates[0],

@@ -16,8 +16,8 @@ const Footer = () => {
         },
         {
             name: "Raquel Hidalgo",
-            linkedin: "", 
-            github: ""
+            linkedin: "https://www.linkedin.com/in/raquel-hidalgo-corchuelo/", 
+            github: "https://github.com/raqhidcor"
         }
     ]
 

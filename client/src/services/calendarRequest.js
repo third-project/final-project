@@ -15,7 +15,11 @@ const calendarRequestService = axios.create({
 
 export async function getMyRequests() {
   try {
-    const responseAllMyRequests = await calendarRequestService.get("/all-mine");
+    const responseAllMyRequests = await calendarRequestService.get("/all-mine", {
+      headers: {
+        Authorization: USER_HELPERS.getUserToken()
+      }
+    });
     return successStatus(responseAllMyRequests);
   } catch (err) {
     return internalServerError(err);
