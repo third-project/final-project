@@ -10,6 +10,7 @@ const TimeOff = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   function fetchEvents() {
+    setIsLoading(true);
     getMyRequests()
       .then((response) => {
         setEvents(response.data);
