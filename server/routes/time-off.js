@@ -17,7 +17,7 @@ router.post("/create", isLoggedIn, async (req, res) => {
         summary: req.body.summary,
         user: user._id,
         type: req.body.type,
-        approved: false,
+        approved: false
       });
       return res.status(200).json(newCalendarRequest);
     } else {

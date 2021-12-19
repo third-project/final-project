@@ -1,7 +1,6 @@
 .cards {
   display: flex;
   flex-direction: row;
-  width: 400px;
   height: 200px;
   text-align: center;
   align-items: center;

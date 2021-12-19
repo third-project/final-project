@@ -5,7 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 const Footer = () => {
     const team = [
         {
-            name: "José Luis",
+            name: "José Luis Valdés",
             linkedin: "", 
             github: ""
         }, 
