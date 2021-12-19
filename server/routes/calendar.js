@@ -26,7 +26,7 @@ router.get("/all/:companyId", isLoggedIn, async (req, res) => {
     console.log(companyUsers);
     const companyUserIds = companyUsers.map(user => user._id.toString());
     console.log(companyUserIds);
-    const calendarRequests = await CalendarRequest.find({user: {$in:companyUserIds}});
+    const calendarRequests = await CalendarRequest.find({user: {$in:companyUserIds}}).populate("user");
     return res.status(200).json(calendarRequests);
   }catch (err) {
     console.log(err);

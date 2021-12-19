@@ -69,12 +69,12 @@ const Calender = () => {
           )}
           {status && (
             <Alert severity="success">
-              This is a success alert — check it out!
+            Changed applied! 
             </Alert>
           )}
 
           {status===false && (
-            <Alert severity="error">This is an error alert — check it out!</Alert>
+            <Alert severity="error">There was an error</Alert>
           )}
         </Grid>
       </Grid>
