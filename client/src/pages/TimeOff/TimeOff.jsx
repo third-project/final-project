@@ -5,25 +5,22 @@ import TimeOffForm from "../../components/TimeOffForm/TimeOffForm";
 import TimeOffTable from "../../components/TimeOffTable/TimeOffTable";
 import { Grid } from "@mui/material";
 
-//TODO FEEDBACK CUANDO SE HACE UNA PETICION HAY QUE MOSTRAR ALGO PARA QUE SE SEPA
-
 const TimeOff = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchEvents = useCallback(() => {
+  function fetchEvents() {
+    setIsLoading(true);
     getMyRequests()
       .then((response) => {
         setEvents(response.data);
         setIsLoading(false);
       })
-
-      .catch((err) => console.log(err));
-  }, []);
+  }
 
   useEffect(() => {
     fetchEvents();
-  }, [fetchEvents]);
+  }, []);
 
   return (
     <div className="TimeOff">
@@ -31,10 +28,10 @@ const TimeOff = () => {
       <h3>Make your Request</h3>
       <Grid container spacing={4}>
         <Grid item xs={12} md={8}>
-          <TimeOffForm onSubmitSuccess={fetchEvents} />
+          <TimeOffForm onSubmitSuccess={()=>fetchEvents()} />
         </Grid>
         <Grid item xs={12} md={8}>
-        <h3>Time Off Records</h3>
+          <h3>Time Off Records</h3>
           <TimeOffTable events={events} isLoading={isLoading} />
         </Grid>
       </Grid>

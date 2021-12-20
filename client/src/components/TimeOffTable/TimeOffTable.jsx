@@ -19,11 +19,11 @@ const TimeOffTable = ({ events, isLoading }) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Start Date</TableCell>
-            <TableCell align="center">End Date</TableCell>
-            <TableCell align="center">Type</TableCell>
-            <TableCell align="center">Summary</TableCell>
+            <TableCell align="center"><b>Status</b></TableCell>
+            <TableCell align="center"><b>Start Date</b></TableCell>
+            <TableCell align="center"><b>End Date</b></TableCell>
+            <TableCell align="center"><b>Type</b></TableCell>
+            <TableCell align="center"><b>Summary</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
