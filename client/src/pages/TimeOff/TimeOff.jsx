@@ -9,19 +9,20 @@ const TimeOff = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  function fetchEvents() {
-    setIsLoading(true);
+  const fetchEvents = useCallback(() => {
     getMyRequests()
       .then((response) => {
         setEvents(response.data);
         setIsLoading(false);
       })
-  }
+
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
     fetchEvents();
-  }, []);
-
+  }, [fetchEvents]);
+  
   return (
     <div className="TimeOff">
       <h1>Time Off</h1>

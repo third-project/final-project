@@ -15,7 +15,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
   const [dates, setDates] = useState([null, null]);
   const [summary, setSummary] = useState("");
   const [type, setType] = useState("Holidays");
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(false);
 
   function isValidForm() {
     return dates && dates[0] && dates[1] ? true : false;
@@ -25,12 +25,16 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
     setTimeout(()=>setStatus(null), 2000);
   }
 
-  function resetForm() {
-    setSummary("");
-    setDates([null, null]);
-    setType("Holidays");
-    setStatus(null);
-  }
+  useEffect(() => {
+    if (status === true) {
+      setSummary("")
+      setDates([null, null])
+      setType("")
+      setStatus(false)
+      onSubmitSuccess()
+    }
+  }, [status, onSubmitSuccess])
+
 
   async function onSubmit() { 
     if (isValidForm()) {
@@ -45,7 +49,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
       console.log(response.status);
       if (response.status === true) {
 
-        resetForm()
+    
         onSubmitSuccess()
       }
       timer();
