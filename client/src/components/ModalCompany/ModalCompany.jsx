@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {Button, Alert, TextField, Dialog, DialogActions, DialogContent, DialogTitle} from '@mui/material';
 import {createCompany} from '../../services/company'
 
@@ -8,8 +8,18 @@ export default function ModalCompany({user}) {
   const [foundationDate, setFoundationDate] = useState("")
   const [fiscalCode, setFiscalCode] = useState("")
   const [email, setEmail] = useState("")
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(false);
   const [error, setError] = useState("")
+
+  useEffect(()=>{
+    if (status === true){    
+      setName("")
+      setFiscalCode("")
+      setFoundationDate("")
+      setEmail("")
+      setStatus(false)
+    }
+  }, [status])
 
   async function handleSubmit() {
     const company = {
@@ -21,14 +31,8 @@ export default function ModalCompany({user}) {
     }
       const response = await createCompany(company);
       setStatus(response.status);
-      console.log(user)
+      console.log(response.status)
       setError(response.errorMessage)
-      if (status === true){    //=======>Should be async
-        setName("")
-        setFiscalCode("")
-        setFoundationDate("")
-        setEmail("")
-      }
   }
   
   const [open, setOpen] = useState(false);
