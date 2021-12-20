@@ -8,7 +8,7 @@ export default function ModalCompany({user}) {
   const [foundationDate, setFoundationDate] = useState("")
   const [fiscalCode, setFiscalCode] = useState("")
   const [email, setEmail] = useState("")
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState("");
   const [error, setError] = useState("")
 
   useEffect(()=>{
@@ -17,7 +17,7 @@ export default function ModalCompany({user}) {
       setFiscalCode("")
       setFoundationDate("")
       setEmail("")
-      setStatus(null)
+      // setStatus("")
     }
   }, [status])
 

@@ -26,10 +26,10 @@ const Employees = (props) => {
     return(
     <div>
       <h1>Employees</h1>
-      <ModalCompany user={props.user}/> 
-      {/* {company && company.map((company) =>(
+      {!company ? <ModalCompany user={props.user}/> : null}
+      {company && company.map((company) =>(
         <h1>{company.name}</h1>
-      ))} */}
+      ))}
     </div>
   )
 }
