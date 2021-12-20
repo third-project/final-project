@@ -2,27 +2,44 @@ import { Alert, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CalendarApp from "../../components/CalendarApp/CalendarApp";
 import EventDetail from "../../components/EventDetail/EventDetail";
-import { getMyRequests } from "../../services/calendarRequest";
+import { getAllRequests } from "../../services/calendarRequest";
 import {
   approveTimeOff,
   deleteTimeOff,
   denyTimeOff,
 } from "../../services/timeOff";
-import "./Calender.css";
+import "./CalendarBoss.css";
 
-const Calender = () => {
+const CalendarBoss = (props) => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [status, setStatus] = useState(null);
+  
 
   useEffect(() => {
-    getMyRequests().then((res) => {
-      setEvents(res.data);
-    });
-  }, [selectedEvent]);
-  
+    function getCompany() {
+      if(props.user.companies && props.user.companies.length > 0) {
+        return props.user.companies[0]
+      } else {
+        return null;
+      }
+    }
+
+    const company = getCompany();
+    console.log(company);
+    if (company) {
+      getAllRequests(company).then((res) => {
+        setEvents(res.data);
+      });
+    }else{
+      console.log("No hay compañia")
+    }
+  }, [selectedEvent,props.user.companies]);
+
+
+
   function timer() {
-    setTimeout(()=>setStatus(null), 1500);
+    setTimeout(() => setStatus(null), 1500);
   }
 
   function onEventClick(event) {
@@ -65,16 +82,19 @@ const Calender = () => {
               denyClick={denyClick}
               approveClick={approveClick}
               deleteClick={deleteClick}
+              isBoss={true}
             />
           )}
           {status && (
             <Alert severity="success">
-            Changed applied! 
+              Changed applied! 
             </Alert>
           )}
 
-          {status===false && (
-            <Alert severity="error">There was an error</Alert>
+          {status === false && (
+            <Alert severity="error">
+              There was an error
+            </Alert>
           )}
         </Grid>
       </Grid>
@@ -82,4 +102,4 @@ const Calender = () => {
   );
 };
 
-export default Calender;
+export default CalendarBoss;

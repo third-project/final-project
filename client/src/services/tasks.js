@@ -8,21 +8,24 @@ const tasksService = axios.create({
 });
 
 
-export async function createTask(task) {
+export function createTask(task) {
+  return tasksService
+  .post("/create",task)
+  .then(successStatus)
+  .catch(internalServerError)
+}
+
+
+export async function getMyTasks() {
   try {
-    const response = await tasksService.post("/create", task);
-    return successStatus(response);
+    const responseAllMyTasks = await tasksService.get("/all-mine", {
+      headers: {
+        Authorization: USER_HELPERS.getUserToken()
+      }
+    });
+    return successStatus(responseAllMyTasks);
   } catch (err) {
     return internalServerError(err);
   }
 }
 
-
-export async function deleteTask(taskId) {
-  try {
-    const response = await tasksService.post(`/delete/${taskId}`);
-    return successStatus(response);
-  } catch (err) {
-    return internalServerError(err);
-  }
-}
