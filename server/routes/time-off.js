@@ -4,7 +4,7 @@ const Session = require("../models/Session.model");
 
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.post("/create", isLoggedIn, async (req, res) => {
+router.post("/create/", isLoggedIn, async (req, res) => {
   const accessToken = req.headers.authorization;
   try {
     const session = await Session.findById(accessToken).populate("user");
@@ -17,7 +17,7 @@ router.post("/create", isLoggedIn, async (req, res) => {
         summary: req.body.summary,
         user: user._id,
         type: req.body.type,
-        approved: false
+        approved: false 
       });
       return res.status(200).json(newCalendarRequest);
     } else {
