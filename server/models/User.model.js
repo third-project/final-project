@@ -17,7 +17,7 @@ const userSchema = new Schema(
     identityCard: { type: String },
     password: { type: String, required: true },
     active: { type: Boolean, default: true },
-    role: { type: String, enum: ["Employee", "Boss", "RRHH"] },
+    role: { type: String, enum: ["Employee", "Boss"] },
     clockInOut: [{ type: Schema.Types.ObjectId, ref: "ClockInOut" }],
     email: {
       type: String,
@@ -29,7 +29,7 @@ const userSchema = new Schema(
     subordinates: [{ type: Schema.Types.ObjectId, ref: "User" }],
     workingFrom: { type: String, enum: ["Presential", "Remote", "Mixed"] },
     photo: { type: String },
-    companies: [{ type: Schema.Types.ObjectId, ref: "Company" }],
+    companies: { type: Schema.Types.ObjectId, ref: "Company" },
     tasks:[{type:Schema.Types.ObjectId, ref:"Task"}]
   },
   {
