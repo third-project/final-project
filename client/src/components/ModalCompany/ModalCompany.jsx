@@ -8,7 +8,7 @@ export default function ModalCompany({user}) {
   const [foundationDate, setFoundationDate] = useState("")
   const [fiscalCode, setFiscalCode] = useState("")
   const [email, setEmail] = useState("")
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState("");
   const [error, setError] = useState("")
 
   useEffect(()=>{
@@ -17,7 +17,7 @@ export default function ModalCompany({user}) {
       setFiscalCode("")
       setFoundationDate("")
       setEmail("")
-      setStatus(false)
+      // setStatus("")
     }
   }, [status])
 
@@ -33,7 +33,7 @@ export default function ModalCompany({user}) {
       setStatus(response.status);
       console.log(response.status)
       setError(response.errorMessage)
-  }
+}
   
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {setOpen(true)};
@@ -97,7 +97,7 @@ export default function ModalCompany({user}) {
         <DialogActions>
           <Button onClick={handleSubmit}>Save</Button>
         </DialogActions>
-        {status && 
+        {status === true && 
             <Alert severity="success">
               Company created succesfully!
             </Alert>
