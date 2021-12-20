@@ -17,7 +17,8 @@ const userSchema = new Schema(
     identityCard: { type: String },
     password: { type: String, required: true },
     active: { type: Boolean, default: true },
-    role: { type: String, enum: ["Employee", "Boss"] },
+    role: { type: String, enum: ["Employee", "Boss"], default: "Boss" },
+    jobTitle: {type: String},
     clockInOut: [{ type: Schema.Types.ObjectId, ref: "ClockInOut" }],
     email: {
       type: String,
