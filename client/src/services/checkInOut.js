@@ -30,7 +30,10 @@ export async function registerStartHour(clockIn) {
 
 export async function getMyCheckIn() {
   try {
-    const responseMyCheckIn = await checkInService.get("/get-current-clock-in");
+    const responseMyCheckIn = await checkInService.get("/get-current-clock-in", { 
+      headers: { Authorization: USER_HELPERS.getUserToken()}
+    });
+
     return successStatus(responseMyCheckIn);
   } catch (err) {
     return internalServerError(err);
@@ -45,7 +48,9 @@ export async function getMyCheckIn() {
 
 export async function getAllMyClocks() {
   try {
-    const responseAllMyClocks = await checkInService.get("/get-all-my-clocks");
+    const responseAllMyClocks = await checkInService.get("/get-all-my-clocks", {
+      headers: { Authorization: USER_HELPERS.getUserToken()} 
+    });
     console.log(responseAllMyClocks);
     return successStatus(responseAllMyClocks);
   } catch (err) {

@@ -15,7 +15,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
   const [dates, setDates] = useState([null, null]);
   const [summary, setSummary] = useState("");
   const [type, setType] = useState("Holidays");
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(null);
 
   function isValidForm() {
     return dates && dates[0] && dates[1] ? true : false;
