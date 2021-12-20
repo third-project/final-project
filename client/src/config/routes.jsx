@@ -4,13 +4,20 @@ import Login from "../pages/LogIn/LogIn";
 import Signup from "../pages/Signup/Signup";
 import ProtectedPage from "../pages/ProtectedPage/ProtectedPage";
 import * as PATHS from "../utils/paths";
-import Calender from '../pages/Calender/Calender'
-import ClockIn from '../pages/ClockIn/ClockIn'
-import Employees from '../pages/Employees/Employees'
-import MyProfile from '../pages/MyProfile/MyProfile'
-import Tasks from '../pages/Tasks/Tasks'
-import TimeOff from '../pages/TimeOff/TimeOff'
+import Calender from "../pages/Calender/Calender";
+import ClockIn from "../pages/ClockIn/ClockIn";
+import Employees from "../pages/Employees/Employees";
+import MyProfile from "../pages/MyProfile/MyProfile";
+import Tasks from "../pages/Tasks/Tasks";
+import TimeOff from "../pages/TimeOff/TimeOff";
+import CalendarBoss from "../pages/CalendarBoss/CalendarBoss";
 
+function checkBossUserPermissions(user) {
+  if (user.role === "Boss") {
+    return true;
+  }
+  return false;
+}
 
 const routes = (props) => {
   const { user } = props;
@@ -39,7 +46,7 @@ const routes = (props) => {
     {
       path: PATHS.CALENDER,
       element: user ? (
-        <Calender {...props} />
+        checkBossUserPermissions(user) ?  <CalendarBoss {...props} /> : <Calender {...props} />
       ) : (
         <Navigate to={PATHS.LOGINPAGE} replace />
       ),
@@ -86,7 +93,7 @@ const routes = (props) => {
     },
     {
       path: "*",
-      element:  <Navigate to={PATHS.HOMEPAGE} replace />
+      element: <Navigate to={PATHS.HOMEPAGE} replace />,
     },
   ];
 };

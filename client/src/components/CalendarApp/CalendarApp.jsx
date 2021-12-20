@@ -10,16 +10,18 @@ const CalendarApp = (props) => {
     if (!props.events) return;
     const events = props.events.map((event) => {
       return {
-        title: event.type,
+        title: `${event.type} (${event.user.name} ${event.user.lastName})`,
         start: event.startDate,
         end: addDays(new Date(event.endDate), 1),
-        color: event.approved ? "green" : "red",
+        color: event.approved ? "rgb(237, 247, 237)" : "rgb(255, 244, 229)",
+        textColor:"rgb(102, 60, 0)",
+        borderColor:"#b9b4b4",
         allDay: true,
         extendedProps: {
           summary: event.summary ? event.summary : "No description",
           user: `${event.user.name} ${event.user.lastName}`,
-          id: event._id,
-        },
+          id: event._id
+        }
       };
     });
     setParsedEvents(events);
