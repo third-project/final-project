@@ -30,7 +30,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
       setSummary("")
       setDates([null, null])
       setType("")
-      setStatus(false)
+      setStatus(true)
       onSubmitSuccess()
     }
   }, [status, onSubmitSuccess])
