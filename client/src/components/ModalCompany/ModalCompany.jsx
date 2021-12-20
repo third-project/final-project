@@ -8,7 +8,7 @@ export default function ModalCompany({user}) {
   const [foundationDate, setFoundationDate] = useState("")
   const [fiscalCode, setFiscalCode] = useState("")
   const [email, setEmail] = useState("")
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(false);
   const [error, setError] = useState("")
 
   useEffect(()=>{
@@ -17,6 +17,7 @@ export default function ModalCompany({user}) {
       setFiscalCode("")
       setFoundationDate("")
       setEmail("")
+      setStatus(null)
     }
   }, [status])
 
@@ -30,8 +31,9 @@ export default function ModalCompany({user}) {
     }
       const response = await createCompany(company);
       setStatus(response.status);
+      console.log(response.status)
       setError(response.errorMessage)
-  }
+}
   
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {setOpen(true)};

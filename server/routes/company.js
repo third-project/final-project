@@ -44,11 +44,11 @@ router.post("/create", async (req, res) => {
 router.get("/my-company", async (req, res) => {
   
   const accessToken = req.headers.authorization;
+  // console.log(accessToken)
   try{
-    // const session = await Session.findById(accessToken).populate("user");
-    // const companiesArray = await Company.find({user:{$eq: session.user._id}}).populate("user")
-    return console.log(accessToken)
-    // res.status(200).json(companiesArray);
+    const session = await Session.findById(accessToken).populate("user");
+    const companiesArray = await Company.find({user:{$eq: session.user._id}}).populate("user") 
+    res.status(200).json(companiesArray);
   }catch(err){
     console.log(err)
     return res.status(500).json({errorMessage: err.toString()});
