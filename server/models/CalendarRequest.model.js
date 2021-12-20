@@ -13,7 +13,11 @@ const calendarRequestSchema = new Schema(
     summary: { type: String },
     user: { type: Schema.Types.ObjectId, ref: "User" },
     type:{ type: String, enum: ["Holidays", "Illness", "Maternity / Paternity","Other"]},
-    approved: {type:Boolean}
+    status: {
+      type: [String], 
+      enum: ["Pending", "Approved","Denied"],
+      default: "Pending"
+    }
   },
   {
     timestamps: true,
