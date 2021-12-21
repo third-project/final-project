@@ -72,7 +72,9 @@ export async function getAllMyClocks() {
  */
 export async function registerEndHour(id, clockOut) {
   try {
-    const response = await checkInService.patch(`/end/${id}`, clockOut);
+    const response = await checkInService.patch(`/end/${id}`, clockOut,{
+      headers: { Authorization: USER_HELPERS.getUserToken() },
+    });
     return successStatus(response);
   } catch (err) {
     return internalServerError(err);
