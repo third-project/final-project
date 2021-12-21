@@ -20,7 +20,7 @@ export function createTask(task) {
 
 export async function getMyTasks(){
   try{
-    const responseMyTasks = await taskService.get("/my-tasks",{
+    const responseMyTasks = await tasksService.get("/my-tasks",{
       headers: {
         Authorization: USER_HELPERS.getUserToken()
       }
