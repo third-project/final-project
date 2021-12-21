@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./My Profile.css";
-import { Person, Business } from "@mui/icons-material";
+import { Person } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { editProfile } from "../../services/user";
+import { editProfile } from "./../../services/user";
 import MenuItem from '@mui/material/MenuItem';
+import {uploadImage} from '../../services/uploadImage.js'
+import {Avatar, Alert} from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import LoadingButton from '@mui/lab/LoadingButton';
+
 
 const theme = createTheme({
   palette: {
@@ -23,8 +28,14 @@ const theme = createTheme({
 
 const MyProfile = (props) => {
   
-  const {_id, name, lastName, lastName2, dateOfBirth, identityCard, legalGender, phoneNumber, } = props.user
+  const {_id, name, lastName, lastName2, dateOfBirth, identityCard, legalGender, phoneNumber, photo } = props.user
   
+  const [error, setError] = useState(null)
+  const [message, setMessage] = useState("")
+  const [loadingImage, setLoadingImage] = useState(false)
+  const [userPhoto, setUserPhoto] = useState("")
+  const [status, setStatus] = useState(null)
+
   const [form, setForm] = useState({
     _id: _id,
     name: name,
@@ -34,26 +45,37 @@ const MyProfile = (props) => {
     identityCard: identityCard,
     legalGender: legalGender,
     phoneNumber: phoneNumber,
+    photo: "",
   });
 
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState("");
-
-
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    return setForm({ ...form, [name]: value });
-  };
+    const { name, value } = event.target
+    return setForm({ ...form, [name]: value })
+  }
 
   const handleSubmission = (event) => {
     event.preventDefault();
-    editProfile(form).then((res) => {
+    editProfile(form)
+    .then((res) => {
       if (!res.status) {
-        return setError({ error: "There is an error" });
+        return setError(res.errorMessage)
       }
-      return setMessage("Your profile was updated succesfully")
+      setMessage("Your profile was updated succesfully")
+      setStatus(res.status);
     });
   }
+
+  const handleFileUpload = (event) => {
+    setLoadingImage(true)
+    const uploadData = new FormData()
+    uploadData.append('imageData', event.target.files[0])
+    uploadImage(uploadData)
+        .then(res => {
+            setLoadingImage(false)
+            setForm({ ...form, photo: res.data.cloudinary_url })
+        })
+        .catch(err => console.log(err))
+}
 
   return (
     
@@ -80,7 +102,12 @@ const MyProfile = (props) => {
             >
               <form onSubmit={handleSubmission}>
               <input className="hidden" value={_id} onChange={handleInputChange}></input>
-
+                <Avatar
+                  alt="Remy Sharp"
+                  src={photo}
+                  sx={{ width: 78, height: 78, marginButton: 5}}
+                  variant="rounded"
+                />
                 <label>Name:</label>
                 <TextField
                   className="input"
@@ -164,20 +191,42 @@ const MyProfile = (props) => {
                   value={form.phoneNumber || ""}
                   onChange={handleInputChange}
                 />
-                <Button
+                <FormControl>
+                <label>Profile photo:</label>
+                <TextField
+                type= "file"
+                id="photo"
+                onChange={handleFileUpload}
+                />
+                </FormControl>
+              
+                {/* <Button
                   variant="outlined"
                   color="secondary"
                   className="button_submit"
                   type="submit"
                 >
                   Submit
+                </Button> */}
+                <Button 
+                  disabled={loadingImage} 
+                  variant="outlined"
+                  color="secondary"
+                  className="button_submit"
+                  type="submit" >
+                  {loadingImage ? 'Loading...' : 'Submit'}
                 </Button>
               </form>
-              {message && (
-                <div>
-                  <span>{message}</span>
-                </div>
-              )}
+              {status === true &&
+                <Alert severity="success">
+                  Profile updated!
+                </Alert> 
+              }
+              {status === false &&
+                <Alert severity="error">
+                      {error}
+                </Alert>
+              }
             </Box>
           </div>
         </section>

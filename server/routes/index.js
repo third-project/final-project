@@ -5,6 +5,7 @@ const timeOffRoutes = require("./time-off");
 const userRoutes = require("./users");
 const clockInOutRoutes = require("./clockInOut"); 
 const company = require("./company")
+const uploadPhoto = require("./uploadPhoto")
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -16,7 +17,8 @@ router.use("/calendar-requests",calendarRoutes);
 router.use("/time-off",timeOffRoutes);
 router.use("/check-in",clockInOutRoutes);
 router.use("/company", company)
-
 router.use("/user", userRoutes)
+
+router.use("/upload", uploadPhoto)
 
 module.exports = router;
