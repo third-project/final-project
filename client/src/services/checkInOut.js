@@ -15,7 +15,9 @@ const checkInService = axios.create({
  */
 export async function registerStartHour(clockIn) {
   try {
-    const response = await checkInService.post("/start", clockIn);
+    const response = await checkInService.post("/start", clockIn, {
+      headers: { Authorization: USER_HELPERS.getUserToken() },
+    });
     return successStatus(response);
   } catch (err) {
     return internalServerError(err);
@@ -24,15 +26,18 @@ export async function registerStartHour(clockIn) {
 
 /**
  * Devuelve un fichaje que no está cerrado
- * 
+ *
  * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es un Object con el fichaje abierto
  */
 
 export async function getMyCheckIn() {
   try {
-    const responseMyCheckIn = await checkInService.get("/get-current-clock-in", { 
-      headers: { Authorization: USER_HELPERS.getUserToken()}
-    });
+    const responseMyCheckIn = await checkInService.get(
+      "/get-current-clock-in",
+      {
+        headers: { Authorization: USER_HELPERS.getUserToken() },
+      }
+    );
 
     return successStatus(responseMyCheckIn);
   } catch (err) {
@@ -42,14 +47,14 @@ export async function getMyCheckIn() {
 
 /**
  * Devuelve todos los fichajes realizados
- * 
+ *
  * @returns {{status: boolean,data: Array,errorMessage:string}} response donde data es un Array con todos los fichajes del user
  */
 
 export async function getAllMyClocks() {
   try {
     const responseAllMyClocks = await checkInService.get("/get-all-my-clocks", {
-      headers: { Authorization: USER_HELPERS.getUserToken()} 
+      headers: { Authorization: USER_HELPERS.getUserToken() },
     });
     console.log(responseAllMyClocks);
     return successStatus(responseAllMyClocks);
@@ -60,7 +65,7 @@ export async function getAllMyClocks() {
 
 /**
  * Actualiza el fichaje abierto en Back
- * 
+ *
  * @param {string} id
  * @param {{endDate:Date}} clockOut
  * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de actualizar
