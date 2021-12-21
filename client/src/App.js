@@ -36,7 +36,7 @@ export default function App() {
     setIsLoading(true);
     logout(accessToken).then((res) => {
       if (!res.status) {
-        console.error("Logout was unsuccessful: ", res);
+        console.error("Logout was unsuccessful: ", res)
       }
       USER_HELPERS.removeUserToken();
       setIsLoading(false);
@@ -74,11 +74,12 @@ export default function App() {
 
         <Box sx={{ display: "block", p: 3 , maxWidth: "78vw" }}>
           <Routes>
-            {routes({ user, authenticate, handleLogout }).map((route) => (
+            {routes({ user, authenticate, handleLogout, setUser }).map((route) => (
               <Route
                 key={route.path}
                 path={route.path}
                 element={route.element}
+                
               />
             ))}
           </Routes>
