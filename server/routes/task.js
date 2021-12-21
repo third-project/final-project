@@ -7,6 +7,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.post("/create", async (req,res)=>{
     const {description} = req.body
+    const accessToken = req.headers.authorization;
     try{
         if (!description){
             return res.status(400).json({errorMessage: "Please provide a task description"})

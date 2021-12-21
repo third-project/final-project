@@ -33,8 +33,8 @@ const MyProfile = (props) => {
   const [error, setError] = useState(null)
   const [message, setMessage] = useState("")
   const [loadingImage, setLoadingImage] = useState(false)
-  const [userPhoto, setUserPhoto] = useState("")
   const [status, setStatus] = useState(null)
+  const {setUser} = props
 
   const [form, setForm] = useState({
     _id: _id,
@@ -45,7 +45,7 @@ const MyProfile = (props) => {
     identityCard: identityCard,
     legalGender: legalGender,
     phoneNumber: phoneNumber,
-    photo: "",
+    photo: photo
   });
 
   const handleInputChange = (event) => {
@@ -57,10 +57,12 @@ const MyProfile = (props) => {
     event.preventDefault();
     editProfile(form)
     .then((res) => {
+      console.log(res)
       if (!res.status) {
         return setError(res.errorMessage)
       }
       setMessage("Your profile was updated succesfully")
+      setUser(res.data.user)
       setStatus(res.status);
     });
   }
@@ -105,7 +107,7 @@ const MyProfile = (props) => {
                 <Avatar
                   alt="Remy Sharp"
                   src={photo}
-                  sx={{ width: 78, height: 78, marginButton: 5}}
+                  sx={{ width: 78, height: 78}}
                   variant="rounded"
                 />
                 <label>Name:</label>
