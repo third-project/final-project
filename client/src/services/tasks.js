@@ -18,17 +18,15 @@ export function createTask(task) {
   .catch(internalServerError)
 }
 
-
-export async function getMyTasks() {
-  try {
-    const responseAllMyTasks = await tasksService.get("/all-mine", {
+export async function getMyTasks(){
+  try{
+    const responseMyTasks = await tasksService.get("/my-tasks",{
       headers: {
         Authorization: USER_HELPERS.getUserToken()
       }
     });
-    return successStatus(responseAllMyTasks);
-  } catch (err) {
+    return successStatus(responseMyTasks);
+  }catch(err){
     return internalServerError(err);
   }
 }
-
