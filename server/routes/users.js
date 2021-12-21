@@ -13,10 +13,10 @@ router.patch("/profile", isLoggedIn, async (req, res) => {
     const {_id, name, lastName, lastName2, dateOfBirth, identityCard, legalGender, phoneNumber, photo} = req.body;
     try{
         const userUpdated = await User.findByIdAndUpdate(_id, req.body, {new:true})
+        res.status(200).json({msg: "Changes made succesfully", user: userUpdated})
     }catch(err){
         res.status(500).json({ errorMessage: error.message });
     } 
-    res.status(200).json({msg: "Changes made succesfully"})
 
 })
 
