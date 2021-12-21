@@ -14,8 +14,11 @@ const timeOffService = axios.create({
  * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de crear
  */
 export async function createTimeOff(timeOff) {
+  console.log(timeOff)
   try {
-    const response = await timeOffService.post("/create", timeOff);
+    const response = await timeOffService.post("/create", timeOff,{
+      headers: { Authorization: USER_HELPERS.getUserToken() },
+    });
     return successStatus(response);
   } catch (err) {
     return internalServerError(err);
@@ -29,7 +32,9 @@ export async function createTimeOff(timeOff) {
  */
 export async function approveTimeOff(timeOffId) {
   try {
-    const response = await timeOffService.post(`/approve/${timeOffId}`);
+    const response = await timeOffService.post(`/approve/${timeOffId}`, {
+      headers: { Authorization: USER_HELPERS.getUserToken() },
+    });
     return successStatus(response);
   } catch (err) {
     return internalServerError(err);
@@ -43,7 +48,9 @@ export async function approveTimeOff(timeOffId) {
  */
 export async function denyTimeOff(timeOffId) {
   try {
-    const response = await timeOffService.post(`/deny/${timeOffId}`);
+    const response = await timeOffService.post(`/deny/${timeOffId}`,{
+      headers: { Authorization: USER_HELPERS.getUserToken() },
+    });
     return successStatus(response);
   } catch (err) {
     return internalServerError(err);
@@ -57,7 +64,9 @@ export async function denyTimeOff(timeOffId) {
  */
 export async function deleteTimeOff(timeOffId) {
   try {
-    const response = await timeOffService.post(`/delete/${timeOffId}`);
+    const response = await timeOffService.post(`/delete/${timeOffId}`,{
+      headers: { Authorization: USER_HELPERS.getUserToken() },
+    });
     return successStatus(response);
   } catch (err) {
     return internalServerError(err);

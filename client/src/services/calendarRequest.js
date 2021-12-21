@@ -15,7 +15,9 @@ const calendarRequestService = axios.create({
 
 export async function getMyRequests() {
   try {
-    const responseAllMyRequests = await calendarRequestService.get("/all-mine");
+    const responseAllMyRequests = await calendarRequestService.get("/all-mine" , {
+      headers: { Authorization: USER_HELPERS.getUserToken() },
+    });
     return successStatus(responseAllMyRequests);
   } catch (err) {
     return internalServerError(err);
@@ -30,7 +32,9 @@ export async function getMyRequests() {
 export async function getAllRequests(companyId) {
   try {
     const responseAllRequests = await calendarRequestService.get(
-      `/all/${companyId}`
+      `/all/${companyId}`, {
+        headers: { Authorization: USER_HELPERS.getUserToken() },
+      }
     );
     return successStatus(responseAllRequests);
   } catch (err) {

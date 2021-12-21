@@ -33,7 +33,7 @@ router.post("/approve/:id", isLoggedIn, async (req, res) => {
   const id = req.params.id;
   try {
     const timeOff = await CalendarRequest.findByIdAndUpdate(id, {
-      approved: true,
+      status: "Approved",
     },{new:true});
     return res.status(200).json(timeOff);
   } catch (err) {
@@ -46,7 +46,7 @@ router.post("/deny/:id", isLoggedIn, async (req, res) => {
   const id = req.params.id;
   try {
     const timeOff = await CalendarRequest.findByIdAndUpdate(id, {
-      approved: false,
+      status: "Denied",
     },{new:true});
     return res.status(200).json(timeOff);
   } catch (err) {

@@ -5,9 +5,8 @@ const Task = require("../models/Task.model");
 const Session = require("../models/Session.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.post("/create", async (req,res)=>{
-    const {description} = req.body
-    const accessToken = req.headers.authorization;
+router.post("/create",isLoggedIn, async (req,res)=>{
+    const {description,userId} = req.body
     try{
         if (!description){
             return res.status(400).json({errorMessage: "Please provide a task description"})
@@ -27,7 +26,7 @@ router.post("/create", async (req,res)=>{
             return res.status(400).json({errorMessage: "Please fill the task description"})
         }
     } catch(err){
-        res.status(500).json({errorMessage: error.message})
+        res.status(500).json({errorMessage: err.message})
     }
 })
 

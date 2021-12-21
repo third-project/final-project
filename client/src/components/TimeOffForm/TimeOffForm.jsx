@@ -29,7 +29,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
     if (status === true) {
       setSummary("")
       setDates([null, null])
-      setType("")
+      // setType("") //ToDo --> porque? 
       setStatus(true)
       onSubmitSuccess()
     }
@@ -69,7 +69,6 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            item
             name="summary"
             id="summary"
             label="summary"
@@ -83,7 +82,6 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
 
         <Grid item xs={12}>
           <Select
-            item
             id="time-off"
             value={type}
             label="Type"
