@@ -7,13 +7,13 @@ import { Grid } from "@mui/material";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(null);
   
     const fetchTasks = useCallback(() => {
       getMyTasks()
         .then((response) => {
           setTasks(response.data);
-          setIsLoading(false);
+          setIsLoading(null);
         })
   
         .catch((err) => console.log(err));
