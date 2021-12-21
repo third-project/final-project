@@ -6,6 +6,7 @@ const userRoutes = require("./users");
 const clockInOutRoutes = require("./clockInOut"); 
 const company = require("./company")
 const uploadPhoto = require("./uploadPhoto")
+const tasks = require("./task")
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -20,5 +21,6 @@ router.use("/company", company)
 router.use("/user", userRoutes)
 
 router.use("/upload", uploadPhoto)
+router.use("/tasks", tasks)
 
 module.exports = router;

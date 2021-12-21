@@ -5,7 +5,7 @@ import { createTask } from "../../services/tasks";
 
 const TaskForm = ({ onSubmitSuccess }) => {
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(null);
 
   function isValidForm() {
     return description ? true : false;
