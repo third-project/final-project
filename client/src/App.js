@@ -65,14 +65,14 @@ export default function App() {
         />
       ) : null}
 
-      <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "85vw"}}>
+      <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "100vw"}}>
         <Navbar
           handleLogout={handleLogout}
           user={user}
           handleDrawerToggle={handleDrawerToggle}
         />
 
-        <Box sx={{ display: "block", p: 3 , maxWidth: "85vw" }}>
+        <Box sx={{ display: "block", p: 3 , maxWidth: "78vw" }}>
           <Routes>
             {routes({ user, authenticate, handleLogout }).map((route) => (
               <Route

@@ -17,7 +17,7 @@ My profile.css
 
 .generalInfo .divForm {
     width: fit-content;
-    height: 580px;
+    height: fit-content;
     padding: 3% 5% 1% 5%;
     margin-right: 5%;
     margin-bottom: 3%;
@@ -39,7 +39,6 @@ My profile.css
 }
 .workInfo .divForm {
     width: fit-content;
-    height: 255px;
     padding: 3% 5%;
     margin-right: 5%;
     margin-bottom: 2%;
