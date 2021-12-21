@@ -33,7 +33,7 @@ const TimeOffTable = ({ events, isLoading }) => {
               key={events._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="center">{events.status === 'Approved' ? 'Denied' :  'Pending'}</TableCell>
+              <TableCell align="center">{events.status}</TableCell>
               <TableCell align="center">
                 {new Date(events.startDate).toLocaleDateString()}
               </TableCell>

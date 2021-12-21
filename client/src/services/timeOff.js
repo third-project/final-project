@@ -14,6 +14,7 @@ const timeOffService = axios.create({
  * @returns {{status: boolean,data: Object,errorMessage:string}} response donde data es el objeto que acabamos de crear
  */
 export async function createTimeOff(timeOff) {
+  console.log(timeOff)
   try {
     const response = await timeOffService.post("/create", timeOff,{
       headers: { Authorization: USER_HELPERS.getUserToken() },

@@ -13,6 +13,7 @@ const Tasks = () => {
       getMyTasks()
         .then((response) => {
           setTasks(response.data);
+          console.log(response.data)
           setIsLoading(null);
         })
   

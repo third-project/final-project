@@ -14,8 +14,9 @@ const CalendarBoss = (props) => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [status, setStatus] = useState(null);
-  
+  const [didMount, setDidMount] = useState(false); 
 
+  
   useEffect(() => {
     function getCompany() {
       if(props.user.companies && props.user.companies.length > 0) {
@@ -26,7 +27,6 @@ const CalendarBoss = (props) => {
     }
 
     const company = getCompany();
-    console.log(company);
     if (company) {
       getAllRequests(company).then((res) => {
         setEvents(res.data);
@@ -40,10 +40,12 @@ const CalendarBoss = (props) => {
 
   function timer() {
     setTimeout(() => setStatus(null), 1500);
+    // setStatus(null)
   }
 
   function onEventClick(event) {
     setSelectedEvent(event.event);
+    console.log(event.event)
   }
   async function deleteClick() {
     const response = await deleteTimeOff(selectedEvent.extendedProps.id);
