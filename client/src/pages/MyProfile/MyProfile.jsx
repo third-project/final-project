@@ -201,15 +201,7 @@ const MyProfile = (props) => {
                 onChange={handleFileUpload}
                 />
                 </FormControl>
-              
-                {/* <Button
-                  variant="outlined"
-                  color="secondary"
-                  className="button_submit"
-                  type="submit"
-                >
-                  Submit
-                </Button> */}
+
                 <Button 
                   disabled={loadingImage} 
                   variant="outlined"

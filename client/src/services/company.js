@@ -17,6 +17,17 @@ export function createCompany(company) {
     .catch(internalServerError);
 }
 
+export function addEmployee(company, companyId) {
+  return companyService
+    .post(`/add-employee/${companyId}`, company, {
+      headers: {
+        Authorization: USER_HELPERS.getUserToken()
+      }
+   })
+    .then(successStatus)
+    .catch(internalServerError);
+}
+
 
 export async function getMyCompany() {
   try {

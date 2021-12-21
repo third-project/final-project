@@ -2,9 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import './Employees.css'
 import ModalCompany from './../../components/ModalCompany/ModalCompany'
 import { getMyCompany } from "../../services/company"
-import Button from '@mui/material/Button';
-
-
+import NewEmployee from './../../components/NewEmployee/NewEmployee'
 
 const Employees = (props) => {
   
@@ -32,8 +30,7 @@ const Employees = (props) => {
       {company && company.map((company) =>(
         <div>
           <h1>{company.name}</h1>
-          <Button variant="contained">Add Employee</Button>
-          <Button variant="contained">Delete Company </Button>
+          <NewEmployee user={props.user} company={company}/>
         </div>
       ))}
     </div>
