@@ -10,6 +10,8 @@ import MenuItem from '@mui/material/MenuItem';
 import {uploadImage} from '../../services/uploadImage.js'
 import {Avatar, Alert} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
+import LoadingButton from '@mui/lab/LoadingButton';
+
 
 const theme = createTheme({
   palette: {
@@ -103,7 +105,8 @@ const MyProfile = (props) => {
                 <Avatar
                   alt="Remy Sharp"
                   src={photo}
-                  sx={{ width: 70, height: 70}}
+                  sx={{ width: 78, height: 78, marginButton: 5}}
+                  variant="rounded"
                 />
                 <label>Name:</label>
                 <TextField
@@ -197,13 +200,21 @@ const MyProfile = (props) => {
                 />
                 </FormControl>
               
-                <Button
+                {/* <Button
                   variant="outlined"
                   color="secondary"
                   className="button_submit"
                   type="submit"
                 >
                   Submit
+                </Button> */}
+                <Button 
+                  disabled={loadingImage} 
+                  variant="outlined"
+                  color="secondary"
+                  className="button_submit"
+                  type="submit" >
+                  {loadingImage ? 'Loading...' : 'Submit'}
                 </Button>
               </form>
               {status === true &&
