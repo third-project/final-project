@@ -17,7 +17,6 @@ export default function ModalCompany({user, onSubmitSuccess }) {
       setFiscalCode("")
       setFoundationDate("")
       setEmail("")
-      // setStatus("")
       onSubmitSuccess()
     }
   }, [status, onSubmitSuccess])
