@@ -57,7 +57,6 @@ const MyProfile = (props) => {
     event.preventDefault();
     editProfile(form)
     .then((res) => {
-      console.log(res)
       if (!res.status) {
         return setError(res.errorMessage)
       }

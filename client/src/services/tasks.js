@@ -3,7 +3,8 @@ import * as USER_HELPERS from "../utils/userToken";
 import { internalServerError, successStatus } from "./auth";
 
 const tasksService = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/tasks`
+  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/tasks`,
+  headers: { Authorization: USER_HELPERS.getUserToken() },
 });
 
 

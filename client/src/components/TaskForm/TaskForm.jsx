@@ -3,17 +3,9 @@ import "./TaskForm.css";
 import { Button, Grid, TextField, Alert } from "@mui/material";
 import { createTask } from "../../services/tasks";
 
-const TaskForm = ({ onSubmitSuccess }) => {
+const TaskForm = ({ user, onSubmitSuccess }) => {
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState(null);
-
-  function isValidForm() {
-    return description ? true : false;
-  }
-
-  function timer() {
-    setTimeout(() => setStatus(null), 2000);
-  }
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     if (status === true) {
@@ -22,13 +14,13 @@ const TaskForm = ({ onSubmitSuccess }) => {
   }, [status, onSubmitSuccess]);
 
   async function onSubmit() {
-    if (isValidForm()) {
-      const task = {
-        description: description,
-      };
-      const response = await createTask(task);
-      setStatus(response.status);
-      timer();
+    const task = {
+      description: description,
+    };
+    const response = await createTask(task);
+    setStatus(response.status);
+    if (response.status === true) {
+      onSubmitSuccess();
     }
   }
 
@@ -37,7 +29,6 @@ const TaskForm = ({ onSubmitSuccess }) => {
       <Grid container spacing={2}>
         <Grid item xs={12}></Grid>
         <TextField
-          item
           name="task"
           id="task"
           label="task"
@@ -57,16 +48,12 @@ const TaskForm = ({ onSubmitSuccess }) => {
         >
           Add
         </Button>
-        {status && (
+        {status === true && (
           <Alert severity="success">
             This is a success alert — check it out!
           </Alert>
         )}
-        {status===false && (
-            <Alert severity="error">
-              There was an error
-            </Alert>
-          )}
+        {status === false && <Alert severity="error">There was an error</Alert>}
       </Grid>
     </div>
   );

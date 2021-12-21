@@ -13,7 +13,6 @@ const Tasks = () => {
       getMyTasks()
         .then((response) => {
           setTasks(response.data);
-          console.log(response.data)
           setIsLoading(null);
         })
   
@@ -29,7 +28,7 @@ const Tasks = () => {
         <h1>Tasks</h1>
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
-            <TaskForm onSubmitSuccess={fetchTasks} />
+            <TaskForm onSubmitSuccess={()=>fetchTasks()} />
           </Grid>
           <Grid item xs={12} md={8}>
           <h3>Tasks List</h3>

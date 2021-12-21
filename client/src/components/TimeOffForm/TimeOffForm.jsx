@@ -46,7 +46,6 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
       };
       const response = await createTimeOff(timeOff);
       setStatus(response.status);
-      console.log(response.status);
       if (response.status === true) {
 
     
