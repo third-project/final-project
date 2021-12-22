@@ -5,11 +5,17 @@ import { createTask } from "../../services/tasks";
 
 const TaskForm = ({ user, onSubmitSuccess }) => {
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState(null);
+
+  function timer() {
+    setTimeout(() => setStatus(null), 2000);
+  }
 
   useEffect(() => {
     if (status === true) {
       setDescription("");
+      setStatus(true);
+      onSubmitSuccess();
     }
   }, [status, onSubmitSuccess]);
 
@@ -22,6 +28,7 @@ const TaskForm = ({ user, onSubmitSuccess }) => {
     if (response.status === true) {
       onSubmitSuccess();
     }
+    timer();
   }
 
   return (
@@ -48,12 +55,10 @@ const TaskForm = ({ user, onSubmitSuccess }) => {
         >
           Add
         </Button>
-        {status === true && (
-          <Alert severity="success">
-            This is a success alert — check it out!
-          </Alert>
+        {status && <Alert severity="success">Task created!</Alert>}
+        {status === false && (
+          <Alert severity="error">There was an error!</Alert>
         )}
-        {status === false && <Alert severity="error">There was an error</Alert>}
       </Grid>
     </div>
   );
