@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Thasadith:wght@700&display=swap');
+
+
+.MuiPaper-root{
+    background-color:rgb(249,249,247);
+}
+
+.logo-div {
+    background-color: #37384E;
+}
+.link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2% 8% 2% 8%;
+}
+
+.link img {
+    width: 50px;
+    margin-right: 6%;
+}
+
+.link p {
+    font-family: 'Righteous', cursive;
+    font-size: 25px;
+    font-weight: 900;
+    padding: 0;
+    margin: 0;
+    color: whitesmoke
+}

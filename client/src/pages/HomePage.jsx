@@ -1,49 +1,72 @@
 import "./HomePage.css";
-import teamwork from "../images/teamwork.png";
-import mission from "../images/mission.png";
-import Typography from "@mui/material/Typography";
-import BasicCard from "../components/Cards/Cards";
+import teamwork from "../images/Data analyse.png";
+import timeOff from "../images/calendar.png"
+import clock from "../images/schedule.png"
+import tasks from "../images/tasks.png"
 import Footer from "./../components/Footer/Footer";
+import Container from '@mui/material/Container';
+
+
 
 function HomePage() {
   return (
+    <Container >
     <div className="Home">
       {/* section one  */}
 
-      <div className="section-one">
-        <img src={teamwork} className="teamwork-img" alt="teamwork" />
-      </div>
+      <section className="section-one">
+        <p className="title">Everything you need for Human Resources Management</p>
+          <div className="container"> 
+            <div className="text-container">
+              <p>Let's empower your job-processes with always up-to-date information, making the best
+                decisions for your business.</p>
 
-      {/* section two */}
-
-      <div className="section-two">
-        <Typography variant="h4" className="introduction-h4">
-          Everything you need for HR management
-        </Typography>
-        <BasicCard />
-      </div>
-
-      {/* section three */}
-
-      <div className="side">
-        <img src={mission} alt="missiong-img" />
-        <div className="circle">
-          <Typography variant="h4" className="mission-text">
-            {" "}
-            Our Mission
-          </Typography>
-          <Typography variant="h5" className="mission-text">
-            We help companies that want to automate their HR processes, empower
-            their employees with always up-to-date information and make the best
-            decisions for their business.
-          </Typography>
+            </div>
+            <div className="image-container">
+              <img src={teamwork} className="teamwork-img" alt="teamwork" />
+            </div>
+          </div>
+      </section>
+    {/* secondary section */}
+      <section className="section-two">
+        <div className="text-container">
+          <p>Manage your employees' time-off and absences quickly and
+          easily.</p>
         </div>
-      </div>
+        <div className="image-container">
+          <img src={timeOff} className="image" alt="calendar"/ >
+        </div>
 
-      <div className="section-four"></div>
+      </section>
+
+      {/* secondary section */}
+
+      <section className="section-two">
+        <div className="image-container">
+          <img src={clock} className="image" alt="calendar"/ >
+        </div>
+        <div className="text-container">
+          <p>Record the hours your employees work, increase the
+          productivity of your company and reduce absenteeism.</p>
+        </div>
+
+      </section>
+
+      {/* secondary section */}
+
+      <section className="section-two">
+        <div className="text-container">
+          <p>Plan, organize, and prioritize your employees' tasks, in order to fast the company productivity efficiently.</p>
+        </div>
+        <div className="image-container">
+          <img src={tasks} className="image" alt="calendar"/ >
+        </div>
+
+      </section>
 
       <Footer />
     </div>
+    </Container>
   );
 }
 

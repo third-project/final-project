@@ -1,4 +1,45 @@
 .Navbar {
-  padding:0em 1em;
-  
+  padding:0em 1em;  
+}
+
+.MuiSvgIcon-root {
+  color: whitesmoke
+}
+
+.link img {
+  width: 50px;
+  margin-right: 6%;
+}
+
+.link p {
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  font-weight: 900;
+  padding: 0;
+  margin: 0;
+  color: whitesmoke
+}
+
+.logo-div{
+  width: auto;
+  position: absolute;
+}
+
+@media (max-width:600px) {
+  .Navbar .logo-div{
+    width: 25%;
+    position: initial;
+    margin-right: 12vw;
+    padding: 0;
+  }
+  .Navbar .logo-div p {
+    display: none;
+  }
+  .MuiButton-root {
+    display: flex;
+    flex-direction: column;
+  }
+  .MuiListItem-root {
+    padding: 0;
+  }
 }

@@ -11,11 +11,17 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import * as PATHS from "../../utils/paths";
 import { Link } from "react-router-dom";
-import logo from "../../images/logo.png";
+import logo from "../../images/grouping.png";
 import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
 import LoginTwoToneIcon from "@mui/icons-material/LoginTwoTone";
 import "./Navbar.css";
 import { Button } from "@mui/material";
+import {ListItem} from "@mui/material";
+
+
+
+
+
 
 const Navbar = (props) => {
   const settings = [
@@ -33,7 +39,7 @@ const Navbar = (props) => {
   };
 
   return (
-    <AppBar position="static" className="Navbar" sx={{backgroundColor:"#BFB8EB"}}>
+    <AppBar position="sticky" className="Navbar" sx={{backgroundColor:"#37384E", paddingY:"2px"}}>
       <Box>
         <Toolbar disableGutters>
           <IconButton
@@ -43,7 +49,7 @@ const Navbar = (props) => {
             onClick={props.handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon />
+           {props.user && (<MenuIcon />)}
           </IconButton>
 
           <Typography
@@ -52,8 +58,7 @@ const Navbar = (props) => {
             component="div"
             sx={{ flexGrow: 1, display: "flex" }}
           >
-            Grouping
-          </Typography>
+           </Typography>
 
           {props.user ? (
             <Box sx={{ flexGrow: 0 }}>
@@ -89,24 +94,29 @@ const Navbar = (props) => {
             </Box>
           ) : (
             <>
+            <div className="logo-div"> 
+              <ListItem to="/" className="link" component={Link} >
+                 <img src={logo} alt="grouping logo"/>
+                 <p>Grouping</p>
+              </ListItem>
+            </div>
+
               <Button
-                sx={{ backgroundColor: "white", color: "#BFB8EB",mr:"1em" }}
+                sx={{backgroundColor: "transparent", color: "white", mr:"1em",}}
                 component={Link}
                 to={PATHS.SIGNUPPAGE}
                 variant="contained"
-                startIcon={<AccountCircleTwoToneIcon />}
               >
-                Sign Up
+               <AccountCircleTwoToneIcon />  Sign Up
               </Button>
 
               <Button
-              sx={{ backgroundColor: "white", color: "#BFB8EB" }}
+              sx={{ backgroundColor: "transparent", color: "white"}}
                 component={Link}
                 to={PATHS.LOGINPAGE}
                 variant="contained"
-                startIcon={<LoginTwoToneIcon />}
               >
-                Log In
+                <LoginTwoToneIcon /> Log In
               </Button>
             </>
           )}

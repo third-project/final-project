@@ -1,15 +1,21 @@
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
-import { Box } from "@mui/system";
+import { Box,  } from "@mui/system";
 import DrawerItems from "./DrawerItems";
 import * as PATHS from "../../utils/paths";
+import './DrawerApp.css';
+import MenuItem from '@mui/material/MenuItem';
+import logo from "../../images/grouping.png";
+import {ListItem} from "@mui/material";
+import { Link } from "react-router-dom";
+
+
 
 const DrawerApp = (props) => {
   const { window } = props;
 
   const drawerWidth = 240;
-  const menuItems = [{ name: "Home", icon: "home", path: PATHS.HOMEPAGE }];
   const menuItems2 = [
     { name: "Calendar", icon: "calendar_today", path: PATHS.CALENDER },
     { name: "Clock In", icon: "access_time", path: PATHS.ClOCKIN },
@@ -24,16 +30,20 @@ const DrawerApp = (props) => {
 
   const drawer = (
     <div>
-      <Toolbar />
+      <Toolbar className="logo-div"> 
+        <ListItem to="/" className="link" component={Link}>
+          <img src={logo} alt="grouping logo"/>
+          <p>Grouping</p>
+        </ListItem>
+      </Toolbar>
       <Divider />
-      <DrawerItems items={menuItems} />
-      <Divider />
+      <Toolbar/>
       <DrawerItems items={menuItems2} />
     </div>
   );
 
   return (
-    <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
+    <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }}} className="Drawer">
       <Drawer
         container={container}
         variant="temporary"

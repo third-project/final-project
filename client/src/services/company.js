@@ -41,3 +41,31 @@ export async function getMyCompany() {
     return internalServerError(err);
   }
 }
+
+// export async function getEmployees() {
+//   try {
+//     const allEmployees = await companyService.get(`/employees/`, {
+//       headers: {
+//         Authorization: USER_HELPERS.getUserToken()
+//       }
+//     });
+//     return successStatus(allEmployees);
+//   } catch (err) {
+//     return internalServerError(err);
+//   }
+// }
+
+// With params 
+
+export async function getEmployees(companyId) {
+  try {
+    const allEmployees = await companyService.get(`/employees/${companyId}`, {
+      headers: {
+        Authorization: USER_HELPERS.getUserToken()
+      }
+    });
+    return successStatus(allEmployees);
+  } catch (err) {
+    return internalServerError(err);
+  }
+}
