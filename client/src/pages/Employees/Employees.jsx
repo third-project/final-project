@@ -6,13 +6,13 @@ import NewEmployee from './../../components/NewEmployee/NewEmployee'
 import EmployeesTable from "../../components/EmployeesTable/EmployeesTable";
 
 const Employees = (props) => {
-  
-    const [company, setCompany] = useState(props.user.companies)
+  console.log(props.user.companies)
+    const [company, setCompany] = useState("")
     const [isLoading, setIsLoading] = useState(true)
     const [employees, setEmployees] = useState([])
   
     const fetchCompany = useCallback(() => {
-      getMyCompany()
+      getMyCompany(props.user._id)
         .then((response) => {
           setCompany(response.data);
           setIsLoading(false);
@@ -31,21 +31,20 @@ const Employees = (props) => {
 
     useEffect(() => {
       fetchCompany();
-    }, [fetchCompany]);
+    }, [fetchCompany])
 
     useEffect(() => {
       fetchEmployees();
-    }, [fetchEmployees]);
+    }, [fetchCompany, fetchEmployees]);
 
     useEffect(() => {
       fetchEmployees();
-    },[])
-
+    }, []);
 
     return(
     <div>
       <h1>Employees</h1>
-      {!props.user.companies ? <ModalCompany user={props.user} onSubmitSuccess={()=>fetchCompany()}/> : null}
+      {company.length === 0 && <ModalCompany user={props.user} onSubmitSuccess={()=>fetchCompany()}/> }
       {company && company.map((company) =>(
         <div>
           <h1>{company.name}</h1>
@@ -53,7 +52,7 @@ const Employees = (props) => {
           <NewEmployee user={props.user} company={company} onSubmitSuccess={()=>fetchEmployees()} />
         </div>
       ))}
-      <EmployeesTable user={props.user} company={company} employees={employees}/>
+      <EmployeesTable user={props.user} company={company} employees={employees} isLoading={isLoading}/>
     </div>
   )
 }
