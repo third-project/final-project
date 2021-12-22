@@ -56,7 +56,6 @@ export async function getAllMyClocks() {
     const responseAllMyClocks = await checkInService.get("/get-all-my-clocks", {
       headers: { Authorization: USER_HELPERS.getUserToken() },
     });
-    console.log(responseAllMyClocks);
     return successStatus(responseAllMyClocks);
   } catch (err) {
     return internalServerError(err);

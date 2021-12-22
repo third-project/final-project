@@ -46,7 +46,6 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
       };
       const response = await createTimeOff(timeOff);
       setStatus(response.status);
-      console.log(response.status);
       if (response.status === true) {
 
     
@@ -106,12 +105,12 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
           </Button>
           {status && (
             <Alert severity="success">
-              Time Off created
+              Time Off created!
             </Alert>
           )}
           {status===false && (
             <Alert severity="error">
-              There was an error
+              There was an error!
             </Alert>
           )}
         </Grid>
