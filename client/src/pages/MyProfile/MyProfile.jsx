@@ -57,7 +57,6 @@ const MyProfile = (props) => {
     event.preventDefault();
     editProfile(form)
     .then((res) => {
-      console.log(res)
       if (!res.status) {
         return setError(res.errorMessage)
       }
@@ -89,7 +88,7 @@ const MyProfile = (props) => {
         <section className="generalInfo">
           <div className="divInfo">
             <Person
-              sx={{ color: "#c8534c", fontSize: 40, textAlign: "center" }}
+              sx={{ color: "#43538e", fontSize: 40, textAlign: "center" }}
             />
             <p className="formTitle">General information</p>
             <span>Fill in your personal data</span>
@@ -205,7 +204,7 @@ const MyProfile = (props) => {
                 <Button 
                   disabled={loadingImage} 
                   variant="outlined"
-                  color="secondary"
+                  color="primary"
                   className="button_submit"
                   type="submit" >
                   {loadingImage ? 'Loading...' : 'Submit'}

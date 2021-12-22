@@ -3,13 +3,14 @@ import * as USER_HELPERS from "../utils/userToken";
 import { internalServerError, successStatus } from "./auth";
 
 const tasksService = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/tasks`
+  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/tasks`,
+  headers: { Authorization: USER_HELPERS.getUserToken() },
 });
 
 
 export function createTask(task) {
   return tasksService
-  .post("/create",task, {
+  .post("/create",{task}, {
     headers: { 
       Authorization: USER_HELPERS.getUserToken() 
     }
@@ -18,9 +19,9 @@ export function createTask(task) {
   .catch(internalServerError)
 }
 
-export async function getMyTasks(){
+export async function getMyTasks(id){
   try{
-    const responseMyTasks = await tasksService.get("/my-tasks",{
+    const responseMyTasks = await tasksService.get(`/my-tasks/${id}`,{
       headers: {
         Authorization: USER_HELPERS.getUserToken()
       }

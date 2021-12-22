@@ -1,7 +1,6 @@
 export const HOMEPAGE = "/";
 export const SIGNUPPAGE = "/auth/signup";
 export const LOGINPAGE = "/auth/login";
-export const PROTECTEDPAGE = "/protected";
 export const CALENDER = "/calender";
 export const ClOCKIN = "/clockin";
 export const EMPLOYES = "/employees";
