@@ -8,7 +8,8 @@ import Paper from "@mui/material/Paper";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const TimeOffTable = ({ events, isLoading }) => {
-  
+
+
   return (
 
     isLoading ? <CircularProgress/>

@@ -10,7 +10,7 @@ const tasksService = axios.create({
 
 export function createTask(task) {
   return tasksService
-  .post("/create",task, {
+  .post("/create",{task}, {
     headers: { 
       Authorization: USER_HELPERS.getUserToken() 
     }
@@ -19,9 +19,9 @@ export function createTask(task) {
   .catch(internalServerError)
 }
 
-export async function getMyTasks(){
+export async function getMyTasks(id){
   try{
-    const responseMyTasks = await tasksService.get("/my-tasks",{
+    const responseMyTasks = await tasksService.get(`/my-tasks/${id}`,{
       headers: {
         Authorization: USER_HELPERS.getUserToken()
       }

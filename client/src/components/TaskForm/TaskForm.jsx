@@ -22,6 +22,7 @@ const TaskForm = ({ user, onSubmitSuccess }) => {
   async function onSubmit() {
     const task = {
       description: description,
+      userId : user._id,
     };
     const response = await createTask(task);
     setStatus(response.status);
@@ -33,7 +34,7 @@ const TaskForm = ({ user, onSubmitSuccess }) => {
 
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid container>
         <Grid item xs={12}></Grid>
         <TextField
           name="task"
