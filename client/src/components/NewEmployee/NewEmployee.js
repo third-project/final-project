@@ -34,6 +34,10 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
     }
   }, [status, onSubmitSuccess])
 
+    function timer() {
+    setTimeout(()=>setStatus(null), 3500);
+  }
+
     async function handleSubmit() {
       const newEmployee = {
         name: name,
@@ -50,12 +54,11 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
         if (response.status === true) {
           onSubmitSuccess()
         }
+        timer()
   }
 
   const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleClickOpen = () => {setOpen(true)};
   const handleClose = () => {
     setOpen(false);
   };

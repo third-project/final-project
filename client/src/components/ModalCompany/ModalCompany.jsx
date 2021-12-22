@@ -21,6 +21,11 @@ export default function ModalCompany({user, onSubmitSuccess }) {
     }
   }, [status, onSubmitSuccess])
 
+  function timer() {
+    setTimeout(()=>setStatus(null), 3500);
+  }
+
+
   async function handleSubmit() {
     const company = {
       name: name,
@@ -35,7 +40,8 @@ export default function ModalCompany({user, onSubmitSuccess }) {
       if (response.status === true) {
         onSubmitSuccess()
       }
-}
+      timer()
+  }
   
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {setOpen(true)};
