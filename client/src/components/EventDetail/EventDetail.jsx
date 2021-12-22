@@ -30,6 +30,7 @@ const EventDetail = (props) => {
         </CardContent>
         <CardActions>
           <ButtonGroup
+            color= "secondary"
             size="large"
             variant="text"
             aria-label="large button group"

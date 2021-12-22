@@ -37,7 +37,7 @@ const CheckInOutTable = (props) => {
   ];
 
   return (
-    <Box sx={{ maxWidth: "650px" }}>
+    <Box sx={{ maxWidth: "650px", bgcolor: '#D8DDEE' }}>
       <DataGrid
         autoHeight
         disableColumnMenu

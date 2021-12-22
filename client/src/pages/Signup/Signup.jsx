@@ -98,6 +98,7 @@ export default function Signup({ authenticate }) {
       <form className="auth__form">
       <h1>Sign Up</h1>
       <TextField id="input-email" label="Your email" variant="outlined" type="email"
+          color="secondary"
           error={errors.email}
           name="email"
           placeholder="Write your email address"
@@ -108,6 +109,7 @@ export default function Signup({ authenticate }) {
           required
       />
       <TextField id="input-name" label="Name" variant="outlined" type="text"
+          color="secondary"
           error={errors.name}
           name="name"
           placeholder="Your first name"
@@ -119,6 +121,7 @@ export default function Signup({ authenticate }) {
           required
       />
       <TextField id="input-lastName" label="Last Name" variant="outlined" type="text"
+          color="secondary"
           error={errors.lastName}
           name="lastName"
           placeholder="Your last name"
@@ -130,6 +133,7 @@ export default function Signup({ authenticate }) {
           required
       />
       <TextField id="input-password"  label="Your Password" variant="outlined" type="password"
+          color="secondary"
           error={errors.password}
           name="password"
           placeholder="Create a password"
@@ -141,7 +145,7 @@ export default function Signup({ authenticate }) {
           required
       />
 
-        <Button variant="outlined"  onClick={handleFormSubmission} className="button_submit" type="submit">
+        <Button variant="outlined" color="secondary"  onClick={handleFormSubmission} className="button_submit" type="submit">
           Submit
         </Button>
       </form>

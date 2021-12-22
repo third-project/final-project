@@ -46,6 +46,7 @@ export default function LogIn({ authenticate }) {
       <form onSubmit={handleFormSubmission} className="auth__form">
       <h1>Log In</h1>
         <TextField id="input-email" label="Your email" variant="outlined" type="email"
+          color="secondary"
           name="email"
           placeholder="Write your email address"
           value={email}
@@ -55,6 +56,7 @@ export default function LogIn({ authenticate }) {
         />
 
         <TextField id="input-password" label="Your Password" variant="outlined" type="password"
+          color="secondary"
           name="password"
           placeholder="Write your password"
           value={password}
@@ -71,7 +73,7 @@ export default function LogIn({ authenticate }) {
           </div>
         )}
 
-        <Button variant="outlined" className="button_submit" type="submit">
+        <Button color="secondary" variant="outlined" className="button_submit" type="submit">
           Submit
         </Button>
       </form>

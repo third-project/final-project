@@ -7,8 +7,9 @@ import Box from "@mui/material/Box";
 
 const DatePicker = (props) => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider color="secondary"dateAdapter={AdapterDateFns}>
       <DateRangePicker
+        color="secondary"
         startText={props.startText}
         endText={props.endText}
         value={props.dates}
@@ -16,10 +17,10 @@ const DatePicker = (props) => {
           props.setDates(newValue);
         }}
         renderInput={(startProps, endProps) => (
-          <React.Fragment>
-            <TextField {...startProps} />
+          <React.Fragment color="secondary">
+            <TextField color="secondary" {...startProps} />
             <Box sx={{ mx: 2 }}> to </Box>
-            <TextField {...endProps} />
+            <TextField color="secondary" {...endProps} />
           </React.Fragment>
         )}
       />

@@ -37,6 +37,7 @@ const TaskForm = ({ user, onSubmitSuccess }) => {
       <Grid container>
         <Grid item xs={12}></Grid>
         <TextField
+          color="secondary"
           name="task"
           id="task"
           label="task"
@@ -51,6 +52,7 @@ const TaskForm = ({ user, onSubmitSuccess }) => {
         <Button
           variant="outlined"
           className="button_submit"
+          color = "secondary"
           type="submit"
           onClick={onSubmit}
         >

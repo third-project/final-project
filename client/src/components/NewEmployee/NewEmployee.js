@@ -62,7 +62,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
         New Employee
       </Button>
       <form>
@@ -70,6 +70,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
           <DialogTitle>New Employee Information:</DialogTitle>
           <DialogContent>
             <TextField
+              color="secondary"
               margin="dense"
               id="name"
               label="Name"
@@ -81,6 +82,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
               onChange={(event) => setName(event.target.value)}
             />
             <TextField
+              color="secondary"
               margin="dense"
               id="lastName"
               name="lastName"
@@ -92,6 +94,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
               onChange={(event) => setLastName(event.target.value)}
             />
             <TextField
+              color="secondary"
               margin="dense"
               id="email"
               name="email"
@@ -103,6 +106,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
               onChange={(event) => setEmail(event.target.value)}
             />
             <TextField
+              color="secondary"
               margin="dense"
               id="password"
               name="password"
@@ -114,6 +118,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
               onChange={(event) => setPassword(event.target.value)}
             />
             <TextField
+              color="secondary"
               margin="dense"
               id="hiringDate"
               name="hiringDate"
@@ -126,6 +131,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
               onChange={(event) => setHiringDate(event.target.value)}
             />
             <TextField
+              color="secondary"
               margin="dense"
               id="role"
               name="role"
@@ -141,6 +147,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
               <MenuItem value={"Boss"}>Boss</MenuItem>
             </TextField>
             <TextField
+              color="secondary"
               margin="dense"
               id="jobTitle"
               name="jobTitle"
@@ -153,7 +160,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleSubmit}>Save</Button>
+            <Button color="secondary" onClick={handleSubmit}>Save</Button>
           </DialogActions>
           {status === true && (
             <Alert severity="success">Employee created succesfully!</Alert>

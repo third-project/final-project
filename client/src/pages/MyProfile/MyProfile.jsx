@@ -13,18 +13,18 @@ import FormControl from '@mui/material/FormControl';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#0e2b60",
-      light: "#43538e",
-      dark: "#000036",
-    },
-    secondary: {
-      main: "#c8534c",
-    },
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: "#0e2b60",
+//       light: "#43538e",
+//       dark: "#000036",
+//     },
+//     secondary: {
+//       main: "#c8534c",
+//     },
+//   },
+// });
 
 const MyProfile = (props) => {
   
@@ -80,7 +80,7 @@ const MyProfile = (props) => {
 
   return (
     
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
       <div className="MyProfile">
         <section>
           <p className="title">My Profile</p>
@@ -88,7 +88,7 @@ const MyProfile = (props) => {
         <section className="generalInfo">
           <div className="divInfo">
             <Person
-              sx={{ color: "#43538e", fontSize: 40, textAlign: "center" }}
+              sx={{ color:'#db86d7', fontSize: 40, textAlign: "center" }}
             />
             <p className="formTitle">General information</p>
             <span>Fill in your personal data</span>
@@ -97,7 +97,7 @@ const MyProfile = (props) => {
             <Box
               sx={{
                 width: 250,
-                "& .MuiTextField-root": { m: 1, width: "25ch" },
+                "& .MuiTextField-root": { m: 1, width: "25ch"}
               }}
               autoComplete="off"
             >
@@ -111,6 +111,7 @@ const MyProfile = (props) => {
                 />
                 <label>Name:</label>
                 <TextField
+                  color="secondary"
                   className="input"
                   id="input-name"
                   type="text"
@@ -121,6 +122,7 @@ const MyProfile = (props) => {
                 />
                 <label>Last name:</label>
                 <TextField
+                  color="secondary"
                   className="input"
                   id="input-lastName"
                   type="text"
@@ -131,6 +133,7 @@ const MyProfile = (props) => {
                 />
                 <label>Second last name:</label>
                 <TextField
+                  color="secondary"
                   className="input"
                   id="input-lastName2"
                   type="text"
@@ -141,6 +144,7 @@ const MyProfile = (props) => {
                 />
                 <label>Date of birth:</label>
                 <TextField
+                  color="secondary"
                   className="input"
                   id="input-dateOfBirth"
                   type="date"
@@ -151,6 +155,7 @@ const MyProfile = (props) => {
                 />
                 <label>Identification number:</label>
                 <TextField
+                  color="secondary"
                   className="input"
                   id="input-identification"
                   variant="outlined"
@@ -162,6 +167,7 @@ const MyProfile = (props) => {
                 />
                 <label>Legal Gender:</label>
                 <TextField
+                  color="secondary"
                   className="input"
                   id="input-legalGender"
                   type="text"
@@ -183,6 +189,7 @@ const MyProfile = (props) => {
                 </TextField>
                 <label>Phone number:</label>
                 <TextField
+                  color="secondary"
                   className="input"
                   id="input-phoneNumber"
                   variant="outlined"
@@ -202,9 +209,9 @@ const MyProfile = (props) => {
                 </FormControl>
 
                 <Button 
+                  color="secondary"
                   disabled={loadingImage} 
                   variant="outlined"
-                  color="primary"
                   className="button_submit"
                   type="submit" >
                   {loadingImage ? 'Loading...' : 'Submit'}
@@ -224,7 +231,7 @@ const MyProfile = (props) => {
           </div>
         </section>
       </div>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 };
 
