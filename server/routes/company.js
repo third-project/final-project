@@ -67,7 +67,7 @@ router.post("/add-employee/:companyId", async (req, res) => {
     if (!name || !lastName || !email || !password) {
       return res
         .status(400)
-        .json({ errorMessage: "Please provide a name for your company" });
+        .json({ errorMessage: "Please provide the employee's name" });
     }
     if (!email) {
       return res
@@ -125,5 +125,37 @@ router.get("/my-company", async (req, res) => {
     return res.status(500).json({ errorMessage: err.toString() });
   }
 });
+
+// router.get("/employees", async (req, res) => {
+//   const accessToken = req.headers.authorization;
+//   try {
+//     const session = await Session.findById(accessToken).populate("user");
+//     const thisUser = await User.find({ _id: { $eq: session.user._id}})
+//     const employeesArray = await Company.find({ _id: { $eq: thisUser.companies._id }}).populate("employees")
+
+//     res.status(200).json(employeesArray);
+//     console.log(employeesArray)
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).json({ errorMessage: err.toString() });
+//   }
+// });
+
+
+//con params 
+router.get("/employees/:companyId", async (req, res) => {
+  const {companyId} = req.params
+  try {
+    const companyFromDB = await Company.findById(companyId).populate("employees");
+
+    res.status(200).json(companyFromDB.employees);
+    console.log(companyFromDB.employees)
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ errorMessage: err.toString() });
+  }
+});
+
+
 
 module.exports = router;

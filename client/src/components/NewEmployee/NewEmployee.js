@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import {addEmployee} from './../../services/company'
 
-export default function ModalCompany({ user, company }) {
+export default function NewEmployee({ user, company, onSubmitSuccess }) {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState(""); 
   const [email, setEmail] = useState(""); 
@@ -21,6 +21,18 @@ export default function ModalCompany({ user, company }) {
   const [jobTitle, setJobTitle] = useState("");
   const [status, setStatus] = useState("");
   const [error, setError] = useState("")
+
+  useEffect(()=>{
+    if (status === true){    
+      setName("")
+      setLastName("")
+      setEmail("")
+      setPassword("")
+      setHiringDate("")
+      setRole("")
+      onSubmitSuccess()
+    }
+  }, [status, onSubmitSuccess])
 
     async function handleSubmit() {
       const newEmployee = {
@@ -35,9 +47,9 @@ export default function ModalCompany({ user, company }) {
         const response = await addEmployee(newEmployee, company._id);
         setStatus(response.status);
         setError(response.errorMessage)
-        // if (response.status === true) {
-        //   onSubmitSuccess()
-        // }
+        if (response.status === true) {
+          onSubmitSuccess()
+        }
   }
 
   const [open, setOpen] = useState(false);
