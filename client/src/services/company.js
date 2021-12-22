@@ -29,9 +29,9 @@ export function addEmployee(company, companyId) {
 }
 
 
-export async function getMyCompany() {
+export async function getMyCompany(userId) {
   try {
-    const responseMyCompany = await companyService.get("/my-company", {
+    const responseMyCompany = await companyService.get(`/my-company/${userId}`, {
       headers: {
         Authorization: USER_HELPERS.getUserToken()
       }
@@ -41,21 +41,6 @@ export async function getMyCompany() {
     return internalServerError(err);
   }
 }
-
-// export async function getEmployees() {
-//   try {
-//     const allEmployees = await companyService.get(`/employees/`, {
-//       headers: {
-//         Authorization: USER_HELPERS.getUserToken()
-//       }
-//     });
-//     return successStatus(allEmployees);
-//   } catch (err) {
-//     return internalServerError(err);
-//   }
-// }
-
-// With params 
 
 export async function getEmployees(companyId) {
   try {
