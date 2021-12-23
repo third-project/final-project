@@ -31,3 +31,14 @@ export async function getMyTasks(id){
     return internalServerError(err);
   }
 }
+
+export function deleteTask(task) {
+  return tasksService
+  .post("/delete",{task}, {
+    headers: { 
+      Authorization: USER_HELPERS.getUserToken() 
+    }
+  })
+  .then(successStatus)
+  .catch(internalServerError)
+}

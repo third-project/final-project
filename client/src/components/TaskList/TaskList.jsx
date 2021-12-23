@@ -1,15 +1,17 @@
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import CircularProgress from "@mui/material/CircularProgress";
 import { pink } from "@mui/material/colors";
+import {Button} from "@mui/material"; 
+import { deleteTask } from "../../services/tasks";
 
 const TaskList = (props) => {
   const { tasks, isLoading } = props;
+
 
   return isLoading ? (
     <CircularProgress />
@@ -24,7 +26,6 @@ const TaskList = (props) => {
           disablePadding
         >
           <ListItemButton role={undefined} dense>
-            <ListItemIcon color="success">
               <Checkbox
                 sx={{
                   color: pink[800],
@@ -33,8 +34,16 @@ const TaskList = (props) => {
                   },
                 }}
               />
-            </ListItemIcon>
             <ListItemText id={tasks}>{tasks.description}</ListItemText>
+            <Button
+          variant="outlined"
+          className="button_submit"
+          color = "secondary"
+          type="submit"
+          onSubmit={deleteTask}
+          >
+          Delete 
+        </Button>
           </ListItemButton>
         </ListItem>
         

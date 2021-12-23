@@ -17,7 +17,7 @@ const DatePicker = (props) => {
           props.setDates(newValue);
         }}
         renderInput={(startProps, endProps) => (
-          <React.Fragment color="secondary">
+          <React.Fragment>
             <TextField color="secondary" {...startProps} />
             <Box sx={{ mx: 2 }}> to </Box>
             <TextField color="secondary" {...endProps} />
