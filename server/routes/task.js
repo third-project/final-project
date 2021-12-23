@@ -46,7 +46,7 @@ router.get("/my-tasks/:id", async (req, res) => {
   }
 });
 
-router.post("/delete/:id", isLoggedIn, async (req, res) => {
+router.post("/delete", isLoggedIn, async (req, res) => {
   const accessToken = req.headers.authorization;
   try {
     const session = await Session.findById(accessToken).populate("user");
@@ -54,7 +54,6 @@ router.post("/delete/:id", isLoggedIn, async (req, res) => {
       user: { $eq: session.user._id },
     }).populate("user");
 
-    res.status(200).json(tasksArray);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ errorMessage: err.toString() });

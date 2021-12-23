@@ -12,7 +12,7 @@ const CheckOutButton = (props) => {
     }
     return (
       <>
-        <Button variant="outlined" onClick={() => finishHour()}>Check Out</Button>
+        <Button variant="outlined" color="secondary" onClick={() => finishHour()}>Check Out</Button>
       </>
     )
   

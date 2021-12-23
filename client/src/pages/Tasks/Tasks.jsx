@@ -3,7 +3,9 @@ import { getMyTasks } from "../../services/tasks";
 import "./Tasks.css";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import TaskList from "../../components/TaskList/TaskList";
-import { Grid } from "@mui/material";
+import { Grid, Button } from "@mui/material";
+import { deleteTask } from "../../services/tasks";
+
 
 const Tasks = (props) => {
   const [tasks, setTasks] = useState([]);
@@ -23,6 +25,7 @@ const Tasks = (props) => {
     fetchTasks();
   }, [fetchTasks]);
 
+
   return (
     <div className="Tasks">
       <h1>Tasks</h1>
@@ -32,7 +35,7 @@ const Tasks = (props) => {
         </Grid>
         <Grid item xs={12} md={8}>
           <h3>Tasks List</h3>
-          <TaskList tasks={tasks} isLoading={isLoading} />
+          <TaskList tasks={tasks} isLoading={isLoading}/>
         </Grid>
       </Grid>
     </div>

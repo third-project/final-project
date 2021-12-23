@@ -18,6 +18,7 @@ const EmployeesTable = ({
   const [, setError] = useState(null);
   const [, setMessage] = useState("");
 
+
   const handleDelete = (employeeId) => {
     deleteEmployee(company[0]._id, employeeId).then((res) => {
       if (!res.status) {
@@ -30,7 +31,7 @@ const EmployeesTable = ({
   };
 
   return (
-    <TableContainer component={Paper} sx={{ minWidth: 650, maxWidth: 900 }}>
+    <TableContainer component={Paper} sx={{ minWidth: 650, maxWidth: 900, bgcolor: '#D8DDEE' }}>
       <Table sx={{ minWidth: 650, maxWidth: 900 }} aria-label="simple table">
         <TableHead>
           <TableRow>

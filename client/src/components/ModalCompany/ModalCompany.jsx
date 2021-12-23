@@ -49,7 +49,7 @@ export default function ModalCompany({user, onSubmitSuccess, getMyEmployees }) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
         Add your Company
       </Button>
       <form>
@@ -57,6 +57,7 @@ export default function ModalCompany({user, onSubmitSuccess, getMyEmployees }) {
         <DialogTitle>Your Company Information:</DialogTitle>
         <DialogContent>
           <TextField
+            color="secondary"
             margin="dense"
             id="name"
             label="Name"
@@ -68,6 +69,7 @@ export default function ModalCompany({user, onSubmitSuccess, getMyEmployees }) {
             onChange={(event) => setName(event.target.value)}
           />
           <TextField
+            color="secondary"
             margin="dense"
             id="date"
             name="foundationDate"
@@ -80,6 +82,7 @@ export default function ModalCompany({user, onSubmitSuccess, getMyEmployees }) {
             onChange={(event) => setFoundationDate(event.target.value)}
           />
             <TextField
+            color="secondary"
             margin="dense"
             id="fiscalCode"
             name="fiscalCode"
@@ -91,6 +94,7 @@ export default function ModalCompany({user, onSubmitSuccess, getMyEmployees }) {
             onChange={(event) => setFiscalCode(event.target.value)}
           />
             <TextField
+            color="secondary"
             margin="dense"
             id="email"
             name="email"
@@ -103,7 +107,7 @@ export default function ModalCompany({user, onSubmitSuccess, getMyEmployees }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit}>Save</Button>
+          <Button color="secondary" onClick={handleSubmit}>Save</Button>
         </DialogActions>
         {status === true && 
             <Alert severity="success">

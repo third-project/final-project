@@ -60,6 +60,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <DatePicker
+            color="secondary"
             dates={dates}
             setDates={setDates}
             startText="Start"
@@ -68,6 +69,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            color="secondary"
             name="summary"
             id="summary"
             label="summary"
@@ -81,6 +83,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
 
         <Grid item xs={12}>
           <Select
+            color="secondary"
             id="time-off"
             value={type}
             label="Type"
@@ -96,6 +99,7 @@ const TimeOffForm = ({ onSubmitSuccess }) => {
         </Grid>
         <Grid item xs={12}>
           <Button
+            color="secondary"
             variant="outlined"
             className="button_submit"
             type="submit"
