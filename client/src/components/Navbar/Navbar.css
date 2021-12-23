@@ -1,5 +1,5 @@
 .Navbar {
-  padding:0em 1em;  
+  padding:0em 1em; 
 }
 
 .MuiSvgIcon-root {
@@ -26,6 +26,9 @@
 }
 
 @media (max-width:600px) {
+  /* .Navbar {
+    max-width: 100vw;
+  } */
   .Navbar .logo-div{
     width: 25%;
     position: initial;

@@ -7,58 +7,63 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
-import {addEmployee} from './../../services/company'
+import { addEmployee } from "./../../services/company";
 
 export default function NewEmployee({ user, company, onSubmitSuccess }) {
   const [name, setName] = useState("");
-  const [lastName, setLastName] = useState(""); 
-  const [email, setEmail] = useState(""); 
-  const [password, setPassword] = useState(""); 
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [hiringDate, setHiringDate] = useState("");
   const [role, setRole] = useState("");
   const [jobTitle, setJobTitle] = useState("");
   const [status, setStatus] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
-  useEffect(()=>{
-    if (status === true){    
-      setName("")
-      setLastName("")
-      setEmail("")
-      setPassword("")
-      setHiringDate("")
-      setRole("")
-      onSubmitSuccess()
+  useEffect(() => {
+    if (status === true) {
+      setName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+      setHiringDate("");
+      setRole("");
+      onSubmitSuccess();
     }
-  }, [status, onSubmitSuccess])
+  }, [status, onSubmitSuccess]);
 
-    function timer() {
-    setTimeout(()=>setStatus(null), 3500);
+  function timer() {
+    setTimeout(() => {
+      setStatus("");
+      handleClose();
+    }, 2000);
   }
 
-    async function handleSubmit() {
-      const newEmployee = {
-        name: name,
-        lastName: lastName,
-        email: email,
-        password: password,
-        hiringDate: hiringDate,
-        role: role,
-        jobTitle: jobTitle
-      }
-        const response = await addEmployee(newEmployee, company._id);
-        setStatus(response.status);
-        setError(response.errorMessage)
-        if (response.status === true) {
-          onSubmitSuccess()
-        }
-        timer()
+  async function handleSubmit() {
+    const newEmployee = {
+      name: name,
+      lastName: lastName,
+      email: email,
+      password: password,
+      hiringDate: hiringDate,
+      role: role,
+      jobTitle: jobTitle,
+    };
+    const response = await addEmployee(newEmployee, company._id);
+    setStatus(response.status);
+    setError(response.errorMessage);
+    if (response.status === true) {
+      onSubmitSuccess();
+      timer();
+    }
   }
 
   const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {setOpen(true)};
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   const handleClose = () => {
     setOpen(false);
   };
@@ -130,7 +135,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
               fullWidth
               variant="standard"
               value={hiringDate}
-              InputLabelProps={{shrink: true}}
+              InputLabelProps={{ shrink: true }}
               onChange={(event) => setHiringDate(event.target.value)}
             />
             <TextField

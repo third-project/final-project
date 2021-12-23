@@ -7,6 +7,7 @@ import * as USER_HELPERS from "../../utils/userToken";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import loginPicture from "../../images/Coworking.png"
 
 export default function LogIn({ authenticate }) {
   const [form, setForm] = useState({
@@ -41,6 +42,9 @@ export default function LogIn({ authenticate }) {
 
   return (
     <div className="Login">
+    
+        <img src={loginPicture} alt="Coworking" className="image-container" />
+
     <Box
         sx={{width: 250, height: 300, textAlign: 'center', '& .MuiTextField-root': { m: 1, width: '25ch' } }} autoComplete="off" >
       <form onSubmit={handleFormSubmission} className="auth__form">

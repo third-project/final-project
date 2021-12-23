@@ -54,3 +54,14 @@ export async function getEmployees(companyId) {
     return internalServerError(err);
   }
 }
+
+export async function deleteEmployee(companyId, userId) {
+  return companyService
+  .patch(`/employees/delete/${companyId}/${userId}`, {
+      headers: {
+        Authorization: USER_HELPERS.getUserToken()
+      }
+  })
+    .then(successStatus)
+    .catch(internalServerError);
+}

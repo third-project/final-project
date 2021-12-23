@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Button, Alert, TextField, Dialog, DialogActions, DialogContent, DialogTitle} from '@mui/material';
 import {createCompany} from '../../services/company'
 
-export default function ModalCompany({user, onSubmitSuccess }) {
+export default function ModalCompany({user, onSubmitSuccess, getMyEmployees }) {
 
   const [name, setName] = useState("")
   const [foundationDate, setFoundationDate] = useState("")
@@ -25,7 +25,6 @@ export default function ModalCompany({user, onSubmitSuccess }) {
     setTimeout(()=>setStatus(null), 3500);
   }
 
-
   async function handleSubmit() {
     const company = {
       name: name,
@@ -37,10 +36,11 @@ export default function ModalCompany({user, onSubmitSuccess }) {
       const response = await createCompany(company);
       setStatus(response.status);
       setError(response.errorMessage)
+      
       if (response.status === true) {
         onSubmitSuccess()
+        timer()
       }
-      timer()
   }
   
   const [open, setOpen] = useState(false);
