@@ -82,14 +82,14 @@ const MyProfile = (props) => {
     <ThemeProvider theme={theme}>
       <div className="MyProfile">
         <section>
-          <p className="title">My Profile</p>
+          <h1 className="title">My Profile</h1>
         </section>
         <section className="generalInfo">
           <div className="divInfo">
             <Person
               sx={{ color: "#43538e", fontSize: 40, textAlign: "center" }}
             />
-            <p className="formTitle">General information</p>
+            <h4 className="formTitle">General information</h4>
             <span>Fill in your personal data</span>
           </div>
           <div className="divForm">

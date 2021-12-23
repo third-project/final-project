@@ -9,3 +9,12 @@
 .Signup .image-container {
     width: 60vw;
 }
+
+@media (max-width:600px) {
+    .Signup {
+        padding-left: 20%;
+    }
+    .Signup .image-container {
+        display: none;
+    }
+}

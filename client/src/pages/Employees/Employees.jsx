@@ -58,8 +58,9 @@ const Employees = (props) => {
       )}
       {company?.length && company.map((company) => (
         <div key={company._id}>
-          <h1>{company.name}</h1>
-          <h1>{company._id}</h1>
+          <h2>{company.name}</h2>
+          <h4> Fiscal Code : {company.fiscalCode}</h4>
+          <h4> Company Email: {company.email}</h4>
           <NewEmployee
             user={props.user}
             company={company}

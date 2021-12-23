@@ -10,3 +10,13 @@
 .Login .image-container {
     width: 60vw;
 }
+
+
+@media (max-width:600px) {
+    .Login {
+        padding-left: 20%;
+    }
+    .Login .image-container {
+        display: none;
+    }
+}
