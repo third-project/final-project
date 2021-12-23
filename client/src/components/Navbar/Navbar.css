@@ -26,6 +26,9 @@
 }
 
 @media (max-width:600px) {
+  .Navbar {
+    max-width: 100vw;
+  }
   .Navbar .logo-div{
     width: 25%;
     position: initial;

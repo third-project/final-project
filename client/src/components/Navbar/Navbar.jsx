@@ -19,10 +19,6 @@ import { Button } from "@mui/material";
 import {ListItem} from "@mui/material";
 
 
-
-
-
-
 const Navbar = (props) => {
   const settings = [
     { name: "Logout", action: props.handleLogout },

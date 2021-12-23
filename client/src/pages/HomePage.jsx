@@ -8,9 +8,10 @@ import Container from '@mui/material/Container';
 
 
 
+
 function HomePage() {
   return (
-    <Container >
+  <Container>
     <div className="Home">
       {/* section one  */}
 

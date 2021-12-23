@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import {addEmployee} from './../../services/company'
 
+
+
 export default function NewEmployee({ user, company, onSubmitSuccess }) {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState(""); 
@@ -21,7 +23,7 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
   const [jobTitle, setJobTitle] = useState("");
   const [status, setStatus] = useState("");
   const [error, setError] = useState("")
-
+  
   useEffect(()=>{
     if (status === true){    
       setName("")
@@ -35,7 +37,11 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
   }, [status, onSubmitSuccess])
 
     function timer() {
-    setTimeout(()=>setStatus(null), 3500);
+    setTimeout(()=>{
+      setStatus("")
+      handleClose()
+    }, 2000);
+    
   }
 
     async function handleSubmit() {
@@ -53,8 +59,10 @@ export default function NewEmployee({ user, company, onSubmitSuccess }) {
         setError(response.errorMessage)
         if (response.status === true) {
           onSubmitSuccess()
+          timer()
         }
-        timer()
+        
+        
   }
 
   const [open, setOpen] = useState(false);

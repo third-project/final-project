@@ -4,21 +4,20 @@
 .Home {
   display: inline-flex;
   flex-direction: column;
-  /* background-color: thistle; */
   width: 70vw;
+  max-width: 70vw;
 }
 
 .section-one {
   display: flex;
   flex-direction: column;
-  /* background-color: burlywood; */
 }
 
 .section-one .title {
   font-family: 'Thasadith', sans-serif;
   font-size: 3em;
   font-weight: 900;
-  text-align: center;
+  text-align: center; 
 }
 
 .section-one .image-container {
@@ -29,14 +28,12 @@
 }
 
 .section-one .container {
-  /* background-color: cadetblue; */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .section-one .text-container {
-  /* background-color: chartreuse; */
   width: 90%;
   margin: 0 3% 0 3%;
 }
@@ -76,4 +73,23 @@
   font-size: 1.3em;
   text-align: center;
   font-family: 'Poppins', sans-serif;;
+}
+
+@media (max-width:600px) {
+  .section-one .title {
+    font-size: 2.2em;
+    margin: 1;
+  }
+  .section-one .text-container p  {
+    font-size: 1em;
+  }
+  .Home {
+    max-width: 90vw;
+  }
+  .text-container p {
+    font-size: 0.8em;
+  }
+  .section-two {
+    margin: 4% 0;
+  }
 }
