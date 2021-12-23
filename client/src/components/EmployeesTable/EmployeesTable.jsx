@@ -74,6 +74,7 @@ const EmployeesTable = ({
               <TableCell align="center">
                 {" "}
                 <Button
+                  color="secondary"
                   variant="outlined"
                   onClick={() => handleDelete(employee._id)}
                 >
