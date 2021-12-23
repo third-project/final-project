@@ -19,10 +19,6 @@ import { Button } from "@mui/material";
 import {ListItem} from "@mui/material";
 
 
-
-
-
-
 const Navbar = (props) => {
   const settings = [
     { name: "Logout", action: props.handleLogout },
@@ -37,7 +33,7 @@ const Navbar = (props) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  
   return (
     <AppBar position="sticky" className="Navbar" sx={{backgroundColor:"#37384E", paddingY:"2px"}}>
       <Box>

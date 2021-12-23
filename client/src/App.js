@@ -8,10 +8,12 @@ import * as USER_HELPERS from "./utils/userToken";
 import DrawerApp from "./components/DrawerApp/DrawerApp";
 import { Box } from "@mui/system";
 
+
 export default function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+
 
   useEffect(() => {
     const accessToken = USER_HELPERS.getUserToken();
@@ -65,14 +67,13 @@ export default function App() {
         />
       ) : null}
 
-      <Box sx={{ flexGrow: 1, flexShrink: 0, maxWidth: "100vw"}}>
+      <Box sx={{ flexGrow: 1, flexShrink: 0, width:"81vw", maxWidth: "100vw"}}>
         <Navbar
           handleLogout={handleLogout}
           user={user}
           handleDrawerToggle={handleDrawerToggle}
         />
-
-        <Box sx={{ display: "block", p: 3 , maxWidth: "78vw" }}>
+        <Box sx={{ display: "block", maxWidth: "70vw" }}>
           <Routes>
             {routes({ user, authenticate, handleLogout, setUser }).map((route) => (
               <Route

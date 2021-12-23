@@ -5,15 +5,33 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
+import { deleteEmployee } from "./../../services/company";
+import { useState } from "react";
 
+const EmployeesTable = ({
+  company,
+  employees,
+  fetchEmployees
+}) => {
+  const [, setError] = useState(null);
+  const [, setMessage] = useState("");
 
-const EmployeesTable = ({ user, company, employees, isLoading }) => {
-  return isLoading ? (
-    <CircularProgress />
-  ) : (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+  const handleDelete = (employeeId) => {
+    deleteEmployee(company[0]._id, employeeId).then((res) => {
+      if (!res.status) {
+        return setError(res.errorMessage);
+      }
+      fetchEmployees()
+      setMessage("Employee deleted succesfully");
+      console.log(res);
+    });
+  };
+
+  return (
+    <TableContainer component={Paper} sx={{ minWidth: 650, maxWidth: 900 }}>
+      <Table sx={{ minWidth: 650, maxWidth: 900 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="center">
@@ -31,23 +49,38 @@ const EmployeesTable = ({ user, company, employees, isLoading }) => {
             <TableCell align="center">
               <b>Hire Date</b>
             </TableCell>
+            <TableCell align="center">
+              <b>Actions</b>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {employees?.map((employee) => (
-              <TableRow
-                key={employee._id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="center">{employee.photo}</TableCell>
-                <TableCell align="center">{employee.name}</TableCell>
-                <TableCell align="center">{employee.lastName}</TableCell>
-                <TableCell align="center"> {employee.jobTitle}</TableCell>
-                <TableCell align="center">
-                  {new Date(employee.hiringDate).toLocaleDateString()}
-                </TableCell>
-              </TableRow>
-            ))}
+            <TableRow
+              key={employee._id}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell align="center">
+                {" "}
+                <Avatar alt="employee avatar" src={employee.photo} />
+              </TableCell>
+              <TableCell align="center">{employee.name}</TableCell>
+              <TableCell align="center">{employee.lastName}</TableCell>
+              <TableCell align="center"> {employee.jobTitle}</TableCell>
+              <TableCell align="center">
+                {new Date(employee.hiringDate).toLocaleDateString()}
+              </TableCell>
+              <TableCell align="center">
+                {" "}
+                <Button
+                  variant="outlined"
+                  onClick={() => handleDelete(employee._id)}
+                >
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

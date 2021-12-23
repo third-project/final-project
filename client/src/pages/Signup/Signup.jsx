@@ -7,6 +7,8 @@ import * as USER_HELPERS from "../../utils/userToken";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import signupPicture from "../../images/Work at home.png"
+
 
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
@@ -55,10 +57,6 @@ export default function Signup({ authenticate }) {
     return checkedErrors;
   };
 
-  // function handleInputChange(event) {
-  //   const { name, value } = event.target;
-  //   return setForm({ ...form, [name]: value });
-  // }
 
   function handleFormSubmission(event) {
     const foundErrors = checkErrors();
@@ -93,6 +91,8 @@ export default function Signup({ authenticate }) {
 
   return (
     <div className= "Signup">
+            <img src={signupPicture} alt="Coworking" className="image-container" />
+
       <Box
         sx={{width: 250, height: 300, textAlign: 'center', '& .MuiTextField-root': { m: 1, width: '25ch' } }} autoComplete="off" >
       <form className="auth__form">

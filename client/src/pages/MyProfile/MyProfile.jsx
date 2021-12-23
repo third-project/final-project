@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./My Profile.css";
 import { Person } from "@mui/icons-material";
 import Box from "@mui/material/Box";
@@ -10,7 +10,6 @@ import MenuItem from '@mui/material/MenuItem';
 import {uploadImage} from '../../services/uploadImage.js'
 import {Avatar, Alert} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 
 const theme = createTheme({
