@@ -1,11 +1,24 @@
 import React from "react";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import './Footer.css'
 
-const Footer = () => {
+const Footer = (props) => {
+    const {user} = props
+  
+    const style = ()=> {
+      let style = {}
+      if (user) {
+        style ={width:"80vw"}
+      }  else {
+        style ={width:"98vw"}
+      }
+      return style
+    }
+
     const team = [
         {
-            name: "José Luis Valdés",
+            name: "José L. Valdés",
             linkedin: "", 
             github: ""
         }, 
@@ -22,17 +35,16 @@ const Footer = () => {
     ]
 
 return (
-    <footer>
+    <footer style={style()}>
     <div>
-        <p> Created and develoved by:</p>
+        <p> © Copyright. All rights deserved.        Created and develoved by:</p>
     </div>
-    <div>
+    <div className="links">
         {team.map((each, index) => {
           return (
-            <div key={index + Date.now()}>
+            <div key={index + Date.now()} className="each">
                 <p>{each.name}</p>
-                <a href={each.github}><GitHubIcon></GitHubIcon></a>
-                <a href={each.linkedin}><LinkedInIcon></LinkedInIcon></a>
+                <p><a href={each.github}><GitHubIcon></GitHubIcon></a><a href={each.linkedin}><LinkedInIcon></LinkedInIcon></a></p>
             </div>
             );
         })}

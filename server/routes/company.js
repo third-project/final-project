@@ -140,8 +140,7 @@ router.get("/employees/:companyId", async (req, res) => {
 router.patch("/employees/delete/:companyId/:userId", async (req, res) => {
   const {companyId, userId} = req.params
   try{
-      const companyFromDB = await Company.findById(companyId, {$pull: {employees: userId}}) 
-      console.log(companyFromDB)
+      const companyFromDB = await Company.findByIdAndUpdate(companyId, {$pull: {employees: userId}}) 
       res.status(200).json({msg: "Changes made succesfully", company: companyFromDB})
   } catch(err){
       console.log((err))

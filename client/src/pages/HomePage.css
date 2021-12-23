@@ -4,8 +4,7 @@
 .Home {
   display: inline-flex;
   flex-direction: column;
-  width: 70vw;
-  max-width: 70vw;
+  /* width: 70vw; */
 }
 
 .section-one {
@@ -17,7 +16,8 @@
   font-family: 'Thasadith', sans-serif;
   font-size: 3em;
   font-weight: 900;
-  text-align: center; 
+  text-align: center;
+  margin-top: 3%; 
 }
 
 .section-one .image-container {
@@ -83,13 +83,14 @@
   .section-one .text-container p  {
     font-size: 1em;
   }
-  .Home {
-    max-width: 90vw;
-  }
   .text-container p {
     font-size: 0.8em;
   }
   .section-two {
     margin: 4% 0;
   }
+  .Home {
+    width: 95vw;
+  }
+
 }

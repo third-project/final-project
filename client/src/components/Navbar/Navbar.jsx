@@ -33,7 +33,7 @@ const Navbar = (props) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  
   return (
     <AppBar position="sticky" className="Navbar" sx={{backgroundColor:"#37384E", paddingY:"2px"}}>
       <Box>
