@@ -31,7 +31,7 @@ const EmployeesTable = ({
   };
 
   return (
-    <TableContainer component={Paper} sx={{ minWidth: 650, maxWidth: 900, bgcolor: '#D8DDEE' }}>
+    <TableContainer component={Paper} sx={{ m: 1, minWidth: 650, maxWidth: 900, bgcolor: '#D8DDEE' }}>
       <Table sx={{ minWidth: 650, maxWidth: 900 }} aria-label="simple table">
         <TableHead>
           <TableRow>

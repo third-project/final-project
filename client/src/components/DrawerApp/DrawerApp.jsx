@@ -5,7 +5,6 @@ import { Box,  } from "@mui/system";
 import DrawerItems from "./DrawerItems";
 import * as PATHS from "../../utils/paths";
 import './DrawerApp.css';
-import MenuItem from '@mui/material/MenuItem';
 import logo from "../../images/grouping.png";
 import {ListItem} from "@mui/material";
 import { Link } from "react-router-dom";
