@@ -3,8 +3,7 @@ import { getMyTasks } from "../../services/tasks";
 import "./Tasks.css";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import TaskList from "../../components/TaskList/TaskList";
-import { Grid, Button } from "@mui/material";
-import { deleteTask } from "../../services/tasks";
+import { Grid } from "@mui/material";
 
 
 const Tasks = (props) => {

@@ -4,7 +4,6 @@ import ModalCompany from "./../../components/ModalCompany/ModalCompany";
 import { getMyCompany, getEmployees } from "../../services/company";
 import NewEmployee from "./../../components/NewEmployee/NewEmployee";
 import EmployeesTable from "../../components/EmployeesTable/EmployeesTable";
-import * as PATHS from "../../utils/paths";
 
 const Employees = (props) => {
   const [company, setCompany] = useState(props.user.companies);

@@ -4,26 +4,11 @@ import { Person } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { editProfile } from "./../../services/user";
 import MenuItem from '@mui/material/MenuItem';
 import {uploadImage} from '../../services/uploadImage.js'
 import {Avatar, Alert} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#0e2b60",
-//       light: "#43538e",
-//       dark: "#000036",
-//     },
-//     secondary: {
-//       main: "#c8534c",
-//     },
-//   },
-// });
 
 const MyProfile = (props) => {
   
@@ -218,7 +203,7 @@ const MyProfile = (props) => {
               </form>
               {status === true &&
                 <Alert severity="success">
-                  Profile updated!
+                {{message}}
                 </Alert> 
               }
               {status === false &&
@@ -230,7 +215,6 @@ const MyProfile = (props) => {
           </div>
         </section>
       </div>
-    // </ThemeProvider>
   );
 };
 
